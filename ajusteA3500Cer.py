@@ -3,8 +3,8 @@ import pandas as pd
 ARCHIVO = 'a3500-cer.csv'   # Archivo donde se van a guardar los datos
 
 # Abrimos los archivos necesarios
-cer = pd.read_csv('cer.csv')
-a3500 = pd.read_csv('a3500.csv')
+a3500 = pd.read_csv('5.csv')
+cer = pd.read_csv('30.csv')
 
 # Creamos/Vaciamos el archivo y agregamos los headers
 with open(ARCHIVO,'w', encoding="utf-8") as fd:
@@ -38,18 +38,15 @@ for i in range(0, len(a3500)):
 
 # Graficar el resultado
 import matplotlib.pyplot as plt 
-x = []
-y = []
+
 
 a3500Ajuste = pd.read_csv(ARCHIVO)
-      
-for i in range(0, len(a3500Ajuste)): 
-    x.append(a3500Ajuste.fecha[i]) 
-    y.append(a3500Ajuste.valor[i]) 
-  
-plt.bar(x, y, color = 'g', width = 0.72) 
-plt.xlabel('Fecha') 
-plt.ylabel('Precio') 
-plt.title('A3500 Ajustado por CER') 
-plt.legend() 
+
+x = a3500Ajuste.fecha
+y = a3500Ajuste.valor
+
+plt.plot(x, y)
+plt.xlabel('Fecha')
+plt.ylabel('Precio')
+plt.title('A3500 Ajustado por CER')
 plt.show() 
