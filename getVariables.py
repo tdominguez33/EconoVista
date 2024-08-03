@@ -3,7 +3,7 @@ import requests
 import datetime
 from dateutil.relativedelta import relativedelta
 import sqlite3
-import certifi
+#import certifi
 import pandas as pd
 
 # 5 -> A3500
@@ -11,8 +11,8 @@ import pandas as pd
 VARIABLES_ID = [5, 30]
 VARIABLES_INICIO = ['2002-03-04', '2002-03-04']
 
-# Ruta del archivo de certificados certifi (opcional, en caso de necesitarlo)
-CERT_PATH = certifi.where()
+# Ruta del archivo de certificados certifi
+#CERT_PATH = certifi.where()
 
 # Conexión a la base de datos
 conn = sqlite3.connect('variables.db')
