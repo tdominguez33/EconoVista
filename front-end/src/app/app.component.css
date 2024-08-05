@@ -1,0 +1,11 @@
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    /* Evita que los elementos salten de línea */
+    justify-content: space-between;
+}
+
+.fila {
+    padding: 1%;
+
+}

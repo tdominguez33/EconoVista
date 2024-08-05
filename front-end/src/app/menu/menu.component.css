@@ -1,0 +1,24 @@
+h1 {
+    text-align: center;
+    color: #af6315;
+
+}
+
+.contenedor {
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 3vh;
+}
+
+.variable-menu {
+    background-color: #343434;
+    border: 1px solid #216256;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.prueba {
+    max-width: 10vh;
+    height: auto;
+}
