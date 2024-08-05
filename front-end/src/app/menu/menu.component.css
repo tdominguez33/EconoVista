@@ -22,3 +22,8 @@ h1 {
     max-width: 10vh;
     height: auto;
 }
+
+button {
+    all: unset;
+    cursor: pointer;
+}

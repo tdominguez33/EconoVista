@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent {
-
+  onButtonClick() {
+    // Aquí puedes definir la lógica que deseas ejecutar al hacer clic en el botón
+    console.log('Botón presionado!');
+  }
 }
