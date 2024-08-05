@@ -20,7 +20,7 @@ import { routes } from './app.routes';
   imports: [
     BrowserModule,
     RouterOutlet,
-    RouterModule
+    RouterModule.forRoot(routes)
   ],
   exports: [RouterModule],
   providers: [],
