@@ -1,20 +1,10 @@
-.footer {
-    color: #fff;
-    padding: 10px 5px;
-    text-align: center;
+.contenido {
+    position: fixed;
     bottom: 1%;
-    position: fixed
-}
-
-.footer-content {
-
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.footer-content span {
-    margin-right: 10px;
+    color: #fff;
 }
 
 .social-icon {
@@ -32,7 +22,4 @@
 
 hr {
     border: 1px solid #343434;
-    /* Ajusta el ancho del borde y el color */
-    margin: 20px 0;
-    /* Ajusta los márgenes superior e inferior */
 }

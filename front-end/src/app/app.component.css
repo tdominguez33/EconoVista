@@ -3,6 +3,7 @@
     flex-direction: column;
     /* Evita que los elementos salten de línea */
     justify-content: space-between;
+
 }
 
 .fila {
