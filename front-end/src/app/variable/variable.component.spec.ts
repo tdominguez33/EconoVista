@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VariableComponent } from './variable.component';
+import { VariableComponent } from './VariableComponent';
 
 describe('VariableComponent', () => {
   let component: VariableComponent;
