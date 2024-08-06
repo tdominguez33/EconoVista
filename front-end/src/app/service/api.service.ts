@@ -8,15 +8,15 @@ import { MenuItem } from '../models/menuItem.model';
 })
 export class ApiService {
 
-  private urlApiVar = 'https://api.bcra.gob.ar/estadisticas/v2.0/datosvariable/1/2024-01-01/2024-02-05'
+  //private urlApiVar = 'https://api.bcra.gob.ar/estadisticas/v2.0/datosvariable/1/2024-01-01/2024-02-05'
   private urlApiMenu = 'https://api.bcra.gob.ar/estadisticas/v2.0/principalesvariables'
   itemSeleccionado: any;
 
   constructor(private http: HttpClient) { }
 
-  public getDataVariable(): Observable<any> {
-    return this.http.get<any>(this.urlApiVar)
-  }
+  // public getDataVariable(): Observable<any> {
+  //   return this.http.get<any>(this.urlApiVar)
+  // }
 
   public getAllVariables(): Observable<any> {
     return this.http.get<any>(this.urlApiMenu)
@@ -25,4 +25,10 @@ export class ApiService {
   setItemSeleccionado(item: any) {
     this.itemSeleccionado = item;;
   }
+
+  public getDataVariable(id: number): Observable<any> {
+    const urlVarId = `https://api.bcra.gob.ar/estadisticas/v2.0/datosvariable/${id}/2024-01-01/2024-02-05`;
+    return this.http.get<any>(urlVarId);
+  }
+
 }

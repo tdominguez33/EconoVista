@@ -15,18 +15,21 @@ export class VariableComponent {
     fecha: string[] = [];
     valor: number[] = [];
     itemActual: MenuItem | null = null;
+    IdActual: number = 0;
 
     constructor(private apiService: ApiService) { }
 
     ngOnInit(): void {
+        this.guardarItem();
         this.llenarData();
         this.hacerGrafico();
-        this.guardarItem();
+
     }
 
     llenarData() {
-        this.apiService.getDataVariable().subscribe(data => {
+        this.apiService.getDataVariable(this.IdActual).subscribe(data => {
             this.data = data.results;
+            console.log("estoy graficando id ", this.IdActual)
             // this.fecha = data.results.fecha;
             // this.valor = data.results.valor;
             // console.log("data", this.data);
@@ -65,8 +68,10 @@ export class VariableComponent {
 
     guardarItem() {
         this.itemActual = this.apiService.itemSeleccionado;
+        this.IdActual = this.apiService.itemSeleccionado.idVariable;
         //console.log("variable", this.apiService.itemSeleccionado);
-        console.log("itemActual", this.itemActual)
+        console.log("itemActual", this.itemActual);
+        console.log("idActual", this.IdActual);
     }
 
 
