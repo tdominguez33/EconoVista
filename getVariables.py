@@ -18,7 +18,7 @@ VARIABLES_INICIO = ['2002-03-04', '2002-03-04']
 conn = sqlite3.connect('variables.db')
 c = conn.cursor()
 
-# Crear la tabla si no existe
+# Crear la tabla VARIABLES_ECONOMICAS
 c.execute('''
     CREATE TABLE IF NOT EXISTS VARIABLES_ECONOMICAS (
         id INTEGER,
@@ -28,6 +28,30 @@ c.execute('''
 ''')
 conn.commit()
 
+# Crear la tabla DATA
+c.execute('''
+    CREATE TABLE IF NOT EXISTS DATA (
+        id INTEGER PRIMARY KEY,
+        nombre TEXT,
+        descripcion TEXT
+    )
+''')
+conn.commit()
+
+# Limpiar datos existentes en la tabla DATA para evitar duplicados
+c.execute('DELETE FROM DATA')
+
+def nombre_descrip(id):
+    if(id == 5):
+        c.execute("INSERT INTO DATA (id,nombre,descripcion) VALUES (?,?,?)",(id,'A3500','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'))
+    else:
+         c.execute("INSERT INTO DATA (id, nombre, descripcion) VALUES (?, ?, ?)",(id, 'CER', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'))
+    conn.commit()
+
+#Insertar datos en la tabla
+for var_id in VARIABLES_ID:
+    nombre_descrip(var_id)
+    
 # Calcula la diferencia en años entre dos fechas
 def diferenciaAños(fecha1, fecha2):
     if fecha1 > fecha2:
@@ -105,8 +129,7 @@ def obtenerVariables():
 # Ejecuta la función para obtener variables
 obtenerVariables()
 
-# Actualiza las variables con hasta un año de atraso
-actualizarVariables()
-
 # Cierra la conexión a la base de datos
 conn.close()
+
+
