@@ -1,11 +1,11 @@
 <div class="contenedorPrincipal">
-    <div class="contenedor">
-        <h1>idVariable</h1>
+    <div class="contenedor" *ngIf="itemActual">
+        <h1>{{itemActual?.descripcion}}</h1>
         <h1></h1>
     </div>
 
-    <div class="contenedor">
-        <h4> Última actualización: dd/mm/aaaa</h4>
+    <div class="contenedor" *ngIf="itemActual">
+        <h4> Última actualización: {{itemActual?.fecha}}</h4>
         <h4> Moneda </h4>
     </div>
 

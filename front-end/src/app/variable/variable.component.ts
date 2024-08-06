@@ -2,6 +2,7 @@ import { getLocaleNumberSymbol } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 import { ApiService } from '../service/api.service';
+import { MenuItem } from '../models/menuItem.model';
 
 @Component({
     selector: 'app-variable',
@@ -13,7 +14,7 @@ export class VariableComponent {
     data: any = [];
     fecha: string[] = [];
     valor: number[] = [];
-    itemActual: {} = {};
+    itemActual: MenuItem | null = null;
 
     constructor(private apiService: ApiService) { }
 
@@ -64,7 +65,7 @@ export class VariableComponent {
 
     guardarItem() {
         this.itemActual = this.apiService.itemSeleccionado;
-        console.log("variable", this.apiService.itemSeleccionado);
+        //console.log("variable", this.apiService.itemSeleccionado);
         console.log("itemActual", this.itemActual)
     }
 

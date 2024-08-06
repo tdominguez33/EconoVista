@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '../service/api.service';
-
+import { MenuItem } from '../models/menuItem.model';
 
 @Component({
   selector: 'app-menu',
@@ -24,8 +24,7 @@ export class MenuComponent implements OnInit {
     })
   }
 
-  guardarItem(item: any) {
+  guardarItem(item: MenuItem) {
     this.apiService.setItemSeleccionado(item);
-    console.log("gola");
   }
 }
