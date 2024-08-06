@@ -5,7 +5,7 @@ conn = sqlite3.connect('variables.db')
 c = conn.cursor()
 
 # Consulta para obtener todos los datos de la tabla VARIABLE
-c.execute("SELECT * FROM VARIABLES_ECONOMICAS")
+c.execute("SELECT * FROM DATA")
 
 # Obtener todos los registros
 rows = c.fetchall()
