@@ -1,7 +1,6 @@
 h1 {
     text-align: center;
     color: #af6315;
-
 }
 
 .contenedor {
@@ -13,9 +12,9 @@ h1 {
 
 .variable-menu {
     background-color: #343434;
-    border: 1px solid #216256;
+    border: 3px solid #216256;
     border-radius: 10px;
-    padding: 10px;
+    padding: 1%;
 }
 
 .prueba {

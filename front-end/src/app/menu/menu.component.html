@@ -1,11 +1,11 @@
 <h1>Principales estadísitcas</h1>
 
-<div class="contenedor">
-    <a routerLink="/variableComponente">
-        <div class="variable-menu">
-            <h3 style="color: white;">{{data[0]?.descripcion}}</h3>
+<div>
+    <a routerLink="/variableComponente" class="contenedor">
+        <div class="variable-menu" *ngFor="let item of data">
+            <h3 style="color: white;">{{item.descripcion}}</h3>
             <img src="assets/prueba.png" alt="EconoVista" class="prueba" />
-            <p style="color:white;">$ {{data[0]?.valor}}</p>
+            <p style="color:white;"> {{item.valor}}</p>
         </div>
     </a>
 </div>
