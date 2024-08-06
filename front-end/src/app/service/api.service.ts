@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 
-  private urlApiVar = 'https://api.bcra.gob.ar/estadisticas/v2.0/datosvariable/1/2024-02-01/2024-02-05'
+  private urlApiVar = 'https://api.bcra.gob.ar/estadisticas/v2.0/datosvariable/1/2024-01-01/2024-02-05'
   private urlApiMenu = 'https://api.bcra.gob.ar/estadisticas/v2.0/principalesvariables'
   constructor(private http: HttpClient) { }
 
