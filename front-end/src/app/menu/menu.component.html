@@ -2,7 +2,7 @@
 
 <div>
     <a routerLink="/variableComponente" class="contenedor">
-        <div class="variable-menu" *ngFor="let item of data">
+        <div class="variable-menu" *ngFor="let item of data" (click)="guardarItem(item)">
             <h3 style="color: white;">{{item.descripcion}}</h3>
             <img src="assets/prueba.png" alt="EconoVista" class="prueba" />
             <p style="color:white;"> {{item.valor}}</p>

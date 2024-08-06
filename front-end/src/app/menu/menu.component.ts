@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '../service/api.service';
 
@@ -8,7 +8,7 @@ import { ApiService } from '../service/api.service';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit {
   data: any = [];
 
   constructor(private apiService: ApiService) { }
@@ -22,5 +22,10 @@ export class MenuComponent {
       this.data = data.results;
       console.log(this.data);
     })
+  }
+
+  guardarItem(item: any) {
+    this.apiService.setItemSeleccionado(item);
+    console.log("gola");
   }
 }

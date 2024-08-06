@@ -13,13 +13,14 @@ export class VariableComponent {
     data: any = [];
     fecha: string[] = [];
     valor: number[] = [];
+    itemActual: {} = {};
 
     constructor(private apiService: ApiService) { }
 
     ngOnInit(): void {
         this.llenarData();
         this.hacerGrafico();
-
+        this.guardarItem();
     }
 
     llenarData() {
@@ -59,6 +60,12 @@ export class VariableComponent {
             type: "line",
             data
         })
+    }
+
+    guardarItem() {
+        this.itemActual = this.apiService.itemSeleccionado;
+        console.log("variable", this.apiService.itemSeleccionado);
+        console.log("itemActual", this.itemActual)
     }
 
 
