@@ -3,6 +3,7 @@ from flask import Flask, json
 from waitress import serve
     
 api = Flask(__name__)
+api.json.sort_keys = False  # Evita que Flask ordene las claves en orden alfabetico
 
 @api.route('/principalesvariables', methods=['GET'])
 def principalesVariables():
@@ -12,9 +13,13 @@ def principalesVariables():
 
     # Obtenemos la fila con la última fecha para cada id
     c.execute("SELECT t1.id, t1.fecha, t1.valor FROM VARIABLES_ECONOMICAS AS t1 JOIN (SELECT id, MAX(fecha) AS max_fecha FROM VARIABLES_ECONOMICAS GROUP BY id) AS t2 ON t1.id = t2.id AND t1.fecha = t2.max_fecha;")
+
     rows = c.fetchall()
-    for row in rows:
-        variables.append({"idVariable": row[0], "fecha": row[1], "valor": row[2]})
+
+    for variable in rows:
+        c.execute("SELECT * FROM DATA WHERE id = " + str(variable[0]))
+        metadata = c.fetchone()
+        variables.append({"idVariable": variable[0], "nombre": metadata[1], "descripcion": metadata[2], "fecha": variable[1], "valor": variable[2]})
     
     conn.close()
     return json.dumps(variables)
