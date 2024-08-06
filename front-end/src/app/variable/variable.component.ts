@@ -1,6 +1,7 @@
 import { getLocaleNumberSymbol } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js/auto';
+import { ApiService } from '../service/api.service';
 
 @Component({
     selector: 'app-variable',
@@ -9,14 +10,44 @@ import { Chart } from 'chart.js/auto';
 })
 export class VariableComponent {
     public chart: Chart | undefined;
+    data: any = [];
+    fecha: string[] = [];
+    valor: number[] = [];
+
+    constructor(private apiService: ApiService) { }
 
     ngOnInit(): void {
+        this.llenarData();
+        this.hacerGrafico();
 
+    }
+
+    llenarData() {
+        this.apiService.getDataVariable().subscribe(data => {
+            this.data = data.results;
+            // this.fecha = data.results.fecha;
+            // this.valor = data.results.valor;
+            // console.log("data", this.data);
+            // console.log("fecha", this.fecha);
+            // console.log("valor", this.valor);
+
+            for (const item of this.data) {
+                this.valor.push(item.valor);
+                this.fecha.push(item.fecha);
+            }
+
+            // Ahora tienes un array 'valores' que contiene solo los valores
+            console.log("valores", this.valor);
+            console.log("fecha", this.fecha);
+        })
+    }
+
+    hacerGrafico() {
         const data = {
-            labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            labels: this.fecha,
             datasets: [{
                 label: "prueba",
-                data: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+                data: this.valor,
                 fill: false,
                 borderColor: 'red',
                 tension: 0.1

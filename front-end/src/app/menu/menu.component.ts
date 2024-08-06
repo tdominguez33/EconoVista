@@ -10,7 +10,6 @@ import { ApiService } from '../service/api.service';
 })
 export class MenuComponent {
   data: any = [];
-  data2: any = {};
 
   constructor(private apiService: ApiService) { }
 
