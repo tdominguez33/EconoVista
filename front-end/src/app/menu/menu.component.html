@@ -3,9 +3,9 @@
 <div class="contenedor">
     <a routerLink="/variableComponente">
         <div class="variable-menu">
-            <h3 style="color: white;">Variable 1</h3>
+            <h3 style="color: white;">{{data[0]?.descripcion}}</h3>
             <img src="assets/prueba.png" alt="EconoVista" class="prueba" />
-            <p style="color:white;">$$$</p>
+            <p style="color:white;">$ {{data[0]?.valor}}</p>
         </div>
     </a>
 </div>
