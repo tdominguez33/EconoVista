@@ -105,8 +105,5 @@ def obtenerVariables():
 # Ejecuta la función para obtener variables
 obtenerVariables()
 
-# Actualiza las variables con hasta un año de atraso
-actualizarVariables()
-
 # Cierra la conexión a la base de datos
 conn.close()
