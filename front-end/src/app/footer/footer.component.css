@@ -1,10 +1,14 @@
 .contenido {
-    position: fixed;
+    /* position: fixed; */
     bottom: 1%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
+}
+
+footer {
+    padding: 10px;
 }
 
 .social-icon {
