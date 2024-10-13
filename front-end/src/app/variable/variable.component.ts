@@ -1,5 +1,5 @@
 import { getLocaleNumberSymbol } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 import { ApiService } from '../service/api.service';
 import { MenuItem } from '../models/menuItem.model';
