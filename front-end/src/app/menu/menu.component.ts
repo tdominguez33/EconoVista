@@ -9,7 +9,7 @@ import { MenuItem } from '../models/menuItem.model';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  data: any = [];
+  data: any = []
 
   constructor(private apiService: ApiService) { }
 
@@ -19,7 +19,7 @@ export class MenuComponent implements OnInit {
 
   llenarData() {
     this.apiService.getAllVariables().subscribe(data => {
-      this.data = data.results;
+      this.data = data;
       console.log(this.data);
     })
   }

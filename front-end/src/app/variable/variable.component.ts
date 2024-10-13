@@ -11,7 +11,7 @@ import { MenuItem } from '../models/menuItem.model';
 })
 export class VariableComponent {
     public chart: Chart | undefined;
-    data: any = [];
+    data: any = {};
     fecha: string[] = [];
     valor: number[] = [];
     itemActual: MenuItem | null = null;
@@ -28,7 +28,7 @@ export class VariableComponent {
 
     llenarData() {
         this.apiService.getDataVariable(this.IdActual).subscribe(data => {
-            this.data = data.results;
+            this.data = data;
             console.log("estoy graficando id ", this.IdActual)
             // this.fecha = data.results.fecha;
             // this.valor = data.results.valor;
@@ -69,9 +69,9 @@ export class VariableComponent {
     guardarItem() {
         this.itemActual = this.apiService.itemSeleccionado;
         this.IdActual = this.apiService.itemSeleccionado.idVariable;
-        //console.log("variable", this.apiService.itemSeleccionado);
-        console.log("itemActual", this.itemActual);
-        console.log("idActual", this.IdActual);
+        console.log("Guardar item, variable", this.apiService.itemSeleccionado);
+        console.log("guardar iten, itemActual", this.itemActual);
+        console.log("guardar item, idActual", this.IdActual);
     }
 
 
