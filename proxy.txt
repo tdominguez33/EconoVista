@@ -1,0 +1,2 @@
+Para iniciar proxy y poder usar local host: lcp --proxyUrl http://localhost:5000
+las consultas pasan a -> https://localhost:8010/proxy
