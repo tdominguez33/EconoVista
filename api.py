@@ -1,10 +1,41 @@
 import sqlite3
-from flask import Flask
+from flask import *
 from waitress import serve
+import datetime
+import re
     
 api = Flask(__name__)
 api.json.sort_keys = False  # Evita que Flask ordene las claves en orden alfabetico
 
+# Verifica que una fecha tenga el formato yyyy-mm-dd
+def verificarFecha(fecha):
+    # Describimos la expresión con una expresión regular
+    regEx = re.compile(r"\d{4}-\d{2}-\d{2}", re.IGNORECASE)
+    return bool(regEx.match(fecha))
+
+
+# Obtiene los valores de una variable determinada en un rango de fechas específicado
+def datosVariable(idVariable, desde, hasta):
+    datos = []
+
+    # Verificamos que los formatos de las fecha sean los indicados
+    if verificarFecha(desde) and verificarFecha(hasta):
+        conn = sqlite3.connect('variables.db')
+        c = conn.cursor()
+
+        # Obtenemos las filas que tienen el id ingresado y están entre las fechas ingresadas
+        c.execute("SELECT * FROM VARIABLES_ECONOMICAS WHERE id = " + idVariable + " AND fecha BETWEEN '" + desde + "' AND '" + hasta + "';")
+        rows = c.fetchall()
+        for row in rows:
+            datos.append({"id": row[0], "fecha": row[1], "valor": row[2]})
+        
+        conn.close()
+        return datos
+    else:
+        return jsonify(status = 400, error="Formato de fechas incorrecto")
+
+# Obtener el último valor disponible de todas las variables de la base de datos
+# Se usa en varios endpoints
 @api.route('/principalesvariables', methods=['GET'])
 def principalesVariables():
     variables = []
@@ -24,56 +55,62 @@ def principalesVariables():
     conn.close()
     return variables
 
+# Obtener los valores de un determinado ID desde una fecha específica hasta la fecha
+@api.route('/datosvariable/<idVariable>/<desde>', methods=['GET'])
+def datosVariableDesde(idVariable, desde):
+    datos = datosVariable(idVariable, desde, str(datetime.date.today()))
+    return datos
+
+# Obtener los valores de un determinado ID entre dos fechas específicadas
 @api.route('/datosvariable/<idVariable>/<desde>/<hasta>', methods=['GET'])
-def datosVariable(idVariable, desde, hasta):
-    datos = []
-    conn = sqlite3.connect('variables.db')
-    c = conn.cursor()
-
-    # Obtenemos las filas que tienen el id ingresado y están entre las fechas ingresadas
-    c.execute("SELECT * FROM VARIABLES_ECONOMICAS WHERE id = " + idVariable + " AND fecha BETWEEN '" + desde + "' AND '" + hasta + "';")
-    rows = c.fetchall()
-    for row in rows:
-        datos.append({"id": row[0], "fecha": row[1], "valor": row[2]})
-    
-    conn.close()
+def datosVariableDesdeHasta(idVariable, desde, hasta):
+    datos = datosVariable(idVariable, desde, hasta)
     return datos
 
-@api.route('/ajusteCER/<idVariable1>', methods=['GET'])
-def ajusteCER(idVariable1):
+
+# Ajustar una de las variables soportadas por CER
+@api.route('/ajusteCER/<idVariable>', methods=['GET'])
+def ajusteCER(idVariable):
+    idsPermitidos = ["4", "5"]
     datos = []
-    conn = sqlite3.connect('variables.db')
-    c = conn.cursor()
 
-    c.execute("SELECT * FROM VARIABLES_ECONOMICAS WHERE id = " + idVariable1)
-    valoresID1 = c.fetchall()
+    if idVariable in idsPermitidos:
+        conn = sqlite3.connect('variables.db')
+        c = conn.cursor()
 
-    c.execute("SELECT * FROM VARIABLES_ECONOMICAS WHERE id = 30")
-    valoresCER = c.fetchall()
+        # Obtenemos los valores del ID ingresado
+        c.execute("SELECT * FROM VARIABLES_ECONOMICAS WHERE id = " + idVariable)
+        valoresID = c.fetchall()
 
-    cerActual = valoresCER[len(valoresCER) - 1][2]  # Último valor disponible para el CER
+        # Obtenemos los valores del CER
+        c.execute("SELECT * FROM VARIABLES_ECONOMICAS WHERE id = 30")
+        valoresCER = c.fetchall()
+
+        cerActual = valoresCER[len(valoresCER) - 1][2]  # Último valor disponible para el CER
 
 
-    # Como puede no haber la misma cantidad de datos de ambas variables hay que desacoplar la busqueda
-    indiceBusqueda = 0
+        # Como puede no haber la misma cantidad de datos de ambas variables hay que desacoplar la busqueda
+        indiceBusqueda = 0
 
-    for i in range (0, len(valoresID1)):
+        for i in range (0, len(valoresID)):
 
-        # Buscamos que las fechas coincidan
-        while(valoresID1[i][1] != valoresCER[indiceBusqueda][1]):
+            # Buscamos que las fechas coincidan
+            while(valoresID[i][1] != valoresCER[indiceBusqueda][1]):
+                indiceBusqueda += 1
+
+            cerCorriente = valoresCER[indiceBusqueda][2]                # CER a valores corrientes
+            cerAumento = cerActual / cerCorriente                       # Cuanto aumentó el CER hasta hoy
+                
+            id1Corriente = valoresID[i][2]                             # Variable a valores corrientes
+            id1Constante = round(id1Corriente * cerAumento, 2)          # Variable a valores constantes
+
+            datos.append({"fecha": valoresID[i][1], "valor": id1Constante})
+
             indiceBusqueda += 1
-
-        cerCorriente = valoresCER[indiceBusqueda][2]                # CER a valores corrientes
-        cerAumento = cerActual / cerCorriente                       # Cuanto aumentó el CER hasta hoy
             
-        id1Corriente = valoresID1[i][2]                             # Variable a valores corrientes
-        id1Constante = round(id1Corriente * cerAumento, 2)          # Variable a valores constantes
-
-        datos.append({"fecha": valoresID1[i][1], "valor": id1Constante})
-
-        indiceBusqueda += 1
-    
-    return datos
+            return datos
+    else:
+        return jsonify(status = 400, error="Variable no soportada para ajuste CER")
 
 
 if __name__ == '__main__':

@@ -1,44 +1,44 @@
 {
-    "0": {
-      "id": "5",
-      "nombre": "A3500",
-      "descripcion": "Tipo de cambio de referencia mayorista",
-      "fechaInicio": "2002-03-04"
-    },
-    "1": {
-      "id": "30",
-      "nombre": "CER",
-      "descripcion": "Coeficiente de estabilización de referencia",
-      "fechaInicio": "2002-03-04"
-    },
-    "2": {
-      "id": "1",
-      "nombre": "Reservas",
-      "descripcion": "Reservas internacionales del BCRA",
-      "fechaInicio": "1996-01-02"
-    },
-    "3": {
-      "id": "4",
-      "nombre": "Dolar Oficial",
-      "descripcion": "Tipo de cambio de referencia minorista",
-      "fechaInicio": "2010-06-01"
-    },
-    "4": {
-      "id": "6",
-      "nombre": "Tasa",
-      "descripcion": "Tasa de política monetaria",
-      "fechaInicio": "2015-12-16"
-    },
-    "5": {
-      "id": "27",
-      "nombre": "Inflación Mensual",
-      "descripcion": "Inflación mensual según INDEC (Variación en %)",
-      "fechaInicio": "1945-01-31"
-    },
-    "6": {
-      "id": "29",
-      "nombre": "Inflación Esperada - REM",
-      "descripcion": "Inflación esperada para los próximos 12 meses según REM",
-      "fechaInicio": "2004-01-31"
-    }
+  "0": {
+    "id": "5",
+    "nombre": "A3500",
+    "descripcion": "Tipo de cambio de referencia mayorista",
+    "fechaInicio": "2002-03-04"
+  },
+  "1": {
+    "id": "30",
+    "nombre": "CER",
+    "descripcion": "Coeficiente de estabilización de referencia",
+    "fechaInicio": "2002-03-04"
+  },
+  "2": {
+    "id": "1",
+    "nombre": "Reservas",
+    "descripcion": "Reservas internacionales del BCRA",
+    "fechaInicio": "1996-01-02"
+  },
+  "3": {
+    "id": "4",
+    "nombre": "Dólar Oficial",
+    "descripcion": "Tipo de cambio de referencia minorista",
+    "fechaInicio": "2010-06-01"
+  },
+  "4": {
+    "id": "6",
+    "nombre": "Tasa",
+    "descripcion": "Tasa de política monetaria",
+    "fechaInicio": "2015-12-16"
+  },
+  "5": {
+    "id": "27",
+    "nombre": "Inflación Mensual",
+    "descripcion": "Inflación mensual según INDEC (Variación en %)",
+    "fechaInicio": "1945-01-31"
+  },
+  "6": {
+    "id": "29",
+    "nombre": "Inflación Esperada - REM",
+    "descripcion": "Inflación esperada para los próximos 12 meses según REM",
+    "fechaInicio": "2004-01-31"
   }
+}

@@ -4,15 +4,10 @@ import json
 import requests
 import datetime
 from dateutil.relativedelta import relativedelta
-import sqlite3
-#import certifi
 
 # Eliminamos los warnings de conexión insegura en los request
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
-# Ruta del archivo de certificados certifi
-#CERT_PATH = certifi.where()
 
 # Calcula la diferencia en años entre dos fechas
 def diferenciaAños(fecha1, fecha2):
@@ -103,7 +98,7 @@ def actualizarVariables(listaVariables, cursor, conn):
             # Si no hay datos para este ID, solicitar todos los datos desde el inicio
             solicitarGuardar(id_str, fechaInicio, str(fechaHoy), cursor, conn)
 
-# Solicita todas las variables al BCRA (desde cero, se borra cualquier dato anterior)
+# Obtiene las variables de la lista desde la fecha de inicio que tenga en la base de datos
 def obtenerVariables(listaVariables, cursor, conn):
     fechaHoy = datetime.date.today()
     for (id, fecha) in listaVariables:
