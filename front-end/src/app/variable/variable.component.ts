@@ -3,6 +3,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 import { ApiService } from '../service/api.service';
 import { MenuItem } from '../models/menuItem.model';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
     selector: 'app-variable',
@@ -72,6 +73,12 @@ export class VariableComponent {
         console.log("Guardar item, variable", this.apiService.itemSeleccionado);
         console.log("guardar iten, itemActual", this.itemActual);
         console.log("guardar item, idActual", this.IdActual);
+    }
+
+    fechaSeleccionada(event: Event) {
+        const button = event.target as HTMLElement;
+        const buttonText = button.innerText;
+        console.log(buttonText)
     }
 
 

@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 
 import { routes } from './app.routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    MatButtonModule
   ],
   exports: [RouterModule],
   providers: [],
