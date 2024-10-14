@@ -8,6 +8,10 @@ h1 {
     place-items: center;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 3vh;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    padding: 10px;
+    margin: 10px;
 }
 
 .variable-menu {
@@ -15,6 +19,12 @@ h1 {
     border: 3px solid #216256;
     border-radius: 10px;
     padding: 1%;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .prueba {
