@@ -50,7 +50,7 @@ def principalesVariables():
     for variable in row:
         c.execute("SELECT * FROM DATA WHERE id = " + str(variable[0]))
         metadata = c.fetchone()
-        variables.append({"idVariable": variable[0], "nombre": metadata[1], "descripcion": metadata[2], "fecha": variable[1], "valor": variable[2]})
+        variables.append({"idVariable": variable[0], "nombreCorto": metadata[1], "nombreLargo": metadata[2], "descripcion": metadata[3], "fecha": variable[1], "valor": variable[2]})
     
     conn.close()
     return variables

@@ -39,18 +39,20 @@ def guardarVariables(archivo, cursor, conn):
     # Insertamos en la tabla los valores del JSON
     for variable in archivo.values():
         id          = variable['id']
-        nombre      = variable['nombre']
+        nombreCorto = variable['nombreCorto']
+        nombreLargo = variable['nombreLargo']
         descripcion = variable['descripcion']
         fechaInicio = variable['fechaInicio']
 
         # Inserta los valores del archivo, pero si el id ya existe se reemplazan sus valores por los del JSON
         cursor.execute("""
-            INSERT INTO DATA (id, nombre, descripcion, fechaInicio) VALUES (?, ?, ?, ?) ON CONFLICT(id) 
+            INSERT INTO DATA (id, nombreCorto, nombreLargo, descripcion, fechaInicio) VALUES (?, ?, ?, ?, ?) ON CONFLICT(id) 
             DO UPDATE SET 
-                nombre = excluded.nombre,
+                nombreCorto = excluded.nombreCorto,
+                nombreLargo = excluded.nombreLargo,
                 descripcion = excluded.descripcion,
                 fechaInicio = excluded.fechaInicio
-        """, (id, nombre, descripcion, fechaInicio))
+        """, (id, nombreCorto, nombreLargo, descripcion, fechaInicio))
 
     # Si tenemos ID's para eliminar los borramos
     if idsEliminar:
@@ -153,7 +155,8 @@ def crearDB(cursor, conn):
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS DATA (
             id INTEGER PRIMARY KEY,
-            nombre TEXT,
+            nombreCorto TEXT,
+            nombreLargo TEXT,
             descripcion TEXT,
             fechaInicio DATE
         )
