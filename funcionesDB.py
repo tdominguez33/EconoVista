@@ -4,15 +4,10 @@ import json
 import requests
 import datetime
 from dateutil.relativedelta import relativedelta
-import sqlite3
-#import certifi
 
 # Eliminamos los warnings de conexión insegura en los request
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
-# Ruta del archivo de certificados certifi
-#CERT_PATH = certifi.where()
 
 # Calcula la diferencia en años entre dos fechas
 def diferenciaAños(fecha1, fecha2):
@@ -24,13 +19,45 @@ def diferenciaAños(fecha1, fecha2):
     return diferencia
 
 # Guarda en la tabla DATA la información de las variables en el archivo JSON
+# Tiene la capacidad de actualizar los valores que se van agregando
 def guardarVariables(archivo, cursor, conn):
+
+    # ID's que están en la DB
+    cursor.execute("SELECT * FROM DATA")
+    idsDB = []
+    for fila in cursor.fetchall():
+        idsDB.append(fila[0])
+
+    # ID's que están en el archivo
+    idsArchivo = []
+    for variable in archivo.values():
+        idsArchivo.append(int(variable['id']))
+
+    # Marcamos para eliminar los ID's que están en la DB pero no en el JSON
+    idsEliminar = [id for id in idsDB if id not in idsArchivo]
+
+    # Insertamos en la tabla los valores del JSON
     for variable in archivo.values():
         id          = variable['id']
         nombre      = variable['nombre']
         descripcion = variable['descripcion']
         fechaInicio = variable['fechaInicio']
-        cursor.execute("INSERT INTO DATA (id, nombre, descripcion, fechaInicio) VALUES (?,?,?,?)",(id, nombre, descripcion, fechaInicio))
+
+        # Inserta los valores del archivo, pero si el id ya existe se reemplazan sus valores por los del JSON
+        cursor.execute("""
+            INSERT INTO DATA (id, nombre, descripcion, fechaInicio) VALUES (?, ?, ?, ?) ON CONFLICT(id) 
+            DO UPDATE SET 
+                nombre = excluded.nombre,
+                descripcion = excluded.descripcion,
+                fechaInicio = excluded.fechaInicio
+        """, (id, nombre, descripcion, fechaInicio))
+
+    # Si tenemos ID's para eliminar los borramos
+    if idsEliminar:
+        for id in idsEliminar:
+            cursor.execute("DELETE FROM DATA WHERE id = ?", (id,))
+            cursor.execute("DELETE FROM VARIABLES_ECONOMICAS WHERE id = ?", (id,))  # También eliminamos todas las entradas en la otra tabla si existen
+
     conn.commit()
 
 # Creamos una lista de tuplas donde cada tupla tiene el id y la fecha de inicio de una variable
@@ -81,9 +108,7 @@ def actualizarVariables(listaVariables, cursor, conn):
     fechaHoy = datetime.date.today()
 
     # Buscamos las variables en la tabla DATA
-    for variable in listaVariables:
-        id = variable[0]
-        fechaInicio = variable[1]
+    for (id, fechaInicio) in listaVariables:
         id_str = str(id)
         
         # Obtenemos la última fecha registrada en la base de datos para esta variable
@@ -101,9 +126,9 @@ def actualizarVariables(listaVariables, cursor, conn):
         #### REVISAR, CREO QUE PUEDE LLEGAR A FALLAR ####
         else:
             # Si no hay datos para este ID, solicitar todos los datos desde el inicio
-            solicitarGuardar(id_str, fechaInicio, str(fechaHoy), cursor, conn)
+            obtenerVariables([(id, fechaInicio)], cursor, conn)
 
-# Solicita todas las variables al BCRA (desde cero, se borra cualquier dato anterior)
+# Obtiene las variables de la lista desde la fecha de inicio que tenga en la base de datos
 def obtenerVariables(listaVariables, cursor, conn):
     fechaHoy = datetime.date.today()
     for (id, fecha) in listaVariables:
@@ -124,7 +149,6 @@ def obtenerVariables(listaVariables, cursor, conn):
 
 # Crea el archivo de la base de datos por primera vez
 def crearDB(cursor, conn):
-
     # Crear la tabla DATA - Contiene la información general de cada variable
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS DATA (
@@ -155,16 +179,10 @@ def crearDB(cursor, conn):
     with open('variables.json', encoding='utf-8') as f:
         archivo = json.load(f)
 
-    # Insertar datos en la tabla
+    # Insertar datos en la tabla DATA
     guardarVariables(archivo, cursor, conn)
 
     listaVariables = crearListaVariables(cursor)
 
-    # Ejecuta la función para obtener variables
+    # Insertamos datos en la tabla VARIABLES_ECONOMICAS
     obtenerVariables(listaVariables, cursor, conn)
-
-def actualizarDB(cursor, conn):
-    listaVariables = crearListaVariables(cursor)
-
-    actualizarVariables(listaVariables, cursor, conn)
-
