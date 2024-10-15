@@ -104,33 +104,35 @@ def solicitarGuardar(id, fechaInicio, fechaFinalizacion, cursor, conn):
         print(f"Error al solicitar datos: {e}")
         return 1
 
-# Actualiza las variables con hasta un año de atraso, para más tiempo ejecutar obtenerVariables()
+# Busca la última fecha disponible de las variables en la lista y busca los últimos valores
 def actualizarVariables(listaVariables, cursor, conn):
     # Obtenemos la fecha actual
     fechaHoy = datetime.date.today()
 
     # Buscamos las variables en la tabla DATA
     for (id, fechaInicio) in listaVariables:
-        id_str = str(id)
         
         # Obtenemos la última fecha registrada en la base de datos para esta variable
         cursor.execute("SELECT MAX(fecha) FROM VARIABLES_ECONOMICAS WHERE id = ?", (id,))
         ultimaFecha = cursor.fetchone()[0]
         
+        # Hay alguna entrada en la db para esta variable
         if ultimaFecha:
             # Convertir la última fecha a un objeto datetime
             ultimaFecha = datetime.datetime.strptime(ultimaFecha, '%Y-%m-%d').date()
             
             # Si hoy no es el último dia de datos disponibles intentamos ver si hay datos más nuevos
             if ultimaFecha < fechaHoy:
-                solicitarGuardar(id_str, str(ultimaFecha + relativedelta(days=1)), str(fechaHoy), cursor, conn)
+                # Hacemos la solicitud para el dia siguiente al cual tenemos el último dato
+                ultimaFecha += relativedelta(days = 1)
+                obtenerVariables([(id, ultimaFecha.strftime('%Y-%m-%d'))], cursor, conn)
 
-        #### REVISAR, CREO QUE PUEDE LLEGAR A FALLAR ####
         else:
             # Si no hay datos para este ID, solicitar todos los datos desde el inicio
             obtenerVariables([(id, fechaInicio)], cursor, conn)
 
 # Obtiene las variables de la lista desde la fecha de inicio que tenga en la base de datos
+# Hace solicitudes ajustandose al requisito de la API de que el período no sea mayor a un año
 def obtenerVariables(listaVariables, cursor, conn):
     fechaHoy = datetime.date.today()
     for (id, fecha) in listaVariables:
