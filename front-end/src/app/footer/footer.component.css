@@ -1,29 +1,29 @@
-.contenido {
-    /* position: fixed; */
-    bottom: 1%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.footer {
+    background-color: #000;
+    padding: 20px;
+    text-align: center;
     color: #fff;
+    font-size: 14px; 
 }
 
-footer {
-    padding: 10px;
+.footer .social-icon {
+    display: inline-block;
+    margin: 0 10px;
+    transition: transform 0.3s ease;
 }
 
-.social-icon {
-    margin: 0 5px;
+.footer .social-icon img {
+    width: 30px; 
+    height: 30px;
+    vertical-align: middle; 
+    filter: invert(100%); 
 }
 
-.social-icon img {
-    width: 20px;
-    /* Ancho de los iconos */
-    height: 20px;
-    /* Altura de los iconos */
-    filter: invert(100%);
-    /* Invertir colores para hacer los iconos blancos */
+.footer .social-icon:hover {
+    transform: scale(1.1); 
 }
 
-hr {
-    border: 1px solid #343434;
+.footer a {
+    color: inherit;
+    text-decoration: none;
 }
