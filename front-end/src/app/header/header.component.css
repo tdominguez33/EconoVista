@@ -1,9 +1,14 @@
 .icon {
-    max-width: 10vh;
+    width: 250px;;
     height: auto;
 }
 
-header {
-    padding: 0;
-    margin: 0;
+.contenedor-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+    padding-top: 45px; 
+    text-align: center;
+    background-color: #000;
 }
