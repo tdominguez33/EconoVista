@@ -27,45 +27,61 @@ export class VariableComponent {
 
     }
 
-    llenarData() {
-        this.apiService.getDataVariable(this.IdActual).subscribe(data => {
-            this.data = data;
-            console.log("estoy graficando id ", this.IdActual)
-            // this.fecha = data.results.fecha;
-            // this.valor = data.results.valor;
-            // console.log("data", this.data);
-            // console.log("fecha", this.fecha);
-            // console.log("valor", this.valor);
-
-            for (const item of this.data) {
+          llenarData() {
+            this.apiService.getDataVariable(this.IdActual).subscribe(data => {
+              this.data = data;
+              console.log("estoy graficando id ", this.IdActual);
+          
+              // Vaciar los arrays para evitar duplicaciones si llamas varias veces a llenarData()
+              this.valor = [];
+              this.fecha = [];
+          
+              for (const item of this.data) {
                 this.valor.push(item.valor);
                 this.fecha.push(item.fecha);
-            }
-
-            // Ahora tienes un array 'valores' que contiene solo los valores
-            console.log("valores", this.valor);
-            console.log("fecha", this.fecha);
-        })
-    }
-
-    hacerGrafico() {
-        const data = {
-            labels: this.fecha,
-            datasets: [{
+              }
+          
+              // Ahora tienes los datos llenados
+              console.log("valores", this.valor);
+              console.log("fecha", this.fecha);
+          
+              // Una vez que los datos se han llenado, se crea el gráfico
+              this.hacerGrafico();
+            });
+          }
+          
+          hacerGrafico() {
+            const data = {
+              labels: this.fecha,
+              datasets: [{
                 label: "prueba",
                 data: this.valor,
                 fill: false,
                 borderColor: 'red',
                 tension: 0.1
-            }]
-
-        };
-
-        this.chart = new Chart("chart", {
-            type: "line",
-            data
-        })
-    }
+              }]
+            };
+          
+            // Destruye el gráfico anterior si ya existe
+            if (this.chart) {
+              this.chart.destroy();
+            }
+          
+            // Crear el nuevo gráfico
+            this.chart = new Chart("chart", {
+              type: "line",
+              data,
+              options: {
+                responsive: true,
+                scales: {
+                  y: {
+                    beginAtZero: true // Asegúrate de que el eje Y comienza en cero
+                  }
+                }
+              }
+            });
+          }
+          
 
     guardarItem() {
         this.itemActual = this.apiService.itemSeleccionado;
