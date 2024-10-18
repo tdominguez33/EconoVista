@@ -126,18 +126,27 @@ def solicitarGuardar(id, fechaInicio, fechaFinalizacion, cursor, conn):
         
         url = fila[4]
         fechaInicio = fila[5]
+        fechaFinalizacion = datetime.date.today()   # Fecha actual
 
         print(f'Solicitando datos para ID {id} desde {fechaInicio} hasta {fechaFinalizacion}', end = '\r')
 
         try:
-            respuesta = requests.get(
-                f'https://api.bcra.gob.ar/estadisticas/v2.0/datosvariable/{id}/{fechaInicio}/{fechaFinalizacion}',
-                verify = False  # Deshabilitar la verificación SSL
-            )
-        
+            respuesta = requests.get(url, verify = False)
+
+            if respuesta.status_code == 200:
+                jsonData = json.loads(respuesta.text)
+                
+                for result in jsonData:
+                    fecha = result['fecha']
+                    valor = str(result['valor'])    # Valor es un número en la API
+                    
+                    # Insertar en la base de datos
+                    cursor.execute("INSERT INTO VARIABLES_EXTERNAS (id, fecha, valor) VALUES (?, ?, ?)", (id, fecha, valor))
+                
+                conn.commit()
+                
         except Exception as e:
             print(f"Error al solicitar datos: {e}")
-            return 1
 
 # Busca la última fecha disponible de las variables en la lista y busca los últimos valores
 def actualizarVariables(listaVariables, cursor, conn):
@@ -148,8 +157,8 @@ def actualizarVariables(listaVariables, cursor, conn):
     for (id, fechaInicio) in listaVariables:
         
         # Obtenemos la última fecha registrada en la base de datos para esta variable
-        cursor.execute("SELECT MAX(fecha) FROM VARIABLES_ECONOMICAS WHERE id = ?", (id,))
-        ultimaFecha = cursor.fetchone()[0]
+        cursor.execute("SELECT id, valor, fecha FROM (SELECT id, valor, fecha FROM VARIABLES_ECONOMICAS WHERE id = " + str(id) +  " UNION SELECT id, valor, fecha FROM VARIABLES_EXTERNAS WHERE id =" + str(id) + ") AS combined ORDER BY fecha DESC LIMIT 1;")
+        ultimaFecha = cursor.fetchone()[2]
         
         # Hay alguna entrada en la db para esta variable
         if ultimaFecha:
@@ -173,19 +182,26 @@ def obtenerVariables(listaVariables, cursor, conn):
     for (id, fecha) in listaVariables:
         id = str(id)
         
-        # Convertimos el string de la fecha en un datetime
-        fechaInicio = datetime.date(int(fecha[:4]), int(fecha[5:7]), int(fecha[8:10]))
-        diferenciaAño = diferenciaAños(fechaInicio, fechaHoy)
+        # Si la variable se obtiene de la API del BCRA Hacemos una solicitud por año
+        if (int(id) < 100):
+
+            # Convertimos el string de la fecha en un datetime
+            fechaInicio = datetime.date(int(fecha[:4]), int(fecha[5:7]), int(fecha[8:10]))
+            diferenciaAño = diferenciaAños(fechaInicio, fechaHoy)
         
-        # Hacemos una solicitud por año
-        for j in range(diferenciaAño + 1):
+            for j in range(diferenciaAño + 1):
 
-            # Sumamos una cierta cantidad de años a la fecha inicial
-            inicio = fechaInicio + relativedelta(years=j)
+                # Sumamos una cierta cantidad de años a la fecha inicial
+                inicio = fechaInicio + relativedelta(years=j)
 
-            if j == diferenciaAño:
-                final = fechaHoy
-            else:
-                final = inicio + relativedelta(years=1, days=-1)
-            
-            solicitarGuardar(id, inicio.strftime('%Y-%m-%d'), final.strftime('%Y-%m-%d'), cursor, conn)
+                if j == diferenciaAño:
+                    final = fechaHoy
+                else:
+                    final = inicio + relativedelta(years=1, days=-1)
+                
+                solicitarGuardar(id, inicio.strftime('%Y-%m-%d'), final.strftime('%Y-%m-%d'), cursor, conn)
+
+        # Caso contrario con una sola solicitud es suficiente
+        else:
+            solicitarGuardar(id, fecha, fechaHoy, cursor, conn)
+
