@@ -1,0 +1,51 @@
+{
+	"0": {
+		"id": "5",
+		"nombreCorto": "A3500",
+		"nombreLargo": "Tipo de cambio de referencia mayorista",
+		"descripcion": "",
+		"fechaInicio": "2002-03-04"
+	},
+	"1": {
+		"id": "30",
+		"nombreCorto": "CER",
+		"nombreLargo": "Coeficiente de estabilización de referencia",
+		"descripcion": "",
+		"fechaInicio": "2002-03-04"
+	},
+	"2": {
+		"id": "1",
+		"nombreCorto": "Reservas",
+		"nombreLargo": "Reservas internacionales del BCRA",
+		"descripcion": "",
+		"fechaInicio": "1996-01-02"
+	},
+	"3": {
+		"id": "4",
+		"nombreCorto": "Dólar Oficial",
+		"nombreLargo": "Tipo de cambio de referencia minorista",
+		"descripcion": "",
+		"fechaInicio": "2010-06-01"
+	},
+	"4": {
+		"id": "6",
+		"nombreCorto": "Tasa",
+		"nombreLargo": "Tasa de política monetaria",
+		"descripcion": "",
+		"fechaInicio": "2015-12-16"
+	},
+	"5": {
+		"id": "27",
+		"nombreCorto": "Inflación Mensual",
+		"nombreLargo": "Inflación mensual según INDEC (Variación en %)",
+		"descripcion": "",
+		"fechaInicio": "1945-01-31"
+	},
+	"6": {
+		"id": "29",
+		"nombreCorto": "Inflación Esperada - REM",
+		"nombreLargo": "Inflación esperada para los próximos 12 meses según REM",
+		"descripcion": "",
+		"fechaInicio": "2004-01-31"
+	}
+}

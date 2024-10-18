@@ -1,0 +1,10 @@
+{
+    "0": {
+		"id": "101",
+        "nombreCorto": "Riesgo País",
+        "nombreLargo": "Riesgo País",
+        "descripcion": "Puntos básicos por sobre la tasa americana que rinde la deuda argentina",
+        "url": "https://api.argentinadatos.com/v1/finanzas/indices/riesgo-pais",
+        "fechaInicio": "1999-01-22"
+    }
+}

@@ -20,7 +20,7 @@ def diferenciaAños(fecha1, fecha2):
 
 # Guarda en la tabla DATA la información de las variables en el archivo JSON
 # Tiene la capacidad de actualizar los valores que se van agregando
-def guardarVariables(archivo, cursor, conn):
+def guardarVariables(archivos, cursor, conn):
 
     # ID's que están en la DB
     cursor.execute("SELECT * FROM DATA")
@@ -28,37 +28,49 @@ def guardarVariables(archivo, cursor, conn):
     for fila in cursor.fetchall():
         idsDB.append(fila[0])
 
-    # ID's que están en el archivo
+    # ID's que están en los archivos
     idsArchivo = []
-    for variable in archivo.values():
-        idsArchivo.append(int(variable['id']))
+    
+    # Agregamos los ID's de todos los archivos a la lista
+    for archivo in archivos:
+        for variable in archivo.values():
+            idsArchivo.append(int(variable['id']))
 
     # Marcamos para eliminar los ID's que están en la DB pero no en el JSON
     idsEliminar = [id for id in idsDB if id not in idsArchivo]
 
     # Insertamos en la tabla los valores del JSON
-    for variable in archivo.values():
-        id          = variable['id']
-        nombreCorto = variable['nombreCorto']
-        nombreLargo = variable['nombreLargo']
-        descripcion = variable['descripcion']
-        fechaInicio = variable['fechaInicio']
+    for archivo in archivos:
+        for variable in archivo.values():
+            id          = variable['id']
+            nombreCorto = variable['nombreCorto']
+            nombreLargo = variable['nombreLargo']
+            descripcion = variable['descripcion']
+            fechaInicio = variable['fechaInicio']
 
-        # Inserta los valores del archivo, pero si el id ya existe se reemplazan sus valores por los del JSON
-        cursor.execute("""
-            INSERT INTO DATA (id, nombreCorto, nombreLargo, descripcion, fechaInicio) VALUES (?, ?, ?, ?, ?) ON CONFLICT(id) 
-            DO UPDATE SET 
-                nombreCorto = excluded.nombreCorto,
-                nombreLargo = excluded.nombreLargo,
-                descripcion = excluded.descripcion,
-                fechaInicio = excluded.fechaInicio
-        """, (id, nombreCorto, nombreLargo, descripcion, fechaInicio))
+            # Variables externas - las variables con un ID mayor a 100 no son del BCRA
+            if int(variable['id']) > 100:
+                url = variable['url']
+            else:
+                url = ""
+            
+            # Inserta los valores del archivo, pero si el id ya existe se reemplazan sus valores por los del JSON
+            cursor.execute("""
+                INSERT INTO DATA (id, nombreCorto, nombreLargo, descripcion, url, fechaInicio) VALUES (?, ?, ?, ?, ?, ?) ON CONFLICT(id) 
+                DO UPDATE SET 
+                    nombreCorto = excluded.nombreCorto,
+                    nombreLargo = excluded.nombreLargo,
+                    descripcion = excluded.descripcion,
+                    url         = excluded.url,
+                    fechaInicio = excluded.fechaInicio
+            """, (id, nombreCorto, nombreLargo, descripcion, url, fechaInicio))
 
     # Si tenemos ID's para eliminar los borramos
     if idsEliminar:
         for id in idsEliminar:
             cursor.execute("DELETE FROM DATA WHERE id = ?", (id,))
             cursor.execute("DELETE FROM VARIABLES_ECONOMICAS WHERE id = ?", (id,))  # También eliminamos todas las entradas en la otra tabla si existen
+            cursor.execute("DELETE FROM VARIABLES_EXTERNAS WHERE id = ?", (id,))
 
     conn.commit()
 
@@ -81,28 +93,51 @@ def crearListaVariables(cursor):
 
 # Solicita los datos de la variable con un id desde fechaInicio hasta fechaFinalizacion y los añade a la base de datos
 def solicitarGuardar(id, fechaInicio, fechaFinalizacion, cursor, conn):
-    try:
-        print(f'Solicitando datos para ID {id} desde {fechaInicio} hasta {fechaFinalizacion}', end = '\r')
-        respuesta = requests.get(
-            f'https://api.bcra.gob.ar/estadisticas/v2.0/datosvariable/{id}/{fechaInicio}/{fechaFinalizacion}',
-            verify = False  # Deshabilitar la verificación SSL
-        )
-        if respuesta.status_code == 200:
-            json_data = json.loads(respuesta.text)
 
-            for result in json_data['results']:
-                fecha = result['fecha']
-                valor = result['valor']
-                # Insertar en la base de datos
-                cursor.execute("INSERT INTO VARIABLES_ECONOMICAS (id, fecha, valor) VALUES (?, ?, ?)", (id, fecha, valor))
-            
-            conn.commit()
-        else:
-            print(f'Error en la solicitud para ID {id} desde {fechaInicio} hasta {fechaFinalizacion}, error: {respuesta.text}')
-        return 0
-    except Exception as e:
-        print(f"Error al solicitar datos: {e}")
-        return 1
+    # Variables del BCRA
+    if int(id) < 100:
+        try:
+            print(f'Solicitando datos para ID {id} desde {fechaInicio} hasta {fechaFinalizacion}', end = '\r')
+            respuesta = requests.get(
+                f'https://api.bcra.gob.ar/estadisticas/v2.0/datosvariable/{id}/{fechaInicio}/{fechaFinalizacion}',
+                verify = False  # Deshabilitar la verificación SSL
+            )
+            if respuesta.status_code == 200:
+                jsonData = json.loads(respuesta.text)
+
+                for result in jsonData['results']:
+                    fecha = result['fecha']
+                    valor = result['valor']
+                    # Insertar en la base de datos
+                    cursor.execute("INSERT INTO VARIABLES_ECONOMICAS (id, fecha, valor) VALUES (?, ?, ?)", (id, fecha, valor))
+                
+                conn.commit()
+            else:
+                print(f'Error en la solicitud para ID {id} desde {fechaInicio} hasta {fechaFinalizacion}, error: {respuesta.text}')
+            return 0
+        except Exception as e:
+            print(f"Error al solicitar datos: {e}")
+            return 1
+    
+    # Variables que usan otra API
+    else:
+        cursor.execute("SELECT * FROM DATA WHERE ID = " + id)
+        fila = cursor.fetchone()
+        
+        url = fila[4]
+        fechaInicio = fila[5]
+
+        print(f'Solicitando datos para ID {id} desde {fechaInicio} hasta {fechaFinalizacion}', end = '\r')
+
+        try:
+            respuesta = requests.get(
+                f'https://api.bcra.gob.ar/estadisticas/v2.0/datosvariable/{id}/{fechaInicio}/{fechaFinalizacion}',
+                verify = False  # Deshabilitar la verificación SSL
+            )
+        
+        except Exception as e:
+            print(f"Error al solicitar datos: {e}")
+            return 1
 
 # Busca la última fecha disponible de las variables en la lista y busca los últimos valores
 def actualizarVariables(listaVariables, cursor, conn):
@@ -144,50 +179,13 @@ def obtenerVariables(listaVariables, cursor, conn):
         
         # Hacemos una solicitud por año
         for j in range(diferenciaAño + 1):
+
+            # Sumamos una cierta cantidad de años a la fecha inicial
             inicio = fechaInicio + relativedelta(years=j)
+
             if j == diferenciaAño:
                 final = fechaHoy
             else:
                 final = inicio + relativedelta(years=1, days=-1)
+            
             solicitarGuardar(id, inicio.strftime('%Y-%m-%d'), final.strftime('%Y-%m-%d'), cursor, conn)
-
-# Crea el archivo de la base de datos por primera vez
-def crearDB(cursor, conn):
-    # Crear la tabla DATA - Contiene la información general de cada variable
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS DATA (
-            id INTEGER PRIMARY KEY,
-            nombreCorto TEXT,
-            nombreLargo TEXT,
-            descripcion TEXT,
-            fechaInicio DATE
-        )
-    ''')
-
-    # Crear la tabla VARIABLES_ECONOMICAS - Contiene los valores diarios de todas las variables
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS VARIABLES_ECONOMICAS (
-            id INTEGER,
-            fecha DATE,
-            valor INTEGER
-        )
-    ''')
-
-    # Limpiar datos existentes de las tablas para evitar duplicados
-    cursor.execute('DELETE FROM DATA')
-    cursor.execute('DELETE FROM VARIABLES_ECONOMICAS')
-
-    # Guardamos los cambios en la base de datos
-    conn.commit()
-
-    # Abrimos el archivo JSON que contiene las variables a obtener
-    with open('variables.json', encoding='utf-8') as f:
-        archivo = json.load(f)
-
-    # Insertar datos en la tabla DATA
-    guardarVariables(archivo, cursor, conn)
-
-    listaVariables = crearListaVariables(cursor)
-
-    # Insertamos datos en la tabla VARIABLES_ECONOMICAS
-    obtenerVariables(listaVariables, cursor, conn)

@@ -7,12 +7,18 @@ import json
 conn = sqlite3.connect('variables.db')
 cursor = conn.cursor()
 
-# Abrimos el archivo JSON que contiene las variables a obtener
-with open('variables.json', encoding='utf-8') as f:
-    archivo = json.load(f)
+# Abrimos el archivo JSON que contiene las variables del bcra
+with open('variablesBCRA.json', encoding='utf-8') as f:
+    archivoBCRA = json.load(f)
+
+# Abrimos el archivo JSON que contiene las variables externas
+with open('variablesExternas.json', encoding='utf-8') as f:
+    archivoExternas = json.load(f)
+
+archivos = [archivoBCRA, archivoExternas]
 
 # Insertar datos en la tabla DATA
-guardarVariables(archivo, cursor, conn)
+guardarVariables(archivos, cursor, conn)
 
 # Busca en la DB los ID's de las variables que tenemos
 listaVariables = crearListaVariables(cursor)
