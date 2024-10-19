@@ -29,8 +29,9 @@ export class ApiService {
     this.itemSeleccionado = item;;
   }
 
-  public getDataVariable(id: number): Observable<any> {
-    const urlVarId = `http://localhost:8010/proxy/datosvariable/${id}/2020-08-05/2023-09-09`;
+  public getDataVariable(id: number, fechaInicio: string, fechaFin: string): Observable<any> {
+    // const urlVarId = `http://localhost:8010/proxy/datosvariable/${id}/2020-08-05/2023-09-09`;
+    const urlVarId = `http://localhost:8010/proxy/datosvariable/${id}/${fechaInicio}/${fechaFin}`;
     return this.http.get<any>(urlVarId);
   }
 

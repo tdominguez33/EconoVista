@@ -16,21 +16,81 @@ export class VariableComponent {
   fecha: string[] = [];
   valor: number[] = [];
   itemActual: MenuItem | null = null;
+  fechaActual: string = "" //ultima fecha que toma el grafico
   IdActual: number = 0;
+  fechaInicial: string = "" //fecha en la que inicia el grafico
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
     this.guardarItem();
+
     this.llenarData();
     this.hacerGrafico();
 
   }
 
+  guardarItem() {
+    this.itemActual = this.apiService.itemSeleccionado;
+    this.IdActual = this.apiService.itemSeleccionado.idVariable;
+    this.fechaActual = this.apiService.itemSeleccionado.fecha;
+    //console.log("Guardar item, variable", this.apiService.itemSeleccionado);
+    // console.log("guardar iten, itemActual", this.itemActual);
+    //console.log("guardar item, fechaActual", this.fechaActual);
+  }
+
+  fechaSeleccionada(event: Event) {
+    var button = event.target as HTMLElement;
+    var buttonText = "";
+    var aux = ""
+    buttonText = button.innerText;
+
+    switch (buttonText) {
+      case "1S":
+        aux = this.restarDiasHabiles(this.fechaActual, 7);
+        console.log("aux ", aux);
+        this.fechaInicial = aux;
+        console.log("fechaInicial", this.fechaInicial)
+        console.log("Seleciono 1s");
+        break;
+
+      case "1M":
+        console.log("Seleciono 1m");
+        break;
+
+      case "3M":
+        console.log("Seleciono 3m");
+        break;
+
+      case "6M":
+        console.log("Seleciono 6m");
+        break;
+
+      case "1A":
+        console.log("Seleciono 1a");
+        break;
+
+      case "2A":
+        console.log("Seleciono 2A");
+        break;
+
+      case "5A":
+        console.log("Seleciono 5a");
+        break;
+
+      case "10A":
+        console.log("Seleciono 10a");
+        break;
+
+    }
+
+  }
+
   llenarData() {
-    this.apiService.getDataVariable(this.IdActual).subscribe(data => {
+    this.apiService.getDataVariable(this.IdActual, this.fechaInicial, this.fechaActual).subscribe(data => {
       this.data = data;
       console.log("estoy graficando id ", this.IdActual);
+      console.log("fechaInial en llenar data", this.fechaInicial);
 
       // Vaciar los arrays para evitar duplicaciones si llamas varias veces a llenarData()
       this.valor = [];
@@ -82,58 +142,28 @@ export class VariableComponent {
     });
   }
 
+  restarDiasHabiles(fechaStr: string, diasHabiles: number): string {
+    // Convertir la cadena a objeto Date
+    let fecha = new Date(fechaStr);
+    let diasRestantes = diasHabiles;
 
-  guardarItem() {
-    this.itemActual = this.apiService.itemSeleccionado;
-    this.IdActual = this.apiService.itemSeleccionado.idVariable;
-    // console.log("Guardar item, variable", this.apiService.itemSeleccionado);
-    // console.log("guardar iten, itemActual", this.itemActual);
-    // console.log("guardar item, idActual", this.IdActual);
-  }
+    while (diasRestantes > 0) {
+      // Restar un día a la fecha
+      fecha.setDate(fecha.getDate() - 1);
 
-  fechaSeleccionada(event: Event) {
-    var button = event.target as HTMLElement;
-    var buttonText = "";
+      // Comprobar si el día resultante no es sábado (6) ni domingo (0)
+      const diaSemana = fecha.getDay();
 
-    buttonText = button.innerText;
-
-    console.log("buttonText", buttonText, button);
-    switch (buttonText) {
-      case "1S":
-        console.log("Seleciono 1s");
-        break;
-
-      case "1M":
-        console.log("Seleciono 1m");
-        break;
-
-      case "3M":
-        console.log("Seleciono 3m");
-        break;
-
-      case "6M":
-        console.log("Seleciono 6m");
-        break;
-
-      case "1A":
-        console.log("Seleciono 1a");
-        break;
-
-      case "2A":
-        console.log("Seleciono 2A");
-        break;
-
-      case "5A":
-        console.log("Seleciono 5a");
-        break;
-
-      case "10A":
-        console.log("Seleciono 10a");
-        break;
-
+      if (diaSemana !== 0 && diaSemana !== 6) {
+        diasRestantes--;
+      }
     }
 
+    // Convertir la fecha de nuevo a string en formato YYYY-MM-DD
+    const anio = fecha.getFullYear();
+    const mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Los meses son 0-indexados
+    const dia = String(fecha.getDate()).padStart(2, '0');
+    console.log(anio, mes, dia)
+    return `${anio}-${mes}-${dia}`;
   }
-
-
 }
