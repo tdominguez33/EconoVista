@@ -25,7 +25,7 @@ def datosVariable(idVariable, desde, hasta):
 
         # Verificamos el valor de ID y elegimos en que tabla lo buscamos
         if int(idVariable) < 100:
-            tabla = "VARIABLES_ECONOMICAS"
+            tabla = "VARIABLES_BCRA"
         else:
             tabla = "VARIABLES_EXTERNAS"
         
@@ -49,8 +49,8 @@ def principalesVariables():
     c = conn.cursor()
 
     # Obtenemos la fila con la última fecha para cada id
-    # Buscamos tanto en la tabla de VARIABLES_ECONOMICAS como en la de VARIABLES_EXTERNAS
-    c.execute("WITH MaxFechasEconomicas AS (SELECT id, MAX(fecha) AS max_fecha FROM VARIABLES_ECONOMICAS GROUP BY id), MaxFechasExternas AS (SELECT id, MAX(fecha) AS max_fecha FROM VARIABLES_EXTERNAS GROUP BY id) SELECT ve.id, ve.fecha, ve.valor FROM VARIABLES_ECONOMICAS ve JOIN MaxFechasEconomicas mfe ON ve.id = mfe.id AND ve.fecha = mfe.max_fecha UNION ALL SELECT vex.id, vex.fecha, vex.valor FROM VARIABLES_EXTERNAS vex JOIN MaxFechasExternas mfx ON vex.id = mfx.id AND vex.fecha = mfx.max_fecha;")
+    # Buscamos tanto en la tabla de VARIABLES_BCRA como en la de VARIABLES_EXTERNAS
+    c.execute("WITH MaxFechasEconomicas AS (SELECT id, MAX(fecha) AS max_fecha FROM VARIABLES_BCRA GROUP BY id), MaxFechasExternas AS (SELECT id, MAX(fecha) AS max_fecha FROM VARIABLES_EXTERNAS GROUP BY id) SELECT ve.id, ve.fecha, ve.valor FROM VARIABLES_BCRA ve JOIN MaxFechasEconomicas mfe ON ve.id = mfe.id AND ve.fecha = mfe.max_fecha UNION ALL SELECT vex.id, vex.fecha, vex.valor FROM VARIABLES_EXTERNAS vex JOIN MaxFechasExternas mfx ON vex.id = mfx.id AND vex.fecha = mfx.max_fecha;")
 
     row = c.fetchall()
 
@@ -86,11 +86,11 @@ def ajusteCER(idVariable):
         c = conn.cursor()
 
         # Obtenemos los valores del ID ingresado
-        c.execute("SELECT * FROM VARIABLES_ECONOMICAS WHERE id = " + idVariable)
+        c.execute("SELECT * FROM VARIABLES_BCRA WHERE id = " + idVariable)
         valoresID = c.fetchall()
 
         # Obtenemos los valores del CER
-        c.execute("SELECT * FROM VARIABLES_ECONOMICAS WHERE id = 30")
+        c.execute("SELECT * FROM VARIABLES_BCRA WHERE id = 30")
         valoresCER = c.fetchall()
 
         cerActual = valoresCER[len(valoresCER) - 1][2]  # Último valor disponible para el CER

@@ -1,2 +1,13 @@
-Para iniciar proxy y poder usar local host: lcp --proxyUrl http://localhost:5000
-las consultas pasan a -> https://localhost:8010/proxy
+Instalar:
+npm install -g local-cors-proxy
+
+Endpoint que tiene problemas:
+http://localhost:5000/principalesvariables
+
+Iniciamos el proxy:
+lcp --proxyUrl http://localhost:5000
+
+Las consultas ahora se hacen en:
+http://localhost:8010/proxy/principalesvariables
+
+Si se tienen problemas con el inicio se puede reemplazar 'localhost' por '127.0.0.1'
