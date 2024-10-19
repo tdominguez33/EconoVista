@@ -6,5 +6,37 @@
         "descripcion": "Puntos básicos por sobre la tasa americana que rinde la deuda argentina",
         "url": "https://api.argentinadatos.com/v1/finanzas/indices/riesgo-pais",
         "fechaInicio": "1999-01-22"
+    },
+    "1": {
+		"id": "102",
+        "nombreCorto": "Dólar Blue",
+        "nombreLargo": "Dólar Blue",
+        "descripcion": "El dólar blue es el dólar más popular entre las personas de a pie ya que todas las transacciones son en negro.",
+        "url": "https://api.argentinadatos.com/v1/cotizaciones/dolares/blue",
+        "fechaInicio": "2011-01-03"
+    },
+    "2": {
+		"id": "103",
+        "nombreCorto": "Dólar MEP",
+        "nombreLargo": "Dólar MEP",
+        "descripcion": "El dólar MEP (Mercado Electrónico de Pagos) es un dólar en el sistema bancario argentino",
+        "url": "https://api.argentinadatos.com/v1/cotizaciones/dolares/bolsa",
+        "fechaInicio": "2018-10-29"
+    },
+    "3": {
+		"id": "104",
+        "nombreCorto": "Dólar CCL",
+        "nombreLargo": "Dólar CCL",
+        "descripcion": "El dólar CCL (Contado Con Liquidación) es un mecanismo para adquirir dólares en el exterior, permite retirar los dólares del sistema bancario argentino",
+        "url": "https://api.argentinadatos.com/v1/cotizaciones/dolares/contadoconliqui",
+        "fechaInicio": "2013-01-02"
+    },
+    "4": {
+		"id": "105",
+        "nombreCorto": "Dólar Cripto",
+        "nombreLargo": "Dólar Cripto",
+        "descripcion": "El dólar cripto son dólares en el ecosistema cripto, las monedas de referencia son USDT, USDC y DAI",
+        "url": "https://api.argentinadatos.com/v1/cotizaciones/dolares/cripto",
+        "fechaInicio": "2023-02-07"
     }
 }

@@ -1,5 +1,5 @@
 # Archivo utilizado para crear desde cero la base de datos
-# CUIDADO: ESTO BORRA TODOS LOS DATOS ANTERIORES
+# CUIDADO: ESTO BORRA TODOS LOS DATOS ANTERIORES, es recomendable siempre usar DB_actualizar borrando el archivo a mano
 
 import sqlite3
 import json

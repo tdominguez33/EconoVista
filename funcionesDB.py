@@ -4,6 +4,7 @@ import json
 import requests
 import datetime
 from dateutil.relativedelta import relativedelta
+from funcionesRespuestasAPI import *
 
 # Eliminamos los warnings de conexión insegura en los request
 import urllib3
@@ -94,10 +95,6 @@ def crearListaVariables(cursor):
 # Solicita los datos de la variable con un id desde fechaInicio hasta fechaFinalizacion y los añade a la base de datos
 def solicitarGuardar(id, fechaInicio, fechaFinalizacion, cursor, conn):
 
-    # Guardamos las fechas como datetime para poder compararlas luego
-    fechaInicioDatetime         = datetime.date(int(fechaInicio[:4]), int(fechaInicio[5:7]), int(fechaInicio[8:10]))
-    fechaFinalizacionDatetime   = datetime.date(int(fechaFinalizacion[:4]), int(fechaFinalizacion[5:7]), int(fechaFinalizacion[8:10]))
-
     # Variables del BCRA
     if int(id) < 100:
         try:
@@ -136,28 +133,20 @@ def solicitarGuardar(id, fechaInicio, fechaFinalizacion, cursor, conn):
             respuesta = requests.get(url, verify = False)
 
             if respuesta.status_code == 200:
-                jsonData = json.loads(respuesta.text)
-                
-                for result in jsonData:
-                    fecha = result['fecha']
-                    valor = str(result['valor'])    # Valor es un número en la API
-                    
-                    # Convertimos la fecha que estamos observando a datetime para comparala
-                    fechaDatetime = datetime.date(int(fecha[:4]), int(fecha[5:7]), int(fecha[8:10]))
-                    
-                    # Si la fecha obtenida está en el rango deseado la agregamos a la DB
-                    if(fechaInicioDatetime < fechaDatetime < fechaFinalizacionDatetime):
-                        # Insertar en la base de datos
-                        cursor.execute("INSERT INTO VARIABLES_EXTERNAS (id, fecha, valor) VALUES (?, ?, ?)", (id, fecha, valor))
-                
-                conn.commit()
+                dataJSON = json.loads(respuesta.text)
+
+                # Tratamiento para cada una de las variables con respuestas diferentes
+                if(id == "101"):
+                    riesgoPais(dataJSON, id, fechaInicio, fechaFinalizacion, cursor, conn)
+                else:
+                    dolares(dataJSON, id, fechaInicio, fechaFinalizacion, cursor, conn)
             
             else:
                 print(f'Error en la solicitud para ID {id} desde {fechaInicio} hasta {fechaFinalizacion}, error: {respuesta.text}')
             return 0
                 
         except Exception as e:
-            print(f"Error al solicitar datos: {e}")
+            print(f"\nError al solicitar datos: {e}")
 
 # Busca la última fecha disponible de las variables en la lista y busca los últimos valores
 def actualizarVariables(listaVariables, cursor, conn):
@@ -169,10 +158,11 @@ def actualizarVariables(listaVariables, cursor, conn):
         
         # Obtenemos la última fecha registrada en la base de datos para esta variable
         cursor.execute("SELECT id, valor, fecha FROM (SELECT id, valor, fecha FROM VARIABLES_BCRA WHERE id = " + str(id) +  " UNION SELECT id, valor, fecha FROM VARIABLES_EXTERNAS WHERE id =" + str(id) + ") AS combined ORDER BY fecha DESC LIMIT 1;")
-        ultimaFecha = cursor.fetchone()[2]
-        
+        fila = cursor.fetchone()
+
         # Hay alguna entrada en la db para esta variable
-        if ultimaFecha:
+        if fila != None:
+            ultimaFecha = fila[2]
             # Convertir la última fecha a un objeto datetime
             ultimaFecha = datetime.datetime.strptime(ultimaFecha, '%Y-%m-%d').date()
             
