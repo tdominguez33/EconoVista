@@ -78,7 +78,7 @@ def datosVariableDesdeHasta(idVariable, desde, hasta):
 # Ajustar una de las variables soportadas por CER
 @api.route('/ajusteCER/<idVariable>', methods=['GET'])
 def ajusteCER(idVariable):
-    idsPermitidos = ["4", "5"]
+    idsPermitidos = ["4", "5", "102", "103", "104", "105"]
     datos = []
 
     if idVariable in idsPermitidos:
@@ -86,7 +86,10 @@ def ajusteCER(idVariable):
         c = conn.cursor()
 
         # Obtenemos los valores del ID ingresado
-        c.execute("SELECT * FROM VARIABLES_BCRA WHERE id = " + idVariable)
+        if int(idVariable) < 100:
+            c.execute("SELECT * FROM VARIABLES_BCRA WHERE id = " + idVariable)
+        else:
+            c.execute("SELECT * FROM VARIABLES_EXTERNAS WHERE id = " + idVariable)
         valoresID = c.fetchall()
 
         # Obtenemos los valores del CER
@@ -94,7 +97,6 @@ def ajusteCER(idVariable):
         valoresCER = c.fetchall()
 
         cerActual = valoresCER[len(valoresCER) - 1][2]  # Último valor disponible para el CER
-
 
         # Como puede no haber la misma cantidad de datos de ambas variables hay que desacoplar la busqueda
         indiceBusqueda = 0
@@ -105,17 +107,17 @@ def ajusteCER(idVariable):
             while(valoresID[i][1] != valoresCER[indiceBusqueda][1]):
                 indiceBusqueda += 1
 
-            cerCorriente = valoresCER[indiceBusqueda][2]                # CER a valores corrientes
-            cerAumento = cerActual / cerCorriente                       # Cuanto aumentó el CER hasta hoy
+            cerCorriente = valoresCER[indiceBusqueda][2]        # CER a valores corrientes
+            cerAumento = cerActual / cerCorriente               # Cuanto aumentó el CER hasta hoy
                 
-            id1Corriente = valoresID[i][2]                             # Variable a valores corrientes
-            id1Constante = round(id1Corriente * cerAumento, 2)         # Variable a valores constantes
+            id1Corriente = valoresID[i][2]                      # Variable a valores corrientes
+            id1Constante = round(id1Corriente * cerAumento, 2)  # Variable a valores constantes
 
             datos.append({"fecha": valoresID[i][1], "valor": id1Constante})
 
             indiceBusqueda += 1
-            
-            return datos
+         
+        return datos
     else:
         return jsonify(status = 400, error="Variable no soportada para ajuste CER")
 
