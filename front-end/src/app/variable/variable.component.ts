@@ -19,10 +19,14 @@ export class VariableComponent {
   fechaActual: string = "" //ultima fecha que toma el grafico
   IdActual: number = 0;
   fechaInicial: string = "" //fecha en la que inicia el grafico
+  fechaFinal: string = ""
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
+    this.fechaInicial = '2020-08-05';
+    this.fechaFinal = this.fechaActual;
+
     this.guardarItem();
 
     this.llenarData();
@@ -55,37 +59,67 @@ export class VariableComponent {
         break;
 
       case "1M":
+        aux = this.restarDiasHabiles(this.fechaActual, 30);
+        console.log("aux ", aux);
+        this.fechaInicial = aux;
+        console.log("fechaInicial", this.fechaInicial)
         console.log("Seleciono 1m");
         break;
 
       case "3M":
+        aux = this.restarDiasHabiles(this.fechaActual, 90);
+        console.log("aux ", aux);
+        this.fechaInicial = aux;
+        console.log("fechaInicial", this.fechaInicial)
         console.log("Seleciono 3m");
         break;
 
       case "6M":
+        aux = this.restarDiasHabiles(this.fechaActual, 180);
+        console.log("aux ", aux);
+        this.fechaInicial = aux;
+        console.log("fechaInicial", this.fechaInicial)
         console.log("Seleciono 6m");
         break;
 
       case "1A":
+        aux = this.restarDiasHabiles(this.fechaActual, 365);
+        console.log("aux ", aux);
+        this.fechaInicial = aux;
+        console.log("fechaInicial", this.fechaInicial)
         console.log("Seleciono 1a");
         break;
 
       case "2A":
+        aux = this.restarDiasHabiles(this.fechaActual, 730);
+        console.log("aux ", aux);
+        this.fechaInicial = aux;
+        console.log("fechaInicial", this.fechaInicial)
         console.log("Seleciono 2A");
         break;
 
       case "5A":
+        aux = this.restarDiasHabiles(this.fechaActual, 1825);
+        console.log("aux ", aux);
+        this.fechaInicial = aux;
+        console.log("fechaInicial", this.fechaInicial)
         console.log("Seleciono 5a");
         break;
 
       case "10A":
+        aux = this.restarDiasHabiles(this.fechaActual, 3650);
+        console.log("aux ", aux);
+        this.fechaInicial = aux;
+        console.log("fechaInicial", this.fechaInicial)
         console.log("Seleciono 10a");
         break;
 
     }
 
-  }
+    this.llenarData();
 
+  }
+    
   llenarData() {
     this.apiService.getDataVariable(this.IdActual, this.fechaInicial, this.fechaActual).subscribe(data => {
       this.data = data;
