@@ -34,4 +34,8 @@ export class ApiService {
     return this.http.get<any>(urlVarId);
   }
 
+  public getDataVariableCER(id: number, url: string, ): Observable<any> {
+    const urlVarId = this.urlApiMenu + `${url}/${id}`;
+    return this.http.get<any>(urlVarId);
+  }
 }

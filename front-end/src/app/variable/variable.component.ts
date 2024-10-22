@@ -21,6 +21,7 @@ export class VariableComponent {
   fechaInicial: string = ""; //fecha en la que inicia el grafico
   fechaFinal: string = "";
   url: string = "/datosvariable";
+  url1: string = "/ajusteCER";
 
   constructor(private apiService: ApiService) { }
 
@@ -122,7 +123,7 @@ export class VariableComponent {
   }
 
   llenarData() {
-    this.apiService.getDataVariable(this.IdActual, this.url, this.fechaInicial, this.fechaActual).subscribe(data => {
+      this.apiService.getDataVariable(this.IdActual, this.url, this.fechaInicial, this.fechaActual).subscribe(data => {
       this.data = data;
       console.log("fechaInial en llenar data", this.fechaInicial);
 
@@ -138,6 +139,32 @@ export class VariableComponent {
       // Ahora tienes los datos llenados
       console.log("valores", this.valor);
       console.log("fecha", this.fecha);
+      console.log('id Variable', this.IdActual)
+
+      // Una vez que los datos se han llenado, se crea el gráfico
+      this.hacerGrafico();
+    });
+  }
+
+
+  llenarDataCER(){
+    this.apiService.getDataVariableCER(this.IdActual, this.url1).subscribe(data => {
+      this.data = data;
+      console.log("fechaInial en llenar data", this.fechaInicial);
+
+      // Vaciar los arrays para evitar duplicaciones si llamas varias veces a llenarData()
+      this.valor = [];
+      this.fecha = [];
+
+      for (const item of this.data) {
+        this.valor.push(item.valor);
+        this.fecha.push(item.fecha);
+      }
+
+      // Ahora tienes los datos llenados
+      console.log("valores", this.valor);
+      console.log("fecha", this.fecha);
+      console.log('id Variable', this.IdActual)
 
       // Una vez que los datos se han llenado, se crea el gráfico
       this.hacerGrafico();
@@ -201,8 +228,13 @@ export class VariableComponent {
   }
 
   ajusteCER() {
-    this.url = "/ajusteCER";
-    this.llenarData();
+    const varCER: number[] = [4, 5, 102, 103, 104, 105]
+    if (varCER.includes(this.IdActual)) {
+    this.url1 = "/ajusteCER";
+    this.llenarDataCER();
     this.hacerGrafico();
+  } else{
+    console.log('La variable no se ajusta por CER', )
   }
+}
 }

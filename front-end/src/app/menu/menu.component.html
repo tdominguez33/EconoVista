@@ -1,12 +1,15 @@
 <h1>Principales estadísticas</h1>
-
 <div>
-    <a routerLink="/variableComponente" class="contenedor">
-        <div class="variable-menu" *ngFor="let item of data" (click)="guardarItem(item)">
-            <h3 style="color: white;">{{item.nombreCorto}}</h3>
-            <img src="assets/prueba.png" alt="EconoVista" class="prueba" />
-            <!-- <canvas id="chart">{{chart}}</canvas>  -->
-            <p style="color:white;"> {{item.valor}}</p>
-        </div>
-    </a>
+  <a routerLink="/variableComponente" class="contenedor">
+    <div class="variable-menu" *ngFor="let item of data; let i = index" (click)="guardarItem(item)">
+      <h3 style="color: white;">{{item.nombreCorto}}</h3>
+
+      <!-- Canvas para el gráfico -->
+      <canvas id="miniChart{{i}}" width="100" height="50" class="prueba"></canvas>
+
+      <p style="color:white;" class="prueba">{{item.valor}}</p>
+    </div>
+  </a>
 </div>
+
+  
