@@ -40,44 +40,7 @@ def datosVariable(idVariable, desde, hasta):
     else:
         return jsonify(status = 400, error = "Formato de fechas incorrecto")
 
-# Obtener el último valor disponible de todas las variables de la base de datos
-# Se usa en varios endpoints
-@api.route('/principalesvariables', methods=['GET'])
-def principalesVariables():
-    variables = []
-    conn = sqlite3.connect('variables.db')
-    c = conn.cursor()
-
-    # Obtenemos la fila con la última fecha para cada id
-    # Buscamos tanto en la tabla de VARIABLES_BCRA como en la de VARIABLES_EXTERNAS
-    c.execute("WITH MaxFechasEconomicas AS (SELECT id, MAX(fecha) AS max_fecha FROM VARIABLES_BCRA GROUP BY id), MaxFechasExternas AS (SELECT id, MAX(fecha) AS max_fecha FROM VARIABLES_EXTERNAS GROUP BY id) SELECT ve.id, ve.fecha, ve.valor FROM VARIABLES_BCRA ve JOIN MaxFechasEconomicas mfe ON ve.id = mfe.id AND ve.fecha = mfe.max_fecha UNION ALL SELECT vex.id, vex.fecha, vex.valor FROM VARIABLES_EXTERNAS vex JOIN MaxFechasExternas mfx ON vex.id = mfx.id AND vex.fecha = mfx.max_fecha;")
-
-    row = c.fetchall()
-
-    for variable in row:
-        c.execute("SELECT * FROM DATA WHERE id = " + str(variable[0]))
-        metadata = c.fetchone()
-        variables.append({"idVariable": variable[0], "nombreCorto": metadata[1], "nombreLargo": metadata[2], "descripcion": metadata[3], "fecha": variable[1], "valor": variable[2]})
-    
-    conn.close()
-    return variables
-
-# Obtener los valores de un determinado ID desde una fecha específica hasta la fecha
-@api.route('/datosvariable/<idVariable>/<desde>', methods=['GET'])
-def datosVariableDesde(idVariable, desde):
-    datos = datosVariable(idVariable, desde, str(datetime.date.today()))
-    return datos
-
-# Obtener los valores de un determinado ID entre dos fechas específicadas
-@api.route('/datosvariable/<idVariable>/<desde>/<hasta>', methods=['GET'])
-def datosVariableDesdeHasta(idVariable, desde, hasta):
-    datos = datosVariable(idVariable, desde, hasta)
-    return datos
-
-
-# Ajustar una de las variables soportadas por CER
-@api.route('/ajusteCER/<idVariable>', methods=['GET'])
-def ajusteCER(idVariable):
+def ajusteCER(idVariable, desde, hasta):
     idsPermitidos = ["4", "5", "102", "103", "104", "105"]
     datos = []
 
@@ -87,7 +50,7 @@ def ajusteCER(idVariable):
 
         # Obtenemos los valores del ID ingresado
         if int(idVariable) < 100:
-            c.execute("SELECT * FROM VARIABLES_BCRA WHERE id = " + idVariable)
+            c.execute("SELECT * FROM VARIABLES_BCRA WHERE id = " + idVariable + " AND fecha BETWEEN '" + desde + "' AND '" + hasta + "'")
         else:
             c.execute("SELECT * FROM VARIABLES_EXTERNAS WHERE id = " + idVariable)
         valoresID = c.fetchall()
@@ -120,6 +83,76 @@ def ajusteCER(idVariable):
         return datos
     else:
         return jsonify(status = 400, error="Variable no soportada para ajuste CER")
+
+# Obtener el último valor disponible de todas las variables de la base de datos
+# Se usa en varios endpoints
+@api.route('/principalesvariables', methods=['GET'])
+def principalesVariables():
+    variables = []
+    conn = sqlite3.connect('variables.db')
+    c = conn.cursor()
+
+    # Obtenemos la fila con la última fecha para cada id
+    # Buscamos tanto en la tabla de VARIABLES_BCRA como en la de VARIABLES_EXTERNAS
+    c.execute("WITH MaxFechasEconomicas AS (SELECT id, MAX(fecha) AS max_fecha FROM VARIABLES_BCRA GROUP BY id), MaxFechasExternas AS (SELECT id, MAX(fecha) AS max_fecha FROM VARIABLES_EXTERNAS GROUP BY id) SELECT ve.id, ve.fecha, ve.valor FROM VARIABLES_BCRA ve JOIN MaxFechasEconomicas mfe ON ve.id = mfe.id AND ve.fecha = mfe.max_fecha UNION ALL SELECT vex.id, vex.fecha, vex.valor FROM VARIABLES_EXTERNAS vex JOIN MaxFechasExternas mfx ON vex.id = mfx.id AND vex.fecha = mfx.max_fecha;")
+
+    row = c.fetchall()
+
+    for variable in row:
+        c.execute("SELECT * FROM DATA WHERE id = " + str(variable[0]))
+        metadata = c.fetchone()
+        variables.append({"idVariable": variable[0], "nombreCorto": metadata[1], "nombreLargo": metadata[2], "descripcion": metadata[3], "fecha": variable[1], "valor": variable[2]})
+    
+    conn.close()
+    return variables
+
+# Obtener todos los valores de un determinado ID
+@api.route('/datosvariable/<idVariable>', methods=['GET'])
+def datosVariableTodo(idVariable):
+    conn = sqlite3.connect('variables.db')
+    c = conn.cursor()
+
+    c.execute("SELECT fechaInicio FROM 'DATA' WHERE id = " + idVariable)
+    fechaInicio = c.fetchone()[0]
+
+    datos = datosVariable(idVariable, fechaInicio, str(datetime.date.today()))
+    return datos
+
+# Obtener los valores de un determinado ID desde una fecha específica hasta la fecha
+@api.route('/datosvariable/<idVariable>/<desde>', methods=['GET'])
+def datosVariableDesde(idVariable, desde):
+    datos = datosVariable(idVariable, desde, str(datetime.date.today()))
+    return datos
+
+# Obtener los valores de un determinado ID entre dos fechas específicadas
+@api.route('/datosvariable/<idVariable>/<desde>/<hasta>', methods=['GET'])
+def datosVariableDesdeHasta(idVariable, desde, hasta):
+    datos = datosVariable(idVariable, desde, hasta)
+    return datos
+
+# Ajustar una de las variables soportadas por CER - Todos los datos disponibles
+@api.route('/ajusteCER/<idVariable>', methods=['GET'])
+def ajusteCERTodo(idVariable):
+    conn = sqlite3.connect('variables.db')
+    c = conn.cursor()
+
+    c.execute("SELECT fechaInicio FROM 'DATA' WHERE id = " + idVariable)
+    fechaInicio = c.fetchone()[0]
+
+    datos = ajusteCER(idVariable, fechaInicio, str(datetime.date.today()))
+    return datos
+
+# Ajustar una de las variables soportadas por CER a partir de una fecha específicada
+@api.route('/ajusteCER/<idVariable>/<desde>', methods=['GET'])
+def ajusteCERDesde(idVariable, desde):
+    datos = ajusteCER(idVariable, desde, str(datetime.date.today()))
+    return datos
+
+# Ajustar una de las variables soportadas por CER entre dos fechas específicas
+@api.route('/ajusteCER/<idVariable>/<desde>/<hasta>', methods=['GET'])
+def ajusteCERDesdeHasta(idVariable, desde, hasta):
+    datos = ajusteCER(idVariable, desde, hasta)
+    return datos
 
 
 if __name__ == '__main__':
