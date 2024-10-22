@@ -16,10 +16,11 @@ export class VariableComponent {
   fecha: string[] = [];
   valor: number[] = [];
   itemActual: MenuItem | null = null;
-  fechaActual: string = "" //ultima fecha que toma el grafico
+  fechaActual: string = ""; //ultima fecha que toma el grafico
   IdActual: number = 0;
-  fechaInicial: string = "" //fecha en la que inicia el grafico
-  fechaFinal: string = ""
+  fechaInicial: string = ""; //fecha en la que inicia el grafico
+  fechaFinal: string = "";
+  url: string = "/datosvariable";
 
   constructor(private apiService: ApiService) { }
 
@@ -30,7 +31,7 @@ export class VariableComponent {
     this.guardarItem();
 
     this.llenarData();
-    this.hacerGrafico();
+    //this.hacerGrafico();
 
   }
 
@@ -52,7 +53,7 @@ export class VariableComponent {
     switch (buttonText) {
       case "1S":
         aux = this.restarDiasHabiles(this.fechaActual, 7);
-        console.log("aux ", aux);
+        //console.log("aux ", aux);
         this.fechaInicial = aux;
         console.log("fechaInicial", this.fechaInicial)
         console.log("Seleciono 1s");
@@ -60,7 +61,7 @@ export class VariableComponent {
 
       case "1M":
         aux = this.restarDiasHabiles(this.fechaActual, 30);
-        console.log("aux ", aux);
+        //console.log("aux ", aux);
         this.fechaInicial = aux;
         console.log("fechaInicial", this.fechaInicial)
         console.log("Seleciono 1m");
@@ -68,7 +69,7 @@ export class VariableComponent {
 
       case "3M":
         aux = this.restarDiasHabiles(this.fechaActual, 90);
-        console.log("aux ", aux);
+        //console.log("aux ", aux);
         this.fechaInicial = aux;
         console.log("fechaInicial", this.fechaInicial)
         console.log("Seleciono 3m");
@@ -76,7 +77,7 @@ export class VariableComponent {
 
       case "6M":
         aux = this.restarDiasHabiles(this.fechaActual, 180);
-        console.log("aux ", aux);
+        //console.log("aux ", aux);
         this.fechaInicial = aux;
         console.log("fechaInicial", this.fechaInicial)
         console.log("Seleciono 6m");
@@ -84,7 +85,7 @@ export class VariableComponent {
 
       case "1A":
         aux = this.restarDiasHabiles(this.fechaActual, 365);
-        console.log("aux ", aux);
+        //console.log("aux ", aux);
         this.fechaInicial = aux;
         console.log("fechaInicial", this.fechaInicial)
         console.log("Seleciono 1a");
@@ -92,7 +93,7 @@ export class VariableComponent {
 
       case "2A":
         aux = this.restarDiasHabiles(this.fechaActual, 730);
-        console.log("aux ", aux);
+        //console.log("aux ", aux);
         this.fechaInicial = aux;
         console.log("fechaInicial", this.fechaInicial)
         console.log("Seleciono 2A");
@@ -100,7 +101,7 @@ export class VariableComponent {
 
       case "5A":
         aux = this.restarDiasHabiles(this.fechaActual, 1825);
-        console.log("aux ", aux);
+        //console.log("aux ", aux);
         this.fechaInicial = aux;
         console.log("fechaInicial", this.fechaInicial)
         console.log("Seleciono 5a");
@@ -108,7 +109,7 @@ export class VariableComponent {
 
       case "10A":
         aux = this.restarDiasHabiles(this.fechaActual, 3650);
-        console.log("aux ", aux);
+        //console.log("aux ", aux);
         this.fechaInicial = aux;
         console.log("fechaInicial", this.fechaInicial)
         console.log("Seleciono 10a");
@@ -119,11 +120,10 @@ export class VariableComponent {
     this.llenarData();
 
   }
-    
+
   llenarData() {
-    this.apiService.getDataVariable(this.IdActual, this.fechaInicial, this.fechaActual).subscribe(data => {
+    this.apiService.getDataVariable(this.IdActual, this.url, this.fechaInicial, this.fechaActual).subscribe(data => {
       this.data = data;
-      console.log("estoy graficando id ", this.IdActual);
       console.log("fechaInial en llenar data", this.fechaInicial);
 
       // Vaciar los arrays para evitar duplicaciones si llamas varias veces a llenarData()
@@ -197,7 +197,12 @@ export class VariableComponent {
     const anio = fecha.getFullYear();
     const mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Los meses son 0-indexados
     const dia = String(fecha.getDate()).padStart(2, '0');
-    console.log(anio, mes, dia)
     return `${anio}-${mes}-${dia}`;
+  }
+
+  ajusteCER() {
+    this.url = "/ajusteCER";
+    this.llenarData();
+    this.hacerGrafico();
   }
 }
