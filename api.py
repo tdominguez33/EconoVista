@@ -3,7 +3,9 @@ from flask import *
 from waitress import serve
 import datetime
 import re
-    
+
+idsPermitidosAjusteCER = ["4", "5", "102", "103", "104", "105"]
+
 api = Flask(__name__)
 api.json.sort_keys = False  # Evita que Flask ordene las claves en orden alfabetico
 
@@ -40,11 +42,11 @@ def datosVariable(idVariable, desde, hasta):
     else:
         return jsonify(status = 400, error = "Formato de fechas incorrecto")
 
+# Ajusta una variable por CER (Ajuste por Inflación)
 def ajusteCER(idVariable, desde, hasta):
-    idsPermitidos = ["4", "5", "102", "103", "104", "105"]
     datos = []
 
-    if idVariable in idsPermitidos:
+    if idVariable in idsPermitidosAjusteCER:
         conn = sqlite3.connect('variables.db')
         c = conn.cursor()
 
@@ -85,7 +87,6 @@ def ajusteCER(idVariable, desde, hasta):
         return jsonify(status = 400, error="Variable no soportada para ajuste CER")
 
 # Obtener el último valor disponible de todas las variables de la base de datos
-# Se usa en varios endpoints
 @api.route('/principalesvariables', methods=['GET'])
 def principalesVariables():
     variables = []
@@ -129,6 +130,11 @@ def datosVariableDesde(idVariable, desde):
 def datosVariableDesdeHasta(idVariable, desde, hasta):
     datos = datosVariable(idVariable, desde, hasta)
     return datos
+
+# Devuelve las variables soportados por el ajuste CER
+@api.route('/ajusteCER/variablesSoportadas', methods=['GET'])
+def variablesAjusteCER():
+    return idsPermitidosAjusteCER
 
 # Ajustar una de las variables soportadas por CER - Todos los datos disponibles
 @api.route('/ajusteCER/<idVariable>', methods=['GET'])
