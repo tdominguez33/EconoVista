@@ -22,23 +22,40 @@ export class VariableComponent {
   fechaFinal: string = "";
   url: string = "/datosvariable";
   url1: string = "/ajusteCER";
+  public listaVariables: number[] = []
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
     this.fechaInicial = '2020-08-05';
     this.fechaFinal = this.fechaActual;
+    const id = localStorage.getItem('idVariableSeleccionada');
+    if (id) {
+      this.IdActual = +id;  // Convertir a número
+      console.log('la variable seleccionada es ', this.IdActual)
+    } else {
+      console.log('No se encontró ninguna variable seleccionada.');
+    }
+    this.llenarData();
+    this.hacerGrafico();
+    this.fechaInicial = '2020-08-05';
+    this.fechaFinal = this.fechaActual;
 
     this.guardarItem();
 
     this.llenarData();
+    this.cargarVariablesSoportadas();
     //this.hacerGrafico();
+
+
+    
 
   }
 
   guardarItem() {
     this.itemActual = this.apiService.itemSeleccionado;
     this.IdActual = this.apiService.itemSeleccionado.idVariable;
+    localStorage.setItem('idVariableSeleccionada', this.IdActual.toString());  // Guardar en localStorage
     this.fechaActual = this.apiService.itemSeleccionado.fecha;
     //console.log("Guardar item, variable", this.apiService.itemSeleccionado);
     // console.log("guardar iten, itemActual", this.itemActual);
@@ -123,7 +140,8 @@ export class VariableComponent {
   }
 
   llenarData() {
-      this.apiService.getDataVariable(this.IdActual, this.url, this.fechaInicial, this.fechaActual).subscribe(data => {
+      //this.apiService.getDataVariable(this.IdActual, this.url, this.fechaInicial, this.fechaActual).subscribe(data => {
+      this.apiService.getDataVariable(this.IdActual, this.url, this.fechaInicial, '2024-10-24'/*this.fechaActual*/).subscribe(data => {
       this.data = data;
       console.log("fechaInial en llenar data", this.fechaInicial);
 
@@ -227,9 +245,24 @@ export class VariableComponent {
     return `${anio}-${mes}-${dia}`;
   }
 
+
+  public cargarVariablesSoportadas(): void {
+    this.apiService.getVarSoportadas().subscribe(
+      (data: string[]) => {
+        // Convertir las cadenas a números
+        this.listaVariables = data.map(item => Number(item));
+
+        // Imprimir para verificar
+        console.log('Lista de variables convertida a números:', this.listaVariables);
+      }
+    );
+  }
+
+
   ajusteCER() {
-    const varCER: number[] = [4, 5, 102, 103, 104, 105]
-    if (varCER.includes(this.IdActual)) {
+    //const varCER: number[] = [4, 5, 102, 103, 104, 105]
+    
+    if (this.listaVariables.includes(this.IdActual)) {
     this.url1 = "/ajusteCER";
     this.llenarDataCER();
     this.hacerGrafico();

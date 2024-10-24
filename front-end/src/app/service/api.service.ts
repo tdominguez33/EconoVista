@@ -38,4 +38,8 @@ export class ApiService {
     const urlVarId = this.urlApiMenu + `${url}/${id}`;
     return this.http.get<any>(urlVarId);
   }
+
+  public getVarSoportadas(): Observable<string[]>{
+    return this.http.get<string[]>(this.urlApiMenu + '/ajusteCER/variablessoportadas')
+  }
 }
