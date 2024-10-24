@@ -132,7 +132,7 @@ def datosVariableDesdeHasta(idVariable, desde, hasta):
     return datos
 
 # Devuelve las variables soportados por el ajuste CER
-@api.route('/ajusteCER/variablesSoportadas', methods=['GET'])
+@api.route('/ajusteCER/variablessoportadas', methods=['GET'])
 def variablesAjusteCER():
     return idsPermitidosAjusteCER
 
