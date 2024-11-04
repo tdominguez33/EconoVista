@@ -1,15 +1,11 @@
 <div class="contenedorPrincipal">
     <div class="contenedor" *ngIf="itemActual">
         <h1 style="color: white;">{{itemActual?.nombreLargo}}</h1>
-        <h1></h1>
-    </div>
-
-    <div class="contenedor" *ngIf="itemActual">
         <h4 style="color: white;"> Última actualización: {{itemActual?.fecha}}</h4>
-        <h4 style="color: white;"> Moneda </h4>
+      
     </div>
 
-    <p style="color: white;"> Lorem.. {{itemActual?.descripcion}}</p>
+    <p style="color: white;"> {{itemActual?.descripcion}}</p>
 
     <div class="contenedorFiltro">
         <button mat-button class="selectorFecha" (click)="fechaSeleccionada($event)">1S</button>

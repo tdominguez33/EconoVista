@@ -38,17 +38,14 @@ export class VariableComponent {
     }
     this.llenarData();
     this.hacerGrafico();
-    this.fechaInicial = '2020-08-05';
-    this.fechaFinal = this.fechaActual;
+    //this.fechaInicial = '2020-08-05';
+    //this.fechaFinal = this.fechaActual;
 
     this.guardarItem();
 
     this.llenarData();
     this.cargarVariablesSoportadas();
     //this.hacerGrafico();
-
-
-    
 
   }
 
@@ -193,7 +190,7 @@ export class VariableComponent {
     const data = {
       labels: this.fecha,
       datasets: [{
-        label: "prueba",
+        label: "",
         data: this.valor,
         fill: false,
         borderColor: 'red',
@@ -216,6 +213,9 @@ export class VariableComponent {
           y: {
             beginAtZero: true // Asegúrate de que el eje Y comienza en cero
           }
+        }, 
+        layout:{
+          padding: 10
         }
       }
     });
