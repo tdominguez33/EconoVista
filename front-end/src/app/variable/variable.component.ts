@@ -25,6 +25,7 @@ export class VariableComponent {
   public listaVariables: number[] = []
   nombreLargo: string = ""
   fechaHeader: string = ""
+  descripcion: string = ""
 
 
   constructor(private apiService: ApiService) { }
@@ -58,7 +59,14 @@ export class VariableComponent {
       console.log('No se pudo encontrar la fecha')
     }
 
+    const desc = localStorage.getItem('descripcion');
 
+    if (desc){
+      this.descripcion = desc;
+      console.log('Prueba de fecha ', desc)
+    }else{
+      console.log('No se pudo encontrar la descripcion')
+    }
 
 
     this.llenarData();
@@ -88,8 +96,8 @@ export class VariableComponent {
     this.fechaActual = this.apiService.itemSeleccionado.fecha;
     /*localStorage.setItem('fecha', this.fechaActual);  // Guardar en localStorage*/
 
-
-    
+    this.descripcion = this.apiService.itemSeleccionado.descripcion
+    localStorage.setItem('descripcion', this.descripcion);  // Guardar en localStorage
     
 
    /* if (this.itemActual){
