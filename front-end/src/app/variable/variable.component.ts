@@ -320,7 +320,7 @@ export class VariableComponent {
     this.llenarDataCER();
     this.hacerGrafico();
   } else{
-    console.log('La variable no se ajusta por CER', )
+    alert('La variable no se ajusta por CER', )
   }
 }
 }
