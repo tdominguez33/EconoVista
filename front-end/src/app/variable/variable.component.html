@@ -1,9 +1,22 @@
 <div class="contenedorPrincipal">
+    <div *ngIf="nombreLargo">
+        <h1 style="color: white;">{{nombreLargo}}</h1>
+    </div>
+    <div *ngIf="fechaHeader">
+        <h4 style="color: white;"> Última actualización: {{fechaHeader}}</h4>
+    </div>
     <div class="contenedor" *ngIf="itemActual">
-        <h1 style="color: white;">{{itemActual?.nombreLargo}}</h1>
-        <h4 style="color: white;"> Última actualización: {{itemActual?.fecha}}</h4>
+        <!--<h1 style="color: white;">{{itemActual?.nombreLargo}}</h1>
+
+        <h1 style="color: white;">{{nombreLargo}}</h1
+        
+
+        <h4 style="color: white;"> Última actualización: {{itemActual?.fecha}}</h4>>-->
+        
       
     </div>
+
+    
 
     <p style="color: white;"> {{itemActual?.descripcion}}</p>
 

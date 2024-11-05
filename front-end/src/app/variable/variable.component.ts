@@ -23,6 +23,9 @@ export class VariableComponent {
   url: string = "/datosvariable";
   url1: string = "/ajusteCER";
   public listaVariables: number[] = []
+  nombreLargo: string = ""
+  fechaHeader: string = ""
+
 
   constructor(private apiService: ApiService) { }
 
@@ -36,6 +39,28 @@ export class VariableComponent {
     } else {
       console.log('No se encontró ninguna variable seleccionada.');
     }
+
+    const nom = localStorage.getItem('nombreLargo');
+    
+    if (nom) {
+      this.nombreLargo = nom;
+      console.log('Prueba de nombre  ', nom)
+    } else {
+      console.log('No se pudo obtener el nombre');
+    }
+
+    const fechaAct = localStorage.getItem('fechaAct');
+
+    if (fechaAct){
+      this.fechaHeader = fechaAct;
+      console.log('Prueba de fecha ', fechaAct)
+    }else{
+      console.log('No se pudo encontrar la fecha')
+    }
+
+
+
+
     this.llenarData();
     this.hacerGrafico();
     //this.fechaInicial = '2020-08-05';
@@ -47,17 +72,38 @@ export class VariableComponent {
     this.cargarVariablesSoportadas();
     //this.hacerGrafico();
 
+
+    
+
   }
 
   guardarItem() {
     this.itemActual = this.apiService.itemSeleccionado;
     this.IdActual = this.apiService.itemSeleccionado.idVariable;
     localStorage.setItem('idVariableSeleccionada', this.IdActual.toString());  // Guardar en localStorage
+
+    this.nombreLargo = this.apiService.itemSeleccionado.nombreLargo;
+    localStorage.setItem('nombreLargo', this.nombreLargo);  // Guardar en localStorage
+
     this.fechaActual = this.apiService.itemSeleccionado.fecha;
+    /*localStorage.setItem('fecha', this.fechaActual);  // Guardar en localStorage*/
+
+
+    
+    
+
+   /* if (this.itemActual){
+    this.prueba = this.itemActual.fecha
+    localStorage.setItem('algo', this.prueba);  // Guardar en localStorage
+    console.log('fecha verga ', this.prueba)
+    }*/
+
     //console.log("Guardar item, variable", this.apiService.itemSeleccionado);
     // console.log("guardar iten, itemActual", this.itemActual);
     //console.log("guardar item, fechaActual", this.fechaActual);
   }
+
+
 
   fechaSeleccionada(event: Event) {
     var button = event.target as HTMLElement;
@@ -153,7 +199,14 @@ export class VariableComponent {
 
       // Ahora tienes los datos llenados
       console.log("valores", this.valor);
+      
       console.log("fecha", this.fecha);
+      const fechas = this.fecha;
+      const ultimaFecha = fechas[fechas.length - 1];
+      console.log(ultimaFecha); // Salida: 5
+      localStorage.setItem('fechaAct', ultimaFecha);  // Guardar en localStorage
+      
+
       console.log('id Variable', this.IdActual)
 
       // Una vez que los datos se han llenado, se crea el gráfico
