@@ -1,16 +1,16 @@
-<div class="contenedorPrincipal">
+<div class="contenedorPrincipal" class="cont1">
     <div *ngIf="nombreLargo">
         <h1 style="color: white;">{{nombreLargo}}</h1>
     </div>
-    <div *ngIf="fechaHeader">
+    <div *ngIf="fechaHeader" class="cont">
         <h4 style="color: white;"> Última actualización: {{fechaHeader}}</h4>
     </div>
 
-    <div *ngIf="descripcion">
+    <div *ngIf="descripcion" class="cont">
         <h4 style="color: white;">{{descripcion}}</h4>
     </div>
 
-    <div class="contenedor" *ngIf="itemActual">
+    <div class="contenedor" *ngIf="itemActual" class="cont"> 
         <!--<h1 style="color: white;">{{itemActual?.nombreLargo}}</h1>
 
         <h1 style="color: white;">{{nombreLargo}}</h1
