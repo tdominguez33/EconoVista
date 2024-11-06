@@ -77,3 +77,11 @@ canvas {
 .volver-btn:focus {
     outline: none;
 }
+
+.cont{
+    padding: 0.5%;
+}
+
+.cont1{
+    padding: 1%;
+}
