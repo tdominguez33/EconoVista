@@ -216,7 +216,7 @@ export class VariableComponent {
 
 
   llenarDataCER(){
-    this.apiService.getDataVariableCER(this.IdActual, this.url1).subscribe(data => {
+    this.apiService.getDataVariableCER(this.IdActual, this.url1, this.fechaInicial).subscribe(data => {
       this.data = data;
       console.log("fechaInial en llenar data", this.fechaInicial);
 
