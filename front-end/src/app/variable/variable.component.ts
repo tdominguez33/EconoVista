@@ -32,7 +32,7 @@ export class VariableComponent {
 
   ngOnInit(): void {
     this.fechaInicial = '2020-08-05';
-    this.fechaFinal = this.fechaActual;
+    //this.fechaFinal = this.fechaActual;
     const id = localStorage.getItem('idVariableSeleccionada');
     if (id) {
       this.IdActual = +id;  // Convertir a número
@@ -76,7 +76,7 @@ export class VariableComponent {
 
     this.guardarItem();
 
-    this.llenarData();
+    //this.llenarData();
     this.cargarVariablesSoportadas();
     //this.hacerGrafico();
 
@@ -97,14 +97,7 @@ export class VariableComponent {
     /*localStorage.setItem('fecha', this.fechaActual);  // Guardar en localStorage*/
 
     this.descripcion = this.apiService.itemSeleccionado.descripcion
-    localStorage.setItem('descripcion', this.descripcion);  // Guardar en localStorage
-    
-
-   /* if (this.itemActual){
-    this.prueba = this.itemActual.fecha
-    localStorage.setItem('algo', this.prueba);  // Guardar en localStorage
-    console.log('fecha verga ', this.prueba)
-    }*/
+    localStorage.setItem('descripcion', this.descripcion);  // Guardar en localStorage 
 
     //console.log("Guardar item, variable", this.apiService.itemSeleccionado);
     // console.log("guardar iten, itemActual", this.itemActual);
