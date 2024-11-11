@@ -17,7 +17,7 @@ def verificarFecha(fecha):
 
 
 # Obtiene los valores de una variable determinada en un rango de fechas específicado
-def datosVariable(idVariable, desde, hasta):
+def datosVariable(idVariable, desde, hasta, pasoDias):
     datos = []
 
     # Verificamos que los formatos de las fecha sean los indicados
@@ -32,7 +32,7 @@ def datosVariable(idVariable, desde, hasta):
             tabla = "VARIABLES_EXTERNAS"
         
         # Obtenemos las filas que tienen el id ingresado y están entre las fechas ingresadas
-        c.execute("SELECT * FROM " + tabla + " WHERE id = " + idVariable + " AND fecha BETWEEN '" + desde + "' AND '" + hasta + "';")
+        c.execute("WITH datos AS (SELECT *, ROW_NUMBER() OVER (ORDER BY fecha) AS row_num FROM " + tabla + " WHERE id = " + idVariable + " AND fecha BETWEEN '" + desde + "' AND '" + hasta +"' ) SELECT * FROM datos WHERE (row_num - 1) % " + pasoDias +" = 0;")
         rows = c.fetchall()
         for row in rows:
             datos.append({"fecha": row[1], "valor": row[2]})
@@ -43,7 +43,7 @@ def datosVariable(idVariable, desde, hasta):
         return jsonify(status = 400, error = "Formato de fechas incorrecto")
 
 # Ajusta una variable por CER (Ajuste por Inflación)
-def ajusteCER(idVariable, desde, hasta):
+def ajusteCER(idVariable, desde, hasta, pasoDias):
     datos = []
 
     if idVariable in idsPermitidosAjusteCER:
@@ -52,9 +52,11 @@ def ajusteCER(idVariable, desde, hasta):
 
         # Obtenemos los valores del ID ingresado
         if int(idVariable) < 100:
-            c.execute("SELECT * FROM VARIABLES_BCRA WHERE id = " + idVariable + " AND fecha BETWEEN '" + desde + "' AND '" + hasta + "'")
+            tabla = "VARIABLES_BCRA"
         else:
-            c.execute("SELECT * FROM VARIABLES_EXTERNAS WHERE id = " + idVariable)
+            tabla = "VARIABLES_EXTERNAS"
+        
+        c.execute("WITH datos AS (SELECT *, ROW_NUMBER() OVER (ORDER BY fecha) AS row_num FROM " + tabla + " WHERE id = " + idVariable + " AND fecha BETWEEN '" + desde + "' AND '" + hasta +"' ) SELECT * FROM datos WHERE (row_num - 1) % " + pasoDias +" = 0;")
         valoresID = c.fetchall()
 
         # Obtenemos los valores del CER
@@ -116,7 +118,7 @@ def datosVariableTodo(idVariable):
     c.execute("SELECT fechaInicio FROM 'DATA' WHERE id = " + idVariable)
     fechaInicio = c.fetchone()[0]
 
-    datos = datosVariable(idVariable, fechaInicio, str(datetime.date.today()))
+    datos = datosVariable(idVariable, fechaInicio, str(datetime.date.today()), "1")
     return datos
 
 # Obtener los valores de un determinado ID desde una fecha específica hasta la fecha
@@ -129,6 +131,40 @@ def datosVariableDesde(idVariable, desde):
 @api.route('/datosvariable/<idVariable>/<desde>/<hasta>', methods=['GET'])
 def datosVariableDesdeHasta(idVariable, desde, hasta):
     datos = datosVariable(idVariable, desde, hasta)
+    return datos
+
+# Obtener los valores de un determinado ID cada cierta cantidad de dias
+@api.route('/datosvariable/muestra/<idVariable>/<pasoDias>', methods=['GET'])
+def datosVariableTodo_Muestra(idVariable, pasoDias):
+    conn = sqlite3.connect('variables.db')
+    c = conn.cursor()
+
+    c.execute("SELECT fechaInicio FROM 'DATA' WHERE id = " + idVariable)
+    fechaInicio = c.fetchone()[0]
+
+    datos = datosVariable(idVariable, fechaInicio, str(datetime.date.today()), pasoDias)
+    return datos
+
+@api.route('/datosvariable/muestra/<idVariable>/<desde>/<pasoDias>', methods=['GET'])
+def datosVariableDesde_Muestra(idVariable, desde, pasoDias):
+    conn = sqlite3.connect('variables.db')
+    c = conn.cursor()
+
+    c.execute("SELECT fechaInicio FROM 'DATA' WHERE id = " + idVariable)
+    fechaInicio = c.fetchone()[0]
+
+    datos = datosVariable(idVariable, desde, str(datetime.date.today()), pasoDias)
+    return datos
+
+@api.route('/datosvariable/muestra/<idVariable>/<desde>/<hasta>/<pasoDias>', methods=['GET'])
+def datosVariableDesdeHasta_Muestra(idVariable, desde, hasta, pasoDias):
+    conn = sqlite3.connect('variables.db')
+    c = conn.cursor()
+
+    c.execute("SELECT fechaInicio FROM 'DATA' WHERE id = " + idVariable)
+    fechaInicio = c.fetchone()[0]
+
+    datos = datosVariable(idVariable, desde, hasta, pasoDias)
     return datos
 
 # Devuelve las variables soportados por el ajuste CER
@@ -145,19 +181,40 @@ def ajusteCERTodo(idVariable):
     c.execute("SELECT fechaInicio FROM 'DATA' WHERE id = " + idVariable)
     fechaInicio = c.fetchone()[0]
 
-    datos = ajusteCER(idVariable, fechaInicio, str(datetime.date.today()))
+    datos = ajusteCER(idVariable, fechaInicio, str(datetime.date.today()), "1")
     return datos
 
 # Ajustar una de las variables soportadas por CER a partir de una fecha específicada
 @api.route('/ajusteCER/<idVariable>/<desde>', methods=['GET'])
 def ajusteCERDesde(idVariable, desde):
-    datos = ajusteCER(idVariable, desde, str(datetime.date.today()))
+    datos = ajusteCER(idVariable, desde, str(datetime.date.today()), "1")
     return datos
 
 # Ajustar una de las variables soportadas por CER entre dos fechas específicas
 @api.route('/ajusteCER/<idVariable>/<desde>/<hasta>', methods=['GET'])
 def ajusteCERDesdeHasta(idVariable, desde, hasta):
-    datos = ajusteCER(idVariable, desde, hasta)
+    datos = ajusteCER(idVariable, desde, hasta, "1")
+    return datos
+
+@api.route('/ajusteCER/muestra/<idVariable>/<pasoDias>', methods=['GET'])
+def ajusteCERTodo_Muestra(idVariable, pasoDias):
+    conn = sqlite3.connect('variables.db')
+    c = conn.cursor()
+
+    c.execute("SELECT fechaInicio FROM 'DATA' WHERE id = " + idVariable)
+    fechaInicio = c.fetchone()[0]
+
+    datos = ajusteCER(idVariable, fechaInicio, str(datetime.date.today()), pasoDias)
+    return datos
+
+@api.route('/ajusteCER/muestra/<idVariable>/<desde>/<pasoDias>', methods=['GET'])
+def ajusteCERDesde_Muestra(idVariable, desde, pasoDias):
+    datos = ajusteCER(idVariable, desde, str(datetime.date.today()), pasoDias)
+    return datos
+
+@api.route('/ajusteCER/muestra/<idVariable>/<desde>/<hasta>/<pasoDias>', methods=['GET'])
+def ajusteCERDesdeHasta_Muestra(idVariable, desde, hasta, pasoDias):
+    datos = ajusteCER(idVariable, desde, hasta, pasoDias)
     return datos
 
 

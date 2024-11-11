@@ -11,3 +11,5 @@ Las consultas ahora se hacen en:
 http://localhost:8010/proxy/principalesvariables
 
 Si se tienen problemas con el inicio se puede reemplazar 'localhost' por '127.0.0.1'
+
+lcp --proxyUrl http://127.0.0.1:5000
