@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 import { routes } from './app.routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,9 @@ import { MatButtonModule } from '@angular/material/button';
     BrowserAnimationsModule,
     HttpClientModule,
     CommonModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTooltipModule
+    
   ],
   exports: [RouterModule],
   providers: [],

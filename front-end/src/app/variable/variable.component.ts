@@ -75,7 +75,7 @@ export class VariableComponent {
     //this.fechaFinal = this.fechaActual;
 
     this.guardarItem();
-
+    
     //this.llenarData();
     this.cargarVariablesSoportadas();
     //this.hacerGrafico();
@@ -97,7 +97,14 @@ export class VariableComponent {
     /*localStorage.setItem('fecha', this.fechaActual);  // Guardar en localStorage*/
 
     this.descripcion = this.apiService.itemSeleccionado.descripcion
-    localStorage.setItem('descripcion', this.descripcion);  // Guardar en localStorage 
+    localStorage.setItem('descripcion', this.descripcion);  // Guardar en localStorage
+    
+
+   /* if (this.itemActual){
+    this.prueba = this.itemActual.fecha
+    localStorage.setItem('algo', this.prueba);  // Guardar en localStorage
+    console.log('fecha verga ', this.prueba)
+    }*/
 
     //console.log("Guardar item, variable", this.apiService.itemSeleccionado);
     // console.log("guardar iten, itemActual", this.itemActual);

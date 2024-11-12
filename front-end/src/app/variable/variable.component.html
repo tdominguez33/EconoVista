@@ -8,8 +8,14 @@
 
     <div *ngIf="descripcion" class="cont">
         <h4 style="color: white;">{{descripcion}}</h4>
+        <button mat-raised-button matTooltip="Los periodos de tiempo tienen en cuenta unicamente días habiles
+    S: semana
+    M: Mes
+    A: año" aria-label="Button that displays a tooltip when focused or hovered over"> ? </button>
+
     </div>
 
+    
     <div class="contenedor" *ngIf="itemActual" class="cont"> 
         <!--<h1 style="color: white;">{{itemActual?.nombreLargo}}</h1>
 
