@@ -124,13 +124,13 @@ def datosVariableTodo(idVariable):
 # Obtener los valores de un determinado ID desde una fecha específica hasta la fecha
 @api.route('/datosvariable/<idVariable>/<desde>', methods=['GET'])
 def datosVariableDesde(idVariable, desde):
-    datos = datosVariable(idVariable, desde, str(datetime.date.today()))
+    datos = datosVariable(idVariable, desde, str(datetime.date.today()), "1")
     return datos
 
 # Obtener los valores de un determinado ID entre dos fechas específicadas
 @api.route('/datosvariable/<idVariable>/<desde>/<hasta>', methods=['GET'])
 def datosVariableDesdeHasta(idVariable, desde, hasta):
-    datos = datosVariable(idVariable, desde, hasta)
+    datos = datosVariable(idVariable, desde, hasta, "1")
     return datos
 
 # Obtener los valores de un determinado ID cada cierta cantidad de dias
