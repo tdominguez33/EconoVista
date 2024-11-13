@@ -9,11 +9,13 @@
     <div *ngIf="descripcion" class="cont">
         <h4 style="color: white;">{{descripcion}}</h4>
         
-        <button mat-button class="ayuda" 
+        <!-- <button mat-button class="ayuda" 
             matTooltip="Todos los rangos son en dias habiles. S = semana; M = mes; A = año"
             aria-label="Button that displays a tooltip when focused or hovered over">
             ?
-        </button>
+        </button> -->
+
+        <button mat-button (click)="openDialog()">?</button>
 
     </div>
 

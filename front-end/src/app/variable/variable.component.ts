@@ -1,15 +1,17 @@
 import { getLocaleNumberSymbol } from '@angular/common';
-import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 import { ApiService } from '../service/api.service';
 import { MenuItem } from '../models/menuItem.model';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog,  MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent} from '@angular/material/dialog';
+import { DialogoComponent } from '../dialogo/dialogo.component';
 
 @Component({
   selector: 'app-variable',
   templateUrl: './variable.component.html',
-  styleUrls: ['./variable.component.css']
+  styleUrls: ['./variable.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VariableComponent {
   public chart: Chart | undefined;
@@ -26,9 +28,8 @@ export class VariableComponent {
   nombreLargo: string = ""
   fechaHeader: string = ""
   descripcion: string = ""
+  readonly dialog = inject(MatDialog);
   
-
-
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
@@ -324,6 +325,7 @@ export class VariableComponent {
 }
 
 openDialog(){
-
+  this.dialog.open(DialogoComponent);
 }
+
 }
