@@ -1,9 +1,10 @@
 import { getLocaleNumberSymbol } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 import { ApiService } from '../service/api.service';
 import { MenuItem } from '../models/menuItem.model';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog,  MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-variable',
@@ -19,20 +20,19 @@ export class VariableComponent {
   fechaActual: string = ""; //ultima fecha que toma el grafico
   IdActual: number = 0;
   fechaInicial: string = ""; //fecha en la que inicia el grafico
-  fechaFinal: string = "";
   url: string = "/datosvariable";
   url1: string = "/ajusteCER";
   public listaVariables: number[] = []
   nombreLargo: string = ""
   fechaHeader: string = ""
   descripcion: string = ""
+  
 
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.fechaInicial = '2020-08-05';
-    //this.fechaFinal = this.fechaActual;
+    this.fechaInicial = '2023-08-05';
     const id = localStorage.getItem('idVariableSeleccionada');
     if (id) {
       this.IdActual = +id;  // Convertir a número
@@ -54,7 +54,7 @@ export class VariableComponent {
 
     if (fechaAct){
       this.fechaHeader = fechaAct;
-      console.log('Prueba de fecha ', fechaAct)
+      console.log('Prueba de fecha actual', fechaAct)
     }else{
       console.log('No se pudo encontrar la fecha')
     }
@@ -71,17 +71,8 @@ export class VariableComponent {
 
     this.llenarData();
     this.hacerGrafico();
-    //this.fechaInicial = '2020-08-05';
-    //this.fechaFinal = this.fechaActual;
-
     this.guardarItem();
-    
-    //this.llenarData();
     this.cargarVariablesSoportadas();
-    //this.hacerGrafico();
-
-
-    
 
   }
 
@@ -99,6 +90,8 @@ export class VariableComponent {
     this.descripcion = this.apiService.itemSeleccionado.descripcion
     localStorage.setItem('descripcion', this.descripcion);  // Guardar en localStorage
     
+    this.fechaActual = this.apiService.itemSeleccionado.fecha
+    console.log("fecha actual = ", this.fechaActual)
 
    /* if (this.itemActual){
     this.prueba = this.itemActual.fecha
@@ -110,8 +103,6 @@ export class VariableComponent {
     // console.log("guardar iten, itemActual", this.itemActual);
     //console.log("guardar item, fechaActual", this.fechaActual);
   }
-
-
 
   fechaSeleccionada(event: Event) {
     var button = event.target as HTMLElement;
@@ -192,7 +183,7 @@ export class VariableComponent {
 
   llenarData() {
       //this.apiService.getDataVariable(this.IdActual, this.url, this.fechaInicial, this.fechaActual).subscribe(data => {
-      this.apiService.getDataVariable(this.IdActual, this.url, this.fechaInicial, '2024-10-24'/*this.fechaActual*/).subscribe(data => {
+      this.apiService.getDataVariable(this.IdActual, this.url, this.fechaInicial, this.fechaHeader).subscribe(data => {
       this.data = data;
       console.log("fechaInial en llenar data", this.fechaInicial);
 
@@ -328,7 +319,11 @@ export class VariableComponent {
     this.llenarDataCER();
     this.hacerGrafico();
   } else{
-    alert('La variable no se ajusta por CER', )
+    alert('La variable no se ajusta por CER' )
   }
+}
+
+openDialog(){
+
 }
 }

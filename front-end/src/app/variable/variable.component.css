@@ -18,6 +18,13 @@
     transition: background-color 0.3s ease;
 }
 
+.ayuda{
+    border-radius: 25px; 
+    margin: 10px 5px; 
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
 .selectorFecha:hover {
     background-color: rgba(0, 200, 150, 0.2); 
 }
