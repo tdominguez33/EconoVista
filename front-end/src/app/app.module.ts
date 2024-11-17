@@ -13,7 +13,9 @@ import { CommonModule } from '@angular/common';
 import { routes } from './app.routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule} from '@angular/material/tooltip';
+import { DialogoComponent } from './dialogo/dialogo.component';
+import { MatDialogModule } from '@angular/material/dialog'
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MenuComponent,
     FooterComponent,
     HeaderComponent,
-    VariableComponent
+    VariableComponent,
+    DialogoComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     HttpClientModule,
     CommonModule,
     MatButtonModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDialogModule
     
   ],
   exports: [RouterModule],
