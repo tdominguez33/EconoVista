@@ -28,8 +28,8 @@ export class ApiService {
     this.itemSeleccionado = item;;
   }
 
-  public getDataVariable(id: number, url: string, fechaInicio: string, fechaFin: string): Observable<any> {
-    const urlVarId = this.urlApiMenu + `${url}/${id}/${fechaInicio}${fechaFin}`;
+  public getDataVariable(id: number, url: string, fechaInicio: string, pasoDias:string): Observable<any> {
+    const urlVarId = this.urlApiMenu + `${url}/muestra/${id}/${fechaInicio}/${pasoDias}`;
     return this.http.get<any>(urlVarId);
   }
 
