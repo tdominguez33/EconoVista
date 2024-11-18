@@ -29,7 +29,7 @@ export class VariableComponent {
   fechaHeader: string = ""
   descripcion: string = ""
   valorActual: string = ""
-  visibilidadBoton:boolean = false;
+  visibilidadBoton:boolean = true;
   pasoDias: string="12"; //por defecto trae 30 datos en el año
   readonly dialog = inject(MatDialog);
   
@@ -223,7 +223,7 @@ export class VariableComponent {
 
 
   llenarDataCER(){
-    this.apiService.getDataVariableCER(this.IdActual, this.url1, this.fechaInicial).subscribe(data => {
+    this.apiService.getDataVariableCER(this.IdActual, this.url1, this.fechaInicial, this.pasoDias).subscribe(data => {
       this.data = data;
       console.log("fechaInial en llenar data", this.fechaInicial);
 

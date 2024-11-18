@@ -33,8 +33,8 @@ export class ApiService {
     return this.http.get<any>(urlVarId);
   }
 
-  public getDataVariableCER(id: number, url: string, fecha:string): Observable<any> {
-    const urlVarId = this.urlApiMenu + `${url}/${id}/${fecha}`;
+  public getDataVariableCER(id: number, url: string, fecha:string, pasoDias:string): Observable<any> {
+    const urlVarId = this.urlApiMenu + `${url}/muestra/${id}/${fecha}/${pasoDias}`;
     return this.http.get<any>(urlVarId);
   }
 
