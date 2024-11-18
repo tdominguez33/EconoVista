@@ -1,38 +1,18 @@
 <div class="contenedorPrincipal" class="cont1">
     <div *ngIf="nombreLargo">
-        <h1 style="color: white;">{{nombreLargo}}</h1>
+        <h1>{{nombreLargo}}</h1>
     </div>
     <div *ngIf="fechaHeader" class="cont">
-        <h4 style="color: white;"> Última actualización: {{fechaHeader}}</h4>
+        <h4>Última actualización: {{fechaHeader}}</h4>
+        <h4>Valor: {{valorActual}}</h4>
     </div>
 
     <div *ngIf="descripcion" class="cont">
-        <h4 style="color: white;">{{descripcion}}</h4>
-        
-        <!-- <button mat-button class="ayuda" 
-            matTooltip="Todos los rangos son en dias habiles. S = semana; M = mes; A = año"
-            aria-label="Button that displays a tooltip when focused or hovered over">
-            ?
-        </button> -->
+        <h4>{{descripcion}}</h4>
 
         <button mat-button (click)="openDialog()">?</button>
 
     </div>
-
-    
-    <div class="contenedor" *ngIf="itemActual" class="cont"> 
-        <!--<h1 style="color: white;">{{itemActual?.nombreLargo}}</h1>
-
-        <h1 style="color: white;">{{nombreLargo}}</h1
-
-        <h4 style="color: white;"> Última actualización: {{itemActual?.fecha}}</h4>>-->
-        
-      
-    </div>
-
-    
-
-    <!--<p style="color: white;"> {{itemActual?.descripcion}}</p>-->
 
     <div class="contenedorFiltro">
         <button mat-button class="selectorFecha" (click)="fechaSeleccionada($event)">1S</button>
@@ -45,9 +25,7 @@
         <button mat-button class="selectorFecha" (click)="fechaSeleccionada($event)">10A</button>
         
     </div>
-    <button mat-button class="selectorFecha" (click)="ajusteCER()">Ajuste CER</button>
-
-
+    <button *ngIf="visibilidadBoton" mat-button class="selectorFecha" (click)="ajusteCER()">Ajuste CER</button>
 
     <canvas id="chart">{{chart}}</canvas>
 

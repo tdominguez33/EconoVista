@@ -21,19 +21,20 @@ export class VariableComponent {
   itemActual: MenuItem | null = null;
   fechaActual: string = ""; //ultima fecha que toma el grafico
   IdActual: number = 0;
-  fechaInicial: string = ""; //fecha en la que inicia el grafico
+  fechaInicial: string = "2023-08-05"; //fecha en la que inicia el grafico
   url: string = "/datosvariable";
   url1: string = "/ajusteCER";
   public listaVariables: number[] = []
   nombreLargo: string = ""
   fechaHeader: string = ""
   descripcion: string = ""
+  valorActual: string = ""
+  visibilidadBoton:boolean = false;
   readonly dialog = inject(MatDialog);
   
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.fechaInicial = '2023-08-05';
     const id = localStorage.getItem('idVariableSeleccionada');
     if (id) {
       this.IdActual = +id;  // Convertir a número
@@ -69,11 +70,19 @@ export class VariableComponent {
       console.log('No se pudo encontrar la descripcion')
     }
 
+    const valorAct = localStorage.getItem('valorAct');
+    if (valorAct){
+      this.valorActual = valorAct;
+      console.log('Prueba de valor actual ', valorAct)
+    }else{
+      console.log('No se pudo encontrar el valor')
+    }
 
     this.llenarData();
-    this.hacerGrafico();
+    //this.hacerGrafico();
     this.guardarItem();
     this.cargarVariablesSoportadas();
+    this.visibilidadCER();
 
   }
 
@@ -85,24 +94,15 @@ export class VariableComponent {
     this.nombreLargo = this.apiService.itemSeleccionado.nombreLargo;
     localStorage.setItem('nombreLargo', this.nombreLargo);  // Guardar en localStorage
 
-    this.fechaActual = this.apiService.itemSeleccionado.fecha;
-    /*localStorage.setItem('fecha', this.fechaActual);  // Guardar en localStorage*/
-
-    this.descripcion = this.apiService.itemSeleccionado.descripcion
+    this.descripcion = this.apiService.itemSeleccionado.descripcion;
     localStorage.setItem('descripcion', this.descripcion);  // Guardar en localStorage
     
-    this.fechaActual = this.apiService.itemSeleccionado.fecha
-    console.log("fecha actual = ", this.fechaActual)
+    this.fechaActual = this.apiService.itemSeleccionado.fecha;
+    console.log("fecha actual = ", this.fechaActual);
 
-   /* if (this.itemActual){
-    this.prueba = this.itemActual.fecha
-    localStorage.setItem('algo', this.prueba);  // Guardar en localStorage
-    console.log('fecha verga ', this.prueba)
-    }*/
-
-    //console.log("Guardar item, variable", this.apiService.itemSeleccionado);
-    // console.log("guardar iten, itemActual", this.itemActual);
-    //console.log("guardar item, fechaActual", this.fechaActual);
+    this.valorActual = this.apiService.itemSeleccionado.valor;
+    localStorage.setItem('valorAct', this.valorActual);
+    console.log("valor actual = ", this.valorActual);
   }
 
   fechaSeleccionada(event: Event) {
@@ -183,34 +183,33 @@ export class VariableComponent {
   }
 
   llenarData() {
-      //this.apiService.getDataVariable(this.IdActual, this.url, this.fechaInicial, this.fechaActual).subscribe(data => {
-      this.apiService.getDataVariable(this.IdActual, this.url, this.fechaInicial, this.fechaHeader).subscribe(data => {
-      this.data = data;
-      console.log("fechaInial en llenar data", this.fechaInicial);
+      this.apiService.getDataVariable(this.IdActual, this.url, this.fechaInicial,"/" + this.fechaHeader).subscribe(data => {
+        this.data = data;
+        console.log("fechaInial en llenar data", this.fechaInicial);
 
-      // Vaciar los arrays para evitar duplicaciones si llamas varias veces a llenarData()
-      this.valor = [];
-      this.fecha = [];
+        // Vaciar los arrays para evitar duplicaciones si llamas varias veces a llenarData()
+        this.valor = [];
+        this.fecha = [];
 
-      for (const item of this.data) {
-        this.valor.push(item.valor);
-        this.fecha.push(item.fecha);
-      }
+        for (const item of this.data) {
+          this.valor.push(item.valor);
+          this.fecha.push(item.fecha);
+        }
 
-      // Ahora tienes los datos llenados
-      console.log("valores", this.valor);
-      
-      console.log("fecha", this.fecha);
-      const fechas = this.fecha;
-      const ultimaFecha = fechas[fechas.length - 1];
-      console.log(ultimaFecha); // Salida: 5
-      localStorage.setItem('fechaAct', ultimaFecha);  // Guardar en localStorage
-      
+        // Datos llenados
+        //console.log("valores", this.valor);
+        
+        //console.log("fecha", this.fecha);
+        const fechas = this.fecha;
+        const ultimaFecha = fechas[fechas.length - 1];
+        //console.log(ultimaFecha); // Salida: 5
+        localStorage.setItem('fechaAct', ultimaFecha);  // Guardar en localStorage
+        
 
-      console.log('id Variable', this.IdActual)
+        //console.log('id Variable', this.IdActual)
 
-      // Una vez que los datos se han llenado, se crea el gráfico
-      this.hacerGrafico();
+        // Una vez que los datos se han llenado, se crea el gráfico
+        this.hacerGrafico();
     });
   }
 
@@ -230,9 +229,9 @@ export class VariableComponent {
       }
 
       // Ahora tienes los datos llenados
-      console.log("valores", this.valor);
-      console.log("fecha", this.fecha);
-      console.log('id Variable', this.IdActual)
+      // console.log("valores", this.valor);
+      // console.log("fecha", this.fecha);
+      // console.log('id Variable', this.IdActual)
 
       // Una vez que los datos se han llenado, se crea el gráfico
       this.hacerGrafico();
@@ -305,7 +304,6 @@ export class VariableComponent {
         // Convertir las cadenas a números
         this.listaVariables = data.map(item => Number(item));
 
-        // Imprimir para verificar
         console.log('Lista de variables convertida a números:', this.listaVariables);
       }
     );
@@ -313,8 +311,6 @@ export class VariableComponent {
 
 
   ajusteCER() {
-    //const varCER: number[] = [4, 5, 102, 103, 104, 105]
-    
     if (this.listaVariables.includes(this.IdActual)) {
     this.url1 = "/ajusteCER";
     this.llenarDataCER();
@@ -324,8 +320,18 @@ export class VariableComponent {
   }
 }
 
-openDialog(){
+  openDialog(){
   this.dialog.open(DialogoComponent);
 }
+
+  visibilidadCER(){
+    const varCER: number[] = [4, 5, 102, 103, 104, 105]
+  
+    if (this.listaVariables.includes(this.IdActual))  {
+      console.log("listaVariables")
+      this.visibilidadBoton = true;
+    }
+    console.log("VISIBILIDAD BOTON", this.visibilidadBoton);
+  }
 
 }

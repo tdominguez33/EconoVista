@@ -9,8 +9,7 @@ import { MenuItem } from '../models/menuItem.model';
 
 export class ApiService {
 
-  //private urlApiVar = 'https://api.bcra.gob.ar/estadisticas/v2.0/datosvariable/1/2024-01-01/2024-02-05'
-  //private urlApiMenu = 'https://api.bcra.gob.ar/estadisticas/v2.0/principalesvariables'
+
   private urlApiMenu = 'http://localhost:8010/proxy'
   //el proxy usa el puerto 8010, la api esta en el puerto 5000
   itemSeleccionado: any;
@@ -30,7 +29,7 @@ export class ApiService {
   }
 
   public getDataVariable(id: number, url: string, fechaInicio: string, fechaFin: string): Observable<any> {
-    const urlVarId = this.urlApiMenu + `${url}/${id}/${fechaInicio}/${fechaFin}`;
+    const urlVarId = this.urlApiMenu + `${url}/${id}/${fechaInicio}${fechaFin}`;
     return this.http.get<any>(urlVarId);
   }
 
