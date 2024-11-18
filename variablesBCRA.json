@@ -4,6 +4,7 @@
 		"nombreCorto": "A3500",
 		"nombreLargo": "Tipo de cambio de referencia mayorista",
 		"descripcion": "Tipo de cambio mayorista según la comunicación A3500 del BCRA.",
+		"unidad": "$",
 		"fechaInicio": "2002-03-04"
 	},
 	"1": {
@@ -11,6 +12,7 @@
 		"nombreCorto": "CER",
 		"nombreLargo": "Coeficiente de estabilización de referencia",
 		"descripcion": "Índice de ajuste diario que refleja la evolución de la inflación basado en el índice de precios al comsumidor calculado por el INDEC.",
+		"unidad": "$",
 		"fechaInicio": "2002-03-04"
 	},
 	"2": {
@@ -18,6 +20,7 @@
 		"nombreCorto": "Reservas",
 		"nombreLargo": "Reservas internacionales del BCRA",
 		"descripcion": "Depósitos de moneda extranjera en control del BCRA, expresado en millones de dólares.",
+		"unidad": "M USD",
 		"fechaInicio": "1996-01-02"
 	},
 	"3": {
@@ -25,6 +28,7 @@
 		"nombreCorto": "Dólar Oficial",
 		"nombreLargo": "Tipo de cambio de referencia minorista",
 		"descripcion": "Tipo de cambio minorista según la comunicación B9791",
+		"unidad": "$",
 		"fechaInicio": "2010-06-01"
 	},
 	"4": {
@@ -32,6 +36,7 @@
 		"nombreCorto": "Tasa",
 		"nombreLargo": "Tasa de política monetaria",
 		"descripcion": "Tasa nominal anual a la que se remuneran las \"Letras de Fiscales de Liquidez (LEFI)\" emitidas por el tesoro de la nación.",
+		"unidad": "%",
 		"fechaInicio": "2015-12-16"
 	},
 	"5": {
@@ -39,6 +44,7 @@
 		"nombreCorto": "Inflación Mensual",
 		"nombreLargo": "Inflación mensual según INDEC (Variación en %)",
 		"descripcion": "Nivel de aumento generalizado de los precios según el índice de precios al consumidor calculado por el INDEC, la variación se expresa en %.",
+		"unidad": "%",
 		"fechaInicio": "1945-01-31"
 	},
 	"6": {
@@ -46,6 +52,7 @@
 		"nombreCorto": "Inflación Esperada - REM",
 		"nombreLargo": "Inflación esperada para los próximos 12 meses según REM",
 		"descripcion": "Inflación esperada para los próximos 12 meses según el Relevamiento de Expectativas de Mercado elaborado por el BCRA.",
+		"unidad": "%",
 		"fechaInicio": "2004-01-31"
 	}
 }

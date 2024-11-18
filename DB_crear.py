@@ -16,6 +16,8 @@ cursor.execute('''
         nombrecorto TEXT,
         nombreLargo TEXT,
         descripcion TEXT,
+        unidad TEXT,
+        fuente TEXT,
         url TEXT,
         fechaInicio DATE
     )
@@ -64,7 +66,7 @@ listaVariables = crearListaVariables(cursor)
 # Insertamos datos en la tabla VARIABLES_BCRA
 obtenerVariables(listaVariables, cursor, conn)
 
-print("Base de Datos Creada!")
+print("\nBase de Datos Creada!")
 
 
 # Cierra la conexión a la base de datos

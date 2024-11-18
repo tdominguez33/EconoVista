@@ -14,6 +14,8 @@ cursor.execute('''
         nombrecorto TEXT,
         nombreLargo TEXT,
         descripcion TEXT,
+        unidad TEXT,
+        fuente TEXT,
         url TEXT,
         fechaInicio DATE
     )

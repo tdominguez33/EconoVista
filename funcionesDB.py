@@ -47,24 +47,29 @@ def guardarVariables(archivos, cursor, conn):
             nombreCorto = variable['nombreCorto']
             nombreLargo = variable['nombreLargo']
             descripcion = variable['descripcion']
+            unidad      = variable['unidad']
             fechaInicio = variable['fechaInicio']
 
             # Variables externas - las variables con un ID mayor a 100 no son del BCRA
             if int(variable['id']) > 100:
+                fuente = variable['fuente']
                 url = variable['url']
             else:
+                fuente = "BCRA"
                 url = ""
             
             # Inserta los valores del archivo, pero si el id ya existe se reemplazan sus valores por los del JSON
             cursor.execute("""
-                INSERT INTO DATA (id, nombreCorto, nombreLargo, descripcion, url, fechaInicio) VALUES (?, ?, ?, ?, ?, ?) ON CONFLICT(id) 
+                INSERT INTO DATA (id, nombreCorto, nombreLargo, descripcion, unidad, fuente, url, fechaInicio) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) 
                 DO UPDATE SET 
                     nombreCorto = excluded.nombreCorto,
                     nombreLargo = excluded.nombreLargo,
                     descripcion = excluded.descripcion,
+                    unidad      = excluded.unidad,
+                    fuente      = excluded.fuente,
                     url         = excluded.url,
                     fechaInicio = excluded.fechaInicio
-            """, (id, nombreCorto, nombreLargo, descripcion, url, fechaInicio))
+            """, (id, nombreCorto, nombreLargo, descripcion, unidad, fuente, url, fechaInicio))
 
     # Si tenemos ID's para eliminar los borramos
     if idsEliminar:
@@ -99,10 +104,10 @@ def solicitarGuardar(id, fechaInicio, fechaFinalizacion, cursor, conn):
     if int(id) < 100:
         try:
             print(f'Solicitando datos para ID {id} desde {fechaInicio} hasta {fechaFinalizacion}', end = '\r')
-            respuesta = requests.get(
-                f'https://api.bcra.gob.ar/estadisticas/v2.0/datosvariable/{id}/{fechaInicio}/{fechaFinalizacion}',
-                verify = False  # Deshabilitar la verificación SSL
-            )
+            
+            # Hacemos la solicitud con la verificación SSL deshabilitada
+            respuesta = requests.get(f'https://api.bcra.gob.ar/estadisticas/v2.0/datosvariable/{id}/{fechaInicio}/{fechaFinalizacion}', verify = False)
+
             if respuesta.status_code == 200:
                 jsonData = json.loads(respuesta.text)
 
@@ -122,10 +127,9 @@ def solicitarGuardar(id, fechaInicio, fechaFinalizacion, cursor, conn):
     
     # Variables que usan otra API
     else:
-        cursor.execute("SELECT * FROM DATA WHERE ID = " + id)
-        fila = cursor.fetchone()
-        
-        url = fila[4]
+        # Obtenemos la URL específica para cada variable
+        cursor.execute(f"SELECT url FROM DATA WHERE ID = {id}")
+        url = cursor.fetchone()[0]
 
         print(f'Solicitando datos para ID {id} desde {fechaInicio} hasta {fechaFinalizacion}', end = '\r')
 
@@ -157,7 +161,7 @@ def actualizarVariables(listaVariables, cursor, conn):
     for (id, fechaInicio) in listaVariables:
         
         # Obtenemos la última fecha registrada en la base de datos para esta variable
-        cursor.execute("SELECT id, valor, fecha FROM (SELECT id, valor, fecha FROM VARIABLES_BCRA WHERE id = " + str(id) +  " UNION SELECT id, valor, fecha FROM VARIABLES_EXTERNAS WHERE id =" + str(id) + ") AS combined ORDER BY fecha DESC LIMIT 1;")
+        cursor.execute(f"SELECT id, valor, fecha FROM (SELECT id, valor, fecha FROM VARIABLES_BCRA WHERE id = {str(id)} UNION SELECT id, valor, fecha FROM VARIABLES_EXTERNAS WHERE id = {str(id)}) AS combined ORDER BY fecha DESC LIMIT 1;")
         fila = cursor.fetchone()
 
         # Hay alguna entrada en la db para esta variable

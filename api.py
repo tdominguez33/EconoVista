@@ -32,7 +32,7 @@ def datosVariable(idVariable, desde, hasta, pasoDias):
             tabla = "VARIABLES_EXTERNAS"
         
         # Obtenemos las filas que tienen el id ingresado y están entre las fechas ingresadas
-        c.execute("WITH datos AS (SELECT *, ROW_NUMBER() OVER (ORDER BY fecha) AS row_num FROM " + tabla + " WHERE id = " + idVariable + " AND fecha BETWEEN '" + desde + "' AND '" + hasta +"' ) SELECT * FROM datos WHERE (row_num - 1) % " + pasoDias +" = 0;")
+        c.execute(f"WITH datos AS (SELECT *, ROW_NUMBER() OVER (ORDER BY fecha) AS row_num FROM {tabla} WHERE id = {idVariable} AND fecha BETWEEN '{desde}' AND '{hasta}' ) SELECT * FROM datos WHERE (row_num - 1) % {pasoDias} = 0;")
         rows = c.fetchall()
         for row in rows:
             datos.append({"fecha": row[1], "valor": row[2]})
@@ -56,7 +56,7 @@ def ajusteCER(idVariable, desde, hasta, pasoDias):
         else:
             tabla = "VARIABLES_EXTERNAS"
         
-        c.execute("WITH datos AS (SELECT *, ROW_NUMBER() OVER (ORDER BY fecha) AS row_num FROM " + tabla + " WHERE id = " + idVariable + " AND fecha BETWEEN '" + desde + "' AND '" + hasta +"' ) SELECT * FROM datos WHERE (row_num - 1) % " + pasoDias +" = 0;")
+        c.execute(f"WITH datos AS (SELECT *, ROW_NUMBER() OVER (ORDER BY fecha) AS row_num FROM {tabla} WHERE id = {idVariable} AND fecha BETWEEN '{desde}' AND '{hasta}' ) SELECT * FROM datos WHERE (row_num - 1) % {pasoDias} = 0;")
         valoresID = c.fetchall()
 
         # Obtenemos los valores del CER
@@ -102,9 +102,9 @@ def principalesVariables():
     row = c.fetchall()
 
     for variable in row:
-        c.execute("SELECT * FROM DATA WHERE id = " + str(variable[0]))
+        c.execute(f"SELECT * FROM DATA WHERE id = {str(variable[0])}")
         metadata = c.fetchone()
-        variables.append({"idVariable": variable[0], "nombreCorto": metadata[1], "nombreLargo": metadata[2], "descripcion": metadata[3], "fecha": variable[1], "valor": variable[2]})
+        variables.append({"idVariable": variable[0], "nombreCorto": metadata[1], "nombreLargo": metadata[2], "descripcion": metadata[3], "unidad": metadata[4], "fuente": metadata[5], "fecha": variable[1], "valor": variable[2]})
     
     conn.close()
     return variables
@@ -115,7 +115,7 @@ def datosVariableTodo(idVariable):
     conn = sqlite3.connect('variables.db')
     c = conn.cursor()
 
-    c.execute("SELECT fechaInicio FROM 'DATA' WHERE id = " + idVariable)
+    c.execute(f"SELECT fechaInicio FROM 'DATA' WHERE id = {idVariable}")
     fechaInicio = c.fetchone()[0]
 
     datos = datosVariable(idVariable, fechaInicio, str(datetime.date.today()), "1")
@@ -139,7 +139,7 @@ def datosVariableTodo_Muestra(idVariable, pasoDias):
     conn = sqlite3.connect('variables.db')
     c = conn.cursor()
 
-    c.execute("SELECT fechaInicio FROM 'DATA' WHERE id = " + idVariable)
+    c.execute(f"SELECT fechaInicio FROM 'DATA' WHERE id = {idVariable}")
     fechaInicio = c.fetchone()[0]
 
     datos = datosVariable(idVariable, fechaInicio, str(datetime.date.today()), pasoDias)
@@ -150,7 +150,7 @@ def datosVariableDesde_Muestra(idVariable, desde, pasoDias):
     conn = sqlite3.connect('variables.db')
     c = conn.cursor()
 
-    c.execute("SELECT fechaInicio FROM 'DATA' WHERE id = " + idVariable)
+    c.execute(f"SELECT fechaInicio FROM 'DATA' WHERE id = {idVariable}")
     fechaInicio = c.fetchone()[0]
 
     datos = datosVariable(idVariable, desde, str(datetime.date.today()), pasoDias)
@@ -161,7 +161,7 @@ def datosVariableDesdeHasta_Muestra(idVariable, desde, hasta, pasoDias):
     conn = sqlite3.connect('variables.db')
     c = conn.cursor()
 
-    c.execute("SELECT fechaInicio FROM 'DATA' WHERE id = " + idVariable)
+    c.execute(f"SELECT fechaInicio FROM 'DATA' WHERE id = {idVariable}")
     fechaInicio = c.fetchone()[0]
 
     datos = datosVariable(idVariable, desde, hasta, pasoDias)
@@ -178,7 +178,7 @@ def ajusteCERTodo(idVariable):
     conn = sqlite3.connect('variables.db')
     c = conn.cursor()
 
-    c.execute("SELECT fechaInicio FROM 'DATA' WHERE id = " + idVariable)
+    c.execute(f"SELECT fechaInicio FROM 'DATA' WHERE id = {idVariable}")
     fechaInicio = c.fetchone()[0]
 
     datos = ajusteCER(idVariable, fechaInicio, str(datetime.date.today()), "1")
@@ -201,7 +201,7 @@ def ajusteCERTodo_Muestra(idVariable, pasoDias):
     conn = sqlite3.connect('variables.db')
     c = conn.cursor()
 
-    c.execute("SELECT fechaInicio FROM 'DATA' WHERE id = " + idVariable)
+    c.execute(f"SELECT fechaInicio FROM 'DATA' WHERE id = {idVariable}")
     fechaInicio = c.fetchone()[0]
 
     datos = ajusteCER(idVariable, fechaInicio, str(datetime.date.today()), pasoDias)
@@ -219,5 +219,6 @@ def ajusteCERDesdeHasta_Muestra(idVariable, desde, hasta, pasoDias):
 
 
 if __name__ == '__main__':
+    print("Iniciando API...")
     serve(api, host="0.0.0.0", port=5000)
 
