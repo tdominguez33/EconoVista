@@ -116,18 +116,18 @@
 }
 
 /*ajuste CER*/
-/* Estilo para el botón Ajuste CER cuando está presionado */
+
 #ajuste-cer-btn.presionado {
-    background-color: #008c68 !important;  /* Cambiar color de fondo cuando está presionado */
-    color: #fff !important;  /* Cambiar color de texto */
-    border-color: #008c68 !important;  /* Cambiar borde */
-    cursor: not-allowed;  /* Cambiar el cursor para indicar que está presionado */
+    background-color: #008c68 !important;  
+    color: #fff !important; 
+    border-color: #008c68 !important;  
+    cursor: not-allowed;  
   }
   
   /* Estilo para el botón Ajuste CER cuando está en estado normal */
   #ajuste-cer-btn {
     background-color: #00c896;
-    color: #000;
+    color: #ffffff;
     border: 2px solid #00c896;
     border-radius: 20px;
     margin: 10px 0;
@@ -255,4 +255,11 @@ h1, h4 {
     background-color: rgba(128, 128, 128, 0.7); 
   }
   
-  
+  .fecha-fuente {
+    text-align: right;  
+    font-size: 1rem;  
+    color: #fff;   
+    margin-right: 30px;
+    margin-left: 30px;
+   
+}
