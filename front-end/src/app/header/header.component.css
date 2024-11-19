@@ -1,6 +1,7 @@
 .icon {
-    width: 200px;;
+    width: 200px;
     height: auto;
+    margin-top: 55px; 
 }
 
 .contenedor-logo {
@@ -8,7 +9,7 @@
     justify-content: center;
     align-items: center;
     height: 5vh;
-    padding-top: 1%; 
+    padding-top: 0; 
     text-align: center;
     background-color: #000;
 }

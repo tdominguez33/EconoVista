@@ -1,15 +1,31 @@
-<h1>Principales estadísticas</h1>
+<h1>Principales Variables BCRA</h1>
+
+<div class="nav-bar">
+  <a href="http://localhost:4200/" class="nav-link">Variables BCRA</a>
+  <a href="#otras-variables" class="nav-link">Otras Variables</a>
+</div>
+
 <div>
   <a routerLink="/variableComponente" class="contenedor">
-    <div class="variable-menu" *ngFor="let item of data; let i = index" (click)="guardarItem(item)">
-      <h3 style="color: white;">{{item.nombreCorto}}</h3>
+    <div
+      class="variable-menu"
+      *ngFor="let item of data | filterVariables: ['Riesgo País', 'Dólar Oficial', 'Dólar Blue', 'Dólar MEP', 'Dólar CCL', 'Dólar Cripto']; let i = index"
+      (click)="guardarItem(item)"
+    >
+      <h3 style="color: white;">{{ item.nombreCorto }}</h3>
 
       <!-- Canvas para el gráfico -->
-      <canvas id="miniChart{{i}}" width="100" height="50" class="prueba"></canvas>
+      <canvas
+        id="miniChart{{ i }}"
+        width="100"
+        height="50"
+        class="prueba"
+      ></canvas>
 
-      <p style="color:white;" class="prueba">{{item.valor}}</p>
+      <p style="color:white;" class="prueba">{{ item.valor }}</p>
     </div>
   </a>
 </div>
+
 
   

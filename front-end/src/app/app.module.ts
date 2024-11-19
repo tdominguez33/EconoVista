@@ -15,7 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule} from '@angular/material/tooltip';
 import { DialogoComponent } from './dialogo/dialogo.component';
-import { MatDialogModule } from '@angular/material/dialog'
+import { MatDialogModule } from '@angular/material/dialog';
+import { FilterVariablesPipe } from './filter-variables.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MatDialogModule } from '@angular/material/dialog'
     FooterComponent,
     HeaderComponent,
     VariableComponent,
-    DialogoComponent
+    DialogoComponent,
+    FilterVariablesPipe,
   ],
   imports: [
     BrowserModule,

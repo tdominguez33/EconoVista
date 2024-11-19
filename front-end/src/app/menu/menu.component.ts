@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { ApiService } from '../service/api.service';
-import { MenuItem } from '../models/menuItem.model';
 import { Chart } from 'chart.js';
 
 @Component({
@@ -10,85 +8,83 @@ import { Chart } from 'chart.js';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  data: any = [];
-  valor: any[] = [];
-  fecha: any[] = [];
+  data: any[] = []; // Almacena las variables obtenidas
+  valor: any[][] = []; // Valores organizados por índice
+  fecha: any[][] = []; // Fechas organizadas por índice
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.llenarData()
+    this.llenarData();
   }
 
-  llenarData() {
-   /*  this.apiService.getAllVariables().subscribe(data => {
+  llenarData(): void {
+    // Obtener todas las variables
+    this.apiService.getAllVariables().subscribe(data => {
       this.data = data;
-      console.log(this.data);
-    })*/
-     this.apiService.getAllVariables().subscribe(data => {
-        this.data = data;
-        
-        // Para cada item en los datos obtenidos, hacer una solicitud adicional para obtener los detalles
-        this.data.forEach((item: any, index: number) => {
-          this.apiService.getDataVariable(item.idVariable, '/datosvariable','2023-08-05', '1').subscribe(variableData => {
-            this.valor[index] = [];
-            this.fecha[index] = [];
-  
-            // Guardar los valores y las fechas en arrays individuales por índice
-            for (const variable of variableData) {
-              this.valor[index].push(variable.valor);
-              this.fecha[index].push(variable.fecha);
-            }
-  
-            // Crear el gráfico para este elemento después de obtener los datos
-            this.crearMiniGrafico(index);
-          });
+
+      // Para cada variable obtenida, hacer una solicitud adicional para sus detalles
+      this.data.forEach((item: any, index: number) => {
+        this.apiService.getDataVariable(item.idVariable, '/datosvariable', '2023-08-05', '1').subscribe(variableData => {
+          this.valor[index] = [];
+          this.fecha[index] = [];
+
+          // Guardar los valores y fechas en arrays separados
+          for (const variable of variableData) {
+            this.valor[index].push(variable.valor);
+            this.fecha[index].push(variable.fecha);
+          }
+
+          // Crear el gráfico para esta variable una vez que los datos estén disponibles
+          this.crearMiniGrafico(index);
         });
       });
+    });
   }
 
-  guardarItem(item: any) {
+  guardarItem(item: any): void {
+    // Guardar la variable seleccionada a través del servicio
     this.apiService.setItemSeleccionado(item);
   }
 
-  crearMiniGrafico(index: number) {
-    const canvasId = `miniChart${index}`;  // ID único para cada gráfico
-
-    const chartData = {
-      labels: this.fecha[index],  // Fechas obtenidas
-      datasets: [{
-        data: this.valor[index],   // Valores obtenidos
-        borderColor: 'teal',
-        borderWidth: 1,
-        fill: false,
-        tension: 0.1,
-        pointRadius: 0  // Deshabilitar los puntos
-      }]
-    };
-
-    const options = {
-      responsive: true,
-      plugins: {
-        legend: { display: false },
-        tooltip: { enabled: false }  // Deshabilitar los tooltips
-      },
-      scales: {
-        x: { display: false },
-        y: { display: false }
-      },
-      
-    };
-
-    // Crear el gráfico
+  crearMiniGrafico(index: number): void {
+    const canvasId = `miniChart${index}`; // ID único para cada gráfico
     const ctx = document.getElementById(canvasId) as HTMLCanvasElement;
+
     if (ctx) {
+      // Datos y configuración del gráfico
+      const chartData = {
+        labels: this.fecha[index], // Fechas como etiquetas del eje X
+        datasets: [{
+          data: this.valor[index], // Valores en el eje Y
+          borderColor: 'teal', // Color de la línea
+          borderWidth: 1,
+          fill: false, // No llenar debajo de la línea
+          tension: 0.1, // Suavizado de la curva
+          pointRadius: 0 // No mostrar puntos
+        }]
+      };
+
+      const options = {
+        responsive: true,
+        plugins: {
+          legend: { display: false }, // Ocultar la leyenda
+          tooltip: { enabled: false } // Deshabilitar los tooltips
+        },
+        scales: {
+          x: { display: false }, // Ocultar el eje X
+          y: { display: false } // Ocultar el eje Y
+        }
+      };
+
+      // Crear el gráfico con Chart.js
       new Chart(ctx, {
-        type: 'line',
+        type: 'line', // Tipo de gráfico
         data: chartData,
         options: options
       });
     } else {
-      console.error(`Canvas with id ${canvasId} not found!`);
+      console.error(`Canvas con ID ${canvasId} no encontrado!`);
     }
   }
 }
