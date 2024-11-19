@@ -17,6 +17,7 @@ import { MatTooltipModule} from '@angular/material/tooltip';
 import { DialogoComponent } from './dialogo/dialogo.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FilterVariablesPipe } from './filter-variables.pipe';
+import { Menu2Component } from './menu2/menu2.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { FilterVariablesPipe } from './filter-variables.pipe';
     VariableComponent,
     DialogoComponent,
     FilterVariablesPipe,
+    Menu2Component,
   ],
   imports: [
     BrowserModule,
