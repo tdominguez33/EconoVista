@@ -1,6 +1,7 @@
 .icon {
     width: 200px;;
     height: auto;
+    cursor: pointer; /* Cambia el cursor a pointer */
 }
 
 .contenedor-logo {
@@ -12,3 +13,4 @@
     text-align: center;
     background-color: #000;
 }
+
