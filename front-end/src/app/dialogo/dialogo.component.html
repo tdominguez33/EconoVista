@@ -1,29 +1,44 @@
-<h2 mat-dialog-title style="font-size: 1.2rem; font-weight: bold; color: #00c896; text-align: center; margin-bottom: 10px;">
+<h2 mat-dialog-title
+  style="font-size: 1.2rem; font-weight: bold; color: #00c896; text-align: center; margin-bottom: 10px;">
   DATOS DE UTILIDAD
 </h2>
 
-<div mat-dialog-content style="font-size: 0.9rem; line-height: 1.4; margin-bottom: 10px; color: #fff;">
+<div mat-dialog-content
+  style="font-size: 0.9rem; line-height: 1.4; margin-bottom: 10px; color: #fff; text-align: justify;">
   <p>Todos los valores están expresados en días hábiles.</p>
   <p>S: Semana</p>
   <p>M: Mes</p>
   <p>A: Año</p>
-</div>
 
-<div mat-dialog-content style="font-size: 0.9rem; line-height: 1.4; margin-bottom: 10px; color: #fff;">
-  <p>Para facilitar la visualización de los datos, se grafica una muestra de los datos totales. Cada gráfico mostrará aproximadamente 30 datos correspondientes a la variable en el plazo de tiempo seleccionado siguiendo la siguiente regla:</p>
+  <p>Para facilitar la visualización de los datos, se grafica una muestra de los datos totales. Cada gráfico mostrará aproximadamente 90 datos correspondientes a la variable en el plazo de tiempo seleccionado siguiendo la siguiente regla:</p>
 
-  <p>1S: se toman todos los datos de la semana</p>
-  <p>1M: se toman todos los datos del mes</p>
-  <p>3M: se toma una muestra de 30 datos de los últimos tres meses, con una diferencia de tres días entre sí</p>
-  <p>6M: se toma una muestra de 30 datos de los últimos seis meses, con una diferencia de seis días entre sí</p>
-  <p>1A: se toma una muestra de 30 datos del último año, con una diferencia de doce días entre sí</p>
-  <p>2A: se toma una muestra de 30 datos de los últimos dos años, con una diferencia de veinticuatro días entre sí</p>
-  <p>5A: se toma una muestra de 30 datos de los últimos cinco años, con una diferencia de sesenta días entre sí</p>
-  <p>10A: se toma una muestra de 30 datos de los últimos diez años, con una diferencia de ciento veintiún días entre sí</p>
+  <p style="font-weight: bold;">Para variables con muestras diarias:</p>
+  <ul>
+    <li>1S: se toman todos los datos de la semana.</li>
+    <li>1M: se toman todos los datos del mes</li>
+    <li>3M: se toman todos los datos de los últimos tres meses.</li>
+    <li>6M: se toma una muestra de 90 datos (aprox.) de los últimos seis meses, con una diferencia de dos días entre sí.
+    </li>
+    <li>1A: se toma una muestra de 90 datos (aprox.) del último año, con una diferencia de cuatro días entre sí.</li>
+    <li>2A: se toma una muestra de 30 datos (aprox.) de los últimos dos años, con una diferencia de ocho días entre sí.
+    </li>
+    <li>5A: se toma una muestra de 90 datos (aprox.) de los últimos cinco años, con una diferencia de veinte días entre sí.</li>
+    <li>10A: se toma una muestra de 90 datos (aprox.) de los últimos diez años, con una diferencia de cuarenta días
+      entre sí.</li>
+  </ul>
+
+  <p style="font-weight: bold;">Para variables con muestras mensuales:</p>
+  <ul>
+    <li>En los intervalos 1S, 1M, 3M, 6M, 1A y 2A se toman todos los datos disponibles.</li>
+    <li>5A: se toma una muestra de 90 datos (aprox.) de los ultimos cinco años, con una diferencia de cuatro meses entre sí.</li>
+    <li>10A: se toma una muestra de 90 datos (aprox.) de los últimos diez años, con una diferencia de cuatro meses
+      entre sí.</li>
+  </ul>
 </div>
 
 <mat-dialog-actions style="text-align: center;">
-  <button mat-button mat-dialog-close style="background-color: #00c896; color: white; padding: 8px 15px; font-size: 0.9rem; border-radius: 5px; transition: background-color 0.3s ease-in-out;">
+  <button mat-button mat-dialog-close
+    style="background-color: #00c896; color: white; padding: 8px 15px; font-size: 0.9rem; border-radius: 5px; transition: background-color 0.3s ease-in-out;">
     Cerrar
   </button>
 </mat-dialog-actions>
