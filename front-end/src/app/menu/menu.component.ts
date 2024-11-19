@@ -84,7 +84,7 @@ export class MenuComponent implements OnInit {
         options: options
       });
     } else {
-      console.error(`Canvas con ID ${canvasId} no encontrado!`);
+      //console.error(`Canvas con ID ${canvasId} no encontrado!`);
     }
   }
 }
