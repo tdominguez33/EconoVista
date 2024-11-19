@@ -1,12 +1,71 @@
-.contenedorFiltro {
+/*DESCRIPCIÓN*/
+.contenedorPrincipal {
+    margin-top: 30px; 
+}
+
+/* Encabezado con nombre y valor */
+.header-contenedor {
     display: flex;
-    justify-content: center; 
-    margin: 5px auto; 
-    padding: 5px 20px; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 10px; 
+}
+
+/* Estilo para el nombre de la variable */
+.variable-nombre {
+    font-size: 1.3rem; 
+    font-weight: bold; 
+    color: #f39c12; 
+    text-transform: uppercase;
+}
+
+/* Estilo para el valor */
+.valor-variable {
+    font-size: 1.3rem; 
+    font-weight: bold; 
+    color: #f39c12; 
+    text-align: left; 
+    margin-right: 50px; /*agrega espacio desde el borde izquierdo */
+}
+
+
+/* Fecha de actualización */
+.fecha-actualizacion {
+    font-family: 'Roboto', sans-serif; 
+    color: #b0b0b0; 
+    font-size: 1.2rem; 
+    font-weight: 400; 
+    margin-top: -10px; 
+    margin-bottom: 12px; 
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Descripción */
+.descripcion-variable {
+    font-size: 1rem;
+    font-weight: normal;
+    color: #fff;
+    
+}
+
+/*FILTRO*/
+.contenedorFiltro {
     background-color: #1a1a1a; 
     border-radius: 25px; 
     width: max-content; 
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); 
+    display: flex;
+    justify-content: center; 
+    margin: 5px 0; 
+    padding: 5px;
+    position: relative;
+    justify-content: flex-start; 
+    align-items: center;
+    width: fit-content; 
+    margin: 0 auto; 
+    gap: 10px; 
+    margin-top: 30px; /* Separación*/
 }
 
 
@@ -23,12 +82,7 @@
     text-align: center;
 }
 
-.ayuda{
-    border-radius: 25px; 
-    margin: 10px 5px; 
-    padding: 10px 20px;
-    cursor: pointer;
-}
+
 
 .selectorFecha:hover {
     color: #fff;
@@ -168,3 +222,31 @@ canvas {
 h1, h4 {
     color:#fff;
 }
+
+/* Botón ? */
+
+.info-button-container {
+    display: inline-block; 
+    margin-left: 10px; 
+  }
+  
+  .info-icon {
+    background-color: transparent; 
+    border: none; 
+    border-radius: 50%; 
+    width: 42px;
+    height: 42px; 
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    color: #fff; 
+    font-size: 1.2rem; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+  }
+  
+  .info-icon:hover {
+    background-color: rgba(128, 128, 128, 0.7); 
+  }
+  
+  

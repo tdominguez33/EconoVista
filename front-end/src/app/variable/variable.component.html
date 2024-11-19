@@ -1,18 +1,25 @@
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
 <div class="contenedorPrincipal" class="cont1">
-    <div *ngIf="nombreLargo">
-        <h1>{{nombreLargo}}</h1>
+    <div class="header-contenedor">
+        <div *ngIf="nombreLargo">
+            <h1 class="variable-nombre">{{nombreLargo | uppercase}}</h1>
+        </div>
+        <div *ngIf="valorActual">
+            <h1 class="valor-variable">Valor: {{valorActual}}</h1>
+        </div>
     </div>
     <div *ngIf="fechaHeader" class="cont">
-        <h4>Última actualización: {{fechaHeader}}</h4>
-        <h4>Valor: {{valorActual}}</h4>
+        <h4 class="fecha-actualizacion">Última actualización: {{fechaHeader}}</h4>
     </div>
-
     <div *ngIf="descripcion" class="cont">
-        <h4>{{descripcion}}</h4>
-
-        <button mat-button (click)="openDialog()">?</button>
-
+        <h4 class="descripcion-variable">{{descripcion}}</h4>
+        
     </div>
+
+
+
+
 
     <!--<div class="contenedorFiltro">
         <button mat-button class="selectorFecha" (click)="fechaSeleccionada($event)">1S</button>
@@ -60,7 +67,14 @@
 
         <button mat-button class="selectorFecha limpiar-seleccion" 
           (click)="limpiarSeleccion()">Limpiar</button>
+          
+          <div class="info-button-container">
+            <button mat-button class="info-icon" (click)="openDialog()">?</button> <!-- Botón al lado derecho en su propio div -->
+        </div>
+          
+
       </div>
+
       
       
       
