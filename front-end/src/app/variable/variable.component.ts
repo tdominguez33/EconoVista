@@ -375,13 +375,59 @@ export class VariableComponent {
 
   ajusteCER() {
     if (this.listaVariables.includes(this.IdActual)) {
-    this.url1 = "/ajusteCER";
-    this.llenarDataCER();
-    this.hacerGrafico();
-  } else{
-    alert('La variable no se ajusta por CER' )
+      this.url1 = "/ajusteCER";
+      this.llenarDataCER();
+      this.hacerGrafico();
+    } else {
+      // Mostrar el mensaje de alerta personalizada
+      this.showAlert('La variable no se ajusta por CER');
+    }
   }
-}
+  
+  // Función para mostrar la alerta
+  showAlert(message: string) {
+    // Crea el contenedor del alert
+    const alertContainer = document.createElement('div');
+    alertContainer.style.position = 'fixed';
+    alertContainer.style.top = '50%';
+    alertContainer.style.left = '50%';
+    alertContainer.style.transform = 'translate(-50%, -50%)';
+    alertContainer.style.backgroundColor = '#333';
+    alertContainer.style.color = 'white';
+    alertContainer.style.padding = '20px';
+    alertContainer.style.borderRadius = '8px';
+    alertContainer.style.textAlign = 'center';
+    alertContainer.style.zIndex = '9999';  // Para asegurarse que esté por encima de todo
+    
+    // Crea el mensaje
+    const alertMessage = document.createElement('p');
+    alertMessage.textContent = message;
+    alertMessage.style.fontSize = '1.2rem';
+    alertMessage.style.marginBottom = '20px';
+    
+    // Crea el botón de cerrar
+    const closeButton = document.createElement('button');
+    closeButton.textContent = 'Aceptar';
+    closeButton.style.padding = '10px 20px';
+    closeButton.style.backgroundColor = '#00c896';
+    closeButton.style.color = 'white';
+    closeButton.style.border = 'none';
+    closeButton.style.borderRadius = '5px';
+    closeButton.style.cursor = 'pointer';
+    
+    // Añadir función para cerrar la alerta
+    closeButton.onclick = () => {
+      document.body.removeChild(alertContainer);
+    };
+    
+    // Añadir los elementos al contenedor
+    alertContainer.appendChild(alertMessage);
+    alertContainer.appendChild(closeButton);
+    
+    // Añadir el contenedor al body de la página
+    document.body.appendChild(alertContainer);
+  }
+  
 
   openDialog(){
   this.dialog.open(DialogoComponent);
