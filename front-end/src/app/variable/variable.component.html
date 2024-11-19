@@ -14,7 +14,7 @@
 
     </div>
 
-    <div class="contenedorFiltro">
+    <!--<div class="contenedorFiltro">
         <button mat-button class="selectorFecha" (click)="fechaSeleccionada($event)">1S</button>
         <button mat-button class="selectorFecha" (click)="fechaSeleccionada($event)">1M</button>
         <button mat-button class="selectorFecha" (click)="fechaSeleccionada($event)">3M</button>
@@ -24,7 +24,46 @@
         <button mat-button class="selectorFecha" (click)="fechaSeleccionada($event)">5A</button>
         <button mat-button class="selectorFecha" (click)="fechaSeleccionada($event)">10A</button>
         
-    </div>
+    </div>-->
+    <div class="contenedorFiltro">
+        <button mat-button class="selectorFecha" 
+                [class.active]="botonActivo === '1S'" 
+                (click)="setFechaSeleccionada('1S', $event)">1S</button>
+      
+        <button mat-button class="selectorFecha" 
+                [class.active]="botonActivo === '1M'" 
+                (click)="setFechaSeleccionada('1M', $event)">1M</button>
+      
+        <button mat-button class="selectorFecha" 
+                [class.active]="botonActivo === '3M'" 
+                (click)="setFechaSeleccionada('3M', $event)">3M</button>
+      
+        <button mat-button class="selectorFecha" 
+                [class.active]="botonActivo === '6M'" 
+                (click)="setFechaSeleccionada('6M', $event)">6M</button>
+      
+        <button mat-button class="selectorFecha" 
+                [class.active]="botonActivo === '1A'" 
+                (click)="setFechaSeleccionada('1A', $event)">1A</button>
+      
+        <button mat-button class="selectorFecha" 
+                [class.active]="botonActivo === '2A'" 
+                (click)="setFechaSeleccionada('2A', $event)">2A</button>
+      
+        <button mat-button class="selectorFecha" 
+                [class.active]="botonActivo === '5A'" 
+                (click)="setFechaSeleccionada('5A', $event)">5A</button>
+      
+        <button mat-button class="selectorFecha" 
+                [class.active]="botonActivo === '10A'" 
+                (click)="setFechaSeleccionada('10A', $event)">10A</button>
+
+        <button mat-button class="selectorFecha limpiar-seleccion" 
+          (click)="limpiarSeleccion()">Limpiar</button>
+      </div>
+      
+      
+      
     <button *ngIf="visibilidadBoton" mat-button class="selectorFecha" (click)="ajusteCER()">Ajuste CER</button>
 
     <canvas id="chart">{{chart}}</canvas>

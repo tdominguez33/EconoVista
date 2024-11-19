@@ -32,10 +32,28 @@ export class VariableComponent {
   visibilidadBoton:boolean = true;
   pasoDias: string="12"; //por defecto trae 30 datos en el año
   readonly dialog = inject(MatDialog);
+  botonActivo: string | null = null;
   
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
+    
+    this.prueba();
+    if (this.chart) {
+      this.chart.destroy();
+    }
+    this.prueba();
+  }
+
+  prueba(){
+    this.cargarVariablesSeleccionadas();
+    this.llenarData();
+    this.guardarItem();
+    this.cargarVariablesSoportadas();
+    this.visibilidadCER();
+  }
+
+  cargarVariablesSeleccionadas(){
     const id = localStorage.getItem('idVariableSeleccionada');
     if (id) {
       this.IdActual = +id;  // Convertir a número
@@ -78,13 +96,6 @@ export class VariableComponent {
     }else{
       console.log('No se pudo encontrar el valor')
     }
-
-    this.llenarData();
-    //this.hacerGrafico();
-    this.guardarItem();
-    this.cargarVariablesSoportadas();
-    this.visibilidadCER();
-
   }
 
   guardarItem() {
@@ -106,89 +117,107 @@ export class VariableComponent {
     console.log("valor actual = ", this.valorActual);
   }
 
-  fechaSeleccionada(event: Event) {
-    var button = event.target as HTMLElement;
-    var buttonText = "";
-    var aux = ""
-    buttonText = button.innerText;
+   fechaSeleccionada(event: Event) {
+      // Asegúrate de obtener siempre el botón, incluso si se hace clic en un elemento hijo
+      const button = (event.currentTarget as HTMLElement).closest('button');
+      
+      
+      if (!button) {
+        console.error('No se encontró el botón');
+        return;
+      }
+      
+      let buttonText = button.innerText.trim(); // Asegúrate de eliminar espacios en blanco
+      let aux = "";
+    
+      switch (buttonText) {
+        case "1S":
+          aux = this.restarDiasHabiles(this.fechaActual, 7);
+          this.fechaInicial = aux;
+          this.pasoDias = "1"; // trae todos los datos de una semana
+          console.log("fechaInicial", this.fechaInicial);
+          console.log("Seleciono 1S");
+          break;
+    
+        case "1M":
+          aux = this.restarDiasHabiles(this.fechaActual, 30);
+          this.fechaInicial = aux;
+          this.pasoDias = "1"; // trae todos los datos de un mes
+          console.log("fechaInicial", this.fechaInicial);
+          console.log("Seleciono 1M");
+          break;
+    
+        case "3M":
+          aux = this.restarDiasHabiles(this.fechaActual, 90);
+          this.fechaInicial = aux;
+          this.pasoDias = "3"; // 30 datos en tres meses
+          console.log("fechaInicial", this.fechaInicial);
+          console.log("Seleciono 3M");
+          break;
+    
+        case "6M":
+          aux = this.restarDiasHabiles(this.fechaActual, 180);
+          this.fechaInicial = aux;
+          this.pasoDias = "6"; // 30 datos en seis meses
+          console.log("fechaInicial", this.fechaInicial);
+          console.log("Seleciono 6M");
+          break;
+    
+        case "1A":
+          aux = this.restarDiasHabiles(this.fechaActual, 365);
+          this.fechaInicial = aux;
+          this.pasoDias = "12";
+          console.log("fechaInicial", this.fechaInicial);
+          console.log("Seleciono 1A");
+          break;
+    
+        case "2A":
+          aux = this.restarDiasHabiles(this.fechaActual, 730);
+          this.fechaInicial = aux;
+          this.pasoDias = "24";
+          console.log("fechaInicial", this.fechaInicial);
+          console.log("Seleciono 2A");
+          break;
+    
+        case "5A":
+          aux = this.restarDiasHabiles(this.fechaActual, 1825);
+          this.fechaInicial = aux;
+          this.pasoDias = "60";
+          console.log("fechaInicial", this.fechaInicial);
+          console.log("Seleciono 5A");
+          break;
+    
+        case "10A":
+          aux = this.restarDiasHabiles(this.fechaActual, 3650);
+          this.fechaInicial = aux;
+          this.pasoDias = "121";
+          console.log("fechaInicial", this.fechaInicial);
+          console.log("Seleciono 10A");
+          break;
+    
+        default:
+          console.warn('Botón no reconocido:', buttonText);
+          break;
+      }
+    
+      this.llenarData();
+    }
+    
 
-    switch (buttonText) {
-      case "1S":
-        aux = this.restarDiasHabiles(this.fechaActual, 7);
-        //console.log("aux ", aux);
-        this.fechaInicial = aux;
-        this.pasoDias = "1" // trae todos los datos de una semana
-        console.log("fechaInicial", this.fechaInicial)
-        console.log("Seleciono 1s");
-        break;
-
-      case "1M":
-        aux = this.restarDiasHabiles(this.fechaActual, 30);
-        //console.log("aux ", aux);
-        this.fechaInicial = aux;
-        this.pasoDias = "1" // trae todos los datos de un mes
-        console.log("fechaInicial", this.fechaInicial)
-        console.log("Seleciono 1m");
-        break;
-
-      case "3M":
-        aux = this.restarDiasHabiles(this.fechaActual, 90);
-        this.fechaInicial = aux;
-        this.pasoDias = "3" //30 datos en tres meses
-        console.log("fechaInicial", this.fechaInicial)
-        console.log("Seleciono 3m");
-        break;
-
-      case "6M":
-        aux = this.restarDiasHabiles(this.fechaActual, 180);
-        //console.log("aux ", aux);
-        this.fechaInicial = aux;
-        this.pasoDias = "6" //30 datos en sies meses
-        console.log("fechaInicial", this.fechaInicial)
-        console.log("Seleciono 6m");
-        break;
-
-      case "1A":
-        aux = this.restarDiasHabiles(this.fechaActual, 365);
-        //console.log("aux ", aux);
-        this.fechaInicial = aux;
-        this.pasoDias = "12" 
-        console.log("fechaInicial", this.fechaInicial)
-        console.log("Seleciono 1a");
-        break;
-
-      case "2A":
-        aux = this.restarDiasHabiles(this.fechaActual, 730);
-        //console.log("aux ", aux);
-        this.fechaInicial = aux;
-        this.pasoDias = "24"
-        console.log("fechaInicial", this.fechaInicial)
-        console.log("Seleciono 2A");
-        break;
-
-      case "5A":
-        aux = this.restarDiasHabiles(this.fechaActual, 1825);
-        //console.log("aux ", aux);
-        this.fechaInicial = aux;
-        this.pasoDias = "60"
-        console.log("fechaInicial", this.fechaInicial)
-        console.log("Seleciono 5a");
-        break;
-
-      case "10A":
-        aux = this.restarDiasHabiles(this.fechaActual, 3650);
-        //console.log("aux ", aux);
-        this.fechaInicial = aux;
-        this.pasoDias = "121"
-        console.log("fechaInicial", this.fechaInicial)
-        console.log("Seleciono 10a");
-        break;
-
+    setFechaSeleccionada(periodo: string, event: Event): void {
+      this.botonActivo = periodo;
+      this.fechaSeleccionada(event); // Llamamos a la función existente
     }
 
-    this.llenarData();
+    limpiarSeleccion(): void {
+      this.botonActivo = null;
+      console.log("Selección limpiada");
+      this.IdActual = this.apiService.itemSeleccionado.idVariable;
+      this.fechaInicial = "2023-08-05";
+      this.pasoDias ="12";
+      this.llenarData();
+    }
 
-  }
 
   llenarData() {
       this.apiService.getDataVariable(this.IdActual, this.url, this.fechaInicial, this.pasoDias).subscribe(data => {
@@ -250,7 +279,7 @@ export class VariableComponent {
     const data = {
       labels: this.fecha,
       datasets: [{
-        label: "",
+        label: '',
         data: this.valor,
         fill: false,
         borderColor: 'red',
@@ -270,17 +299,43 @@ export class VariableComponent {
       options: {
         responsive: true,
         scales: {
+          x: {
+              grid: {
+                display: true, // Habilita las cuadrículas en el eje X
+                color: 'rgba(130, 105, 117, 0.18)', // Color de las cuadrículas
+                lineWidth: 1 // Grosor de las líneas de las cuadrículas
+              },
+              border: {
+                color: 'gray', // Color de la línea del eje X
+                width: 1.5 // Grosor de la línea del eje X
+              }
+          },
           y: {
-            beginAtZero: true // Asegúrate de que el eje Y comienza en cero
+            beginAtZero: true, // Asegúrate de que el eje Y comienza en cero
+            grid: {
+                display: true, // Habilita las cuadrículas en el eje Y
+                color: 'rgba(130, 105, 117, 0.18)', // Color de las cuadrículas
+                lineWidth: 1 // Grosor de las líneas de las cuadrículas
+              },
+              border: {
+                color: 'gray', // Color de la línea del eje X
+                width: 1.5 // Grosor de la línea del eje X
+              }
           }
         }, 
         layout:{
           padding: 10
-        }
+        },
+        plugins: {
+      legend: {
+        display: false // Desactiva la leyenda
+      }
+    }
       }
     });
   }
 
+    
   restarDiasHabiles(fechaStr: string, diasHabiles: number): string {
     // Convertir la cadena a objeto Date
     let fecha = new Date(fechaStr);
