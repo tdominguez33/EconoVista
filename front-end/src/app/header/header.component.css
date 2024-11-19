@@ -1,11 +1,9 @@
 .icon {
     width: 200px;
     height: auto;
-<<<<<<< HEAD
     margin-top: 55px; 
-=======
     cursor: pointer; /* Cambia el cursor a pointer */
->>>>>>> 139edaee30d69f588410e7832737db5095867e08
+
 }
 
 .contenedor-logo {
@@ -17,7 +15,4 @@
     text-align: center;
     background-color: #000;
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> 139edaee30d69f588410e7832737db5095867e08
