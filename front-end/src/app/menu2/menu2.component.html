@@ -1,1 +1,34 @@
-<p>menu2 works!</p>
+
+
+<div class="nav-bar">
+    <a href="http://localhost:4200/" class="nav-link">Variables BCRA</a>
+    <a routerLink="otrasVariables" class="nav-link">Otras Variables</a>
+  </div>
+  
+  <h1>Otras Variables</h1>
+  
+  <div>
+    <a routerLink="/variableComponente" class="contenedor">
+      <div
+        class="variable-menu"
+        *ngFor="let item of data | filterVariables: ['Reservas', 'A3500', 'Tasa', 'Inflación Mensual', 'Inflación Esperada - REM', 'CER']; let i = index"
+        
+        (click)="guardarItem(item)"
+      >
+        <h3 style="color: white;">{{ item.nombreCorto }}</h3>
+  
+        <!-- Canvas para el gráfico -->
+        <canvas
+          id="miniChart{{ i }}"
+          width="100"
+          height="50"
+          class="prueba"
+        ></canvas>
+  
+        <p style="color:white;" class="prueba">{{item.unidad}}  {{ item.valor }}</p>
+      </div>
+    </a>
+  </div>
+  
+  
+    

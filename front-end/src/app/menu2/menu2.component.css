@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    background-color: #000000; 
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif; 
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 1.2rem;
+    font-weight: bold; 
+    color: #f39c12; 
+    text-transform: uppercase; 
+    margin-bottom: 10px; 
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 30px; 
+    
+}
+
+.contenedor {
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 40px;
+    padding: 20px; 
+    max-width: 900px; 
+    margin: 0 auto; 
+}
+
+.variable-menu {
+    background-color: rgba(255, 255, 255, 0.07); 
+    border-radius: 10px; 
+    width: 200px; 
+    height: 160px;  
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start; 
+    align-items: center; 
+    padding: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.variable-menu:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.7);
+}
+
+.variable-menu h3 {
+    font-size: 1rem; 
+    font-weight: 400; 
+    color: #ffffff; 
+    margin: 0;
+    text-align: center; 
+    margin-bottom: 15px;  
+}
+
+.variable-menu canvas {
+    flex-grow: 1; 
+    margin-bottom: 13px; /* Espacio entre el gráfico y el precio */
+    background-color: transparent;
+}
+
+.variable-menu p {
+    font-size: 1rem;
+     font-weight: 400;
+    color: #ffffff;
+    margin: 0; 
+    position: absolute; 
+    bottom: 10px; 
+    right: 10px; 
+    text-align: right; 
+} 
+
+
+/* Quitar subrayado de enlaces */
+a {
+    text-decoration: none !important;
+    color: inherit;
+}
+
+a:visited, a:focus, a:hover, a:active {
+    text-decoration: none !important;
+    color: inherit;
+    outline: none;
+}
+
+/*navegador*/
+
+/* Estilo para el nav */
+.nav-bar {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    gap: 30px; 
+    padding: 15px 30px; 
+    border-radius: 8px; 
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2); 
+    width: auto; 
+
+}
+
+/* Estilo de los enlaces dentro del nav */
+.nav-link {
+    font-size: 1rem;  
+    font-weight: 500; 
+    color: #fff;  
+    text-decoration: none; 
+    padding: 10px 20px; 
+    border-radius: 25px;  
+    transition: all 0.3s ease-in-out; 
+    background-color: transparent;
+}
+
+/* Efecto hover de los enlaces */
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.15); 
+    color: #f39c12; 
+    transform: scale(1.1); 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+}
+
+.nav-link:visited, .nav-link:link {
+    color: #fff;  
+}
