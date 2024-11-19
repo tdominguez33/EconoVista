@@ -30,7 +30,7 @@ export class VariableComponent {
   descripcion: string = ""
   valorActual: string = ""
   visibilidadBoton:boolean = true;
-  pasoDias: string="12"; //por defecto trae 30 datos en el año
+  pasoDias: string="4"; //por defecto trae 60 datos en el año
   readonly dialog = inject(MatDialog);
   botonActivo: string | null = null;
   unidad: string = ""
@@ -165,7 +165,7 @@ export class VariableComponent {
         case "3M":
           aux = this.restarDiasHabiles(this.fechaActual, 90);
           this.fechaInicial = aux;
-          this.pasoDias = "3"; // 30 datos en tres meses
+          this.pasoDias = "1"; // 30 datos en tres meses
           console.log("fechaInicial", this.fechaInicial);
           console.log("Seleciono 3M");
           break;
@@ -173,7 +173,7 @@ export class VariableComponent {
         case "6M":
           aux = this.restarDiasHabiles(this.fechaActual, 180);
           this.fechaInicial = aux;
-          this.pasoDias = "6"; // 30 datos en seis meses
+          this.pasoDias = "2"; // 30 datos en seis meses
           console.log("fechaInicial", this.fechaInicial);
           console.log("Seleciono 6M");
           break;
@@ -181,7 +181,7 @@ export class VariableComponent {
         case "1A":
           aux = this.restarDiasHabiles(this.fechaActual, 365);
           this.fechaInicial = aux;
-          this.pasoDias = "12";
+          this.pasoDias = "4";
           console.log("fechaInicial", this.fechaInicial);
           console.log("Seleciono 1A");
           break;
@@ -189,7 +189,7 @@ export class VariableComponent {
         case "2A":
           aux = this.restarDiasHabiles(this.fechaActual, 730);
           this.fechaInicial = aux;
-          this.pasoDias = "24";
+          this.pasoDias = "8";
           console.log("fechaInicial", this.fechaInicial);
           console.log("Seleciono 2A");
           break;
@@ -197,7 +197,7 @@ export class VariableComponent {
         case "5A":
           aux = this.restarDiasHabiles(this.fechaActual, 1825);
           this.fechaInicial = aux;
-          this.pasoDias = "60";
+          this.pasoDias = "20";
           console.log("fechaInicial", this.fechaInicial);
           console.log("Seleciono 5A");
           break;
@@ -205,7 +205,7 @@ export class VariableComponent {
         case "10A":
           aux = this.restarDiasHabiles(this.fechaActual, 3650);
           this.fechaInicial = aux;
-          this.pasoDias = "121";
+          this.pasoDias = "40";
           console.log("fechaInicial", this.fechaInicial);
           console.log("Seleciono 10A");
           break;
@@ -229,7 +229,7 @@ export class VariableComponent {
       console.log("Selección limpiada");
       this.IdActual = this.apiService.itemSeleccionado.idVariable;
       this.fechaInicial = "2023-08-05";
-      this.pasoDias ="12";
+      this.pasoDias ="4";
       this.llenarData();
     }
 
