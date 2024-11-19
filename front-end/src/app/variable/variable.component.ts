@@ -33,6 +33,7 @@ export class VariableComponent {
   pasoDias: string="12"; //por defecto trae 30 datos en el año
   readonly dialog = inject(MatDialog);
   botonActivo: string | null = null;
+  unidad: string = ""
   
   constructor(private apiService: ApiService) { }
 
@@ -96,10 +97,20 @@ export class VariableComponent {
     }else{
       console.log('No se pudo encontrar el valor')
     }
+
+    const uni = localStorage.getItem('unidad');
+    if (uni){
+      this.unidad = uni;
+      console.log('Prueba unidad, ', uni)
+    }else{
+      console.log('No se pudo encontrar la unidad')
+    }
   }
 
   guardarItem() {
     this.itemActual = this.apiService.itemSeleccionado;
+    console.log("item actual", this.itemActual)
+
     this.IdActual = this.apiService.itemSeleccionado.idVariable;
     localStorage.setItem('idVariableSeleccionada', this.IdActual.toString());  // Guardar en localStorage
 
@@ -115,6 +126,10 @@ export class VariableComponent {
     this.valorActual = this.apiService.itemSeleccionado.valor;
     localStorage.setItem('valorAct', this.valorActual);
     console.log("valor actual = ", this.valorActual);
+
+    this.unidad = this.apiService.itemSeleccionado.unidad;
+    localStorage.setItem('unidad', this.unidad);
+    console.log("valor unidad = ", this.unidad);
   }
 
    fechaSeleccionada(event: Event) {
@@ -308,6 +323,10 @@ export class VariableComponent {
               border: {
                 color: 'gray', // Color de la línea del eje X
                 width: 1.5 // Grosor de la línea del eje X
+              },
+              title:{
+                display: true,
+                text: "Tiempo"
               }
           },
           y: {
@@ -320,6 +339,10 @@ export class VariableComponent {
               border: {
                 color: 'gray', // Color de la línea del eje X
                 width: 1.5 // Grosor de la línea del eje X
+              },
+              title: {
+                display: true,
+                text: this.unidad
               }
           }
         }, 

@@ -6,7 +6,7 @@
             <h1 class="variable-nombre">{{nombreLargo | uppercase}}</h1>
         </div>
         <div *ngIf="valorActual">
-            <h1 class="valor-variable">Valor: {{valorActual}}</h1>
+            <h1 class="valor-variable">Valor: {{unidad}}  {{valorActual}}</h1>
         </div>
     </div>
     <div *ngIf="fechaHeader" class="cont">
@@ -16,9 +16,6 @@
         <h4 class="descripcion-variable">{{descripcion}}</h4>
         
     </div>
-
-
-
 
 
     <!--<div class="contenedorFiltro">
@@ -78,6 +75,8 @@
       <button *ngIf="visibilidadBoton" mat-button class="ajuste-cer-btn" (click)="ajusteCER()">Ajuste CER</button>
 
     <canvas id="chart">{{chart}}</canvas>
+
+    <h4>Fuente: {{itemActual?.fuente}}</h4>
 
     <section>
         <div class="example-button-row">

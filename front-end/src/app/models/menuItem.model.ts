@@ -11,6 +11,8 @@ export interface MenuItem {
     nombreCorto: string;
     nombreLargo: string;
     descripcion: string;
-    fecha: string,
+    unidad:string;
+    fuente:string;
+    fecha: string;
     valor: number;
 }
