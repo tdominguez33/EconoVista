@@ -8,7 +8,7 @@ export class FilterVariablesPipe implements PipeTransform {
     if (!items || !excludeList) {
       return items;
     }
-    // Filtrar los items que no están en la lista de exclusión
+    // Filtrar los items para el menú
     return items.filter(item => !excludeList.includes(item.nombreCorto));
   }
 }
