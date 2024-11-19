@@ -397,12 +397,20 @@ export class VariableComponent {
 
 
   ajusteCER() {
+    const btn = document.getElementById("ajuste-cer-btn"); // Referencia al botón
+  
     if (this.listaVariables.includes(this.IdActual)) {
       this.url1 = "/ajusteCER";
       this.llenarDataCER();
       this.hacerGrafico();
+  
+      // Cambiar el estado visual del botón a presionado
+      if (btn) {
+        // Si el botón no tiene la clase 'presionado', la agregamos
+        btn.classList.add("presionado");
+      }
     } else {
-      // Mostrar el mensaje de alerta personalizada
+      // Mostrar la alerta personalizada si no se ajusta por CER
       this.showAlert('La variable no se ajusta por CER');
     }
   }
