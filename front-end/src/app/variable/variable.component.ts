@@ -135,7 +135,7 @@ export class VariableComponent {
    fechaSeleccionada(event: Event) {
       // Asegúrate de obtener siempre el botón, incluso si se hace clic en un elemento hijo
       const button = (event.currentTarget as HTMLElement).closest('button');
-      
+      const mensuales = [27, 29, 104]
       
       if (!button) {
         console.error('No se encontró el botón');
@@ -165,7 +165,7 @@ export class VariableComponent {
         case "3M":
           aux = this.restarDiasHabiles(this.fechaActual, 90);
           this.fechaInicial = aux;
-          this.pasoDias = "1"; // 30 datos en tres meses
+          this.pasoDias = "1"; 
           console.log("fechaInicial", this.fechaInicial);
           console.log("Seleciono 3M");
           break;
@@ -173,7 +173,11 @@ export class VariableComponent {
         case "6M":
           aux = this.restarDiasHabiles(this.fechaActual, 180);
           this.fechaInicial = aux;
-          this.pasoDias = "2"; // 30 datos en seis meses
+          if (mensuales.includes(this.IdActual)){
+            this.pasoDias = "1"
+          } else {
+            this.pasoDias = "2"; 
+          }
           console.log("fechaInicial", this.fechaInicial);
           console.log("Seleciono 6M");
           break;
@@ -181,7 +185,11 @@ export class VariableComponent {
         case "1A":
           aux = this.restarDiasHabiles(this.fechaActual, 365);
           this.fechaInicial = aux;
-          this.pasoDias = "4";
+          if (mensuales.includes(this.IdActual)){
+            this.pasoDias = "1"
+          } else {
+            this.pasoDias = "4"; 
+          }
           console.log("fechaInicial", this.fechaInicial);
           console.log("Seleciono 1A");
           break;
@@ -189,7 +197,11 @@ export class VariableComponent {
         case "2A":
           aux = this.restarDiasHabiles(this.fechaActual, 730);
           this.fechaInicial = aux;
-          this.pasoDias = "8";
+          if (mensuales.includes(this.IdActual)){
+            this.pasoDias = "2"
+          } else {
+            this.pasoDias = "8"; 
+          }
           console.log("fechaInicial", this.fechaInicial);
           console.log("Seleciono 2A");
           break;
@@ -197,7 +209,11 @@ export class VariableComponent {
         case "5A":
           aux = this.restarDiasHabiles(this.fechaActual, 1825);
           this.fechaInicial = aux;
-          this.pasoDias = "20";
+          if (mensuales.includes(this.IdActual)){
+            this.pasoDias = "2"
+          } else {
+            this.pasoDias = "20"; 
+          }
           console.log("fechaInicial", this.fechaInicial);
           console.log("Seleciono 5A");
           break;
@@ -205,7 +221,11 @@ export class VariableComponent {
         case "10A":
           aux = this.restarDiasHabiles(this.fechaActual, 3650);
           this.fechaInicial = aux;
-          this.pasoDias = "40";
+          if (mensuales.includes(this.IdActual)){
+            this.pasoDias = "5"
+          } else {
+            this.pasoDias = "40"; 
+          }
           console.log("fechaInicial", this.fechaInicial);
           console.log("Seleciono 10A");
           break;
@@ -235,6 +255,12 @@ export class VariableComponent {
 
 
   llenarData() {
+    const mensuales = [27, 29, 104]
+    if (mensuales.includes(this.IdActual)){
+      this.pasoDias = "1"
+    } else {
+      this.pasoDias = this.pasoDias; 
+    }
       this.apiService.getDataVariable(this.IdActual, this.url, this.fechaInicial, this.pasoDias).subscribe(data => {
         this.data = data;
         console.log("fechaInial en llenar data", this.fechaInicial);
