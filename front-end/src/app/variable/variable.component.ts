@@ -34,6 +34,7 @@ export class VariableComponent {
   readonly dialog = inject(MatDialog);
   botonActivo: string | null = null;
   unidad: string = ""
+  botonDesactivado = false; // Nueva variable
   
   constructor(private apiService: ApiService) { }
 
@@ -245,6 +246,9 @@ export class VariableComponent {
     }
 
     limpiarSeleccion(): void {
+
+      this.botonDesactivado = false; // Vuelve a habilitar el botón
+      console.log("Selección limpiada");
       this.botonActivo = null;
       console.log("Selección limpiada");
       this.IdActual = this.apiService.itemSeleccionado.idVariable;
@@ -424,6 +428,8 @@ export class VariableComponent {
 
   ajusteCER() {
     const btn = document.getElementById("ajuste-cer-btn"); // Referencia al botón
+    this.botonDesactivado = true; // Deshabilita el botón
+    console.log("Ajuste CER ejecutado");
   
     if (this.listaVariables.includes(this.IdActual)) {
       this.url1 = "/ajusteCER";
