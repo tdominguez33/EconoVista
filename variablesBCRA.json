@@ -3,7 +3,7 @@
 		"id": "5",
 		"nombreCorto": "A3500",
 		"nombreLargo": "Tipo de cambio de referencia mayorista",
-		"descripcion": "Tipo de cambio mayorista según la comunicación A3500 del BCRA.",
+		"descripcion": "Valor de referencia del dólar estadounidense en el mercado mayorista según los criterios de la comunicación “A3500” del BCRA.",
 		"unidad": "$",
 		"fechaInicio": "2002-03-04"
 	},
@@ -11,7 +11,7 @@
 		"id": "30",
 		"nombreCorto": "CER",
 		"nombreLargo": "Coeficiente de estabilización de referencia",
-		"descripcion": "Índice de ajuste diario que refleja la evolución de la inflación basado en el índice de precios al comsumidor calculado por el INDEC.",
+		"descripcion": "Índice de ajuste diario del BCRA, refleja la evolución de la inflación en base al cálculo de la variación registrada en el IPC del INDEC.",
 		"unidad": "$",
 		"fechaInicio": "2002-03-04"
 	},
@@ -19,7 +19,7 @@
 		"id": "1",
 		"nombreCorto": "Reservas",
 		"nombreLargo": "Reservas internacionales del BCRA",
-		"descripcion": "Depósitos de moneda extranjera en control del BCRA, expresado en millones de dólares.",
+		"descripcion": "Depósitos de moneda extranjera en control del BCRA.",
 		"unidad": "M USD",
 		"fechaInicio": "1996-01-02"
 	},
@@ -27,7 +27,7 @@
 		"id": "4",
 		"nombreCorto": "Dólar Oficial",
 		"nombreLargo": "Tipo de cambio de referencia minorista",
-		"descripcion": "Tipo de cambio minorista según la comunicación B9791",
+		"descripcion": "Valor de referencia del dólar estadounidense en el mercado minorista según los criterios de la comunicación “B9791” del BCRA.",
 		"unidad": "$",
 		"fechaInicio": "2010-06-01"
 	},
@@ -43,7 +43,7 @@
 		"id": "27",
 		"nombreCorto": "Inflación Mensual",
 		"nombreLargo": "Inflación mensual según INDEC (Variación en %)",
-		"descripcion": "Nivel de aumento generalizado de los precios según el índice de precios al consumidor calculado por el INDEC, la variación se expresa en %.",
+		"descripcion": "Nivel de aumento generalizado de los precios según el índice de precios al consumidor calculado por el INDEC",
 		"unidad": "%",
 		"fechaInicio": "1945-01-31"
 	},
@@ -51,7 +51,7 @@
 		"id": "29",
 		"nombreCorto": "Inflación Esperada - REM",
 		"nombreLargo": "Inflación esperada para los próximos 12 meses según REM",
-		"descripcion": "Inflación esperada para los próximos 12 meses según el Relevamiento de Expectativas de Mercado elaborado por el BCRA.",
+		"descripcion": "Variación del nivel general del IPC proyectada para los próximos 12 meses, según surge del último REM publicado por el BCRA.",
 		"unidad": "%",
 		"fechaInicio": "2004-01-31"
 	}
