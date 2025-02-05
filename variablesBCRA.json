@@ -1,7 +1,7 @@
 {
 	"0": {
 		"id": "5",
-		"nombreCorto": "A3500",
+		"nombreCorto": "Dolar Oficial Mayorista",
 		"nombreLargo": "Tipo de cambio de referencia mayorista",
 		"descripcion": "Valor de referencia del dólar estadounidense en el mercado mayorista según los criterios de la comunicación “A3500” del BCRA.",
 		"unidad": "$",
@@ -25,7 +25,7 @@
 	},
 	"3": {
 		"id": "4",
-		"nombreCorto": "Dólar Oficial",
+		"nombreCorto": "Dólar Oficial Minorista",
 		"nombreLargo": "Tipo de cambio de referencia minorista",
 		"descripcion": "Valor de referencia del dólar estadounidense en el mercado minorista según los criterios de la comunicación “B9791” del BCRA.",
 		"unidad": "$",
@@ -54,5 +54,21 @@
 		"descripcion": "Variación del nivel general del IPC proyectada para los próximos 12 meses, según surge del último REM publicado por el BCRA.",
 		"unidad": "%",
 		"fechaInicio": "2004-01-31"
+	},
+	"7": {
+		"id": "15",
+		"nombreCorto": "Base Monetaria",
+		"nombreLargo": "Placeholder",
+		"descripcion": "Placeholder",
+		"unidad": "MM",
+		"fechaInicio": "1996-01-02"
+	},
+	"8": {
+		"id": "31",
+		"nombreCorto": "UVA",
+		"nombreLargo": "Placeholder",
+		"descripcion": "Placeholder",
+		"unidad": "$",
+		"fechaInicio": "2016-03-31"
 	}
 }
