@@ -268,5 +268,15 @@ h1, h4 {
     color: #fff;   
     margin-right: 30px;
     margin-left: 30px;
-   
+ 
+    a {
+        color: #00c896; /* Color enlace*/
+        text-decoration: none; /* Elimina el subrayado del enlace */
+    }
+    
+    a:hover {
+        color: #007a60; /* Color más oscuro para el hover */
+        text-decoration: underline; /* Agrega subrayado al pasar el cursor */
+    }
+    
 }

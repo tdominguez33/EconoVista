@@ -11,7 +11,7 @@
   <a routerLink="/variableComponente" class="contenedor">
     <div
       class="variable-menu"
-      *ngFor="let item of data | filterVariables: ['Riesgo País', 'Dólar Oficial', 'Dólar Blue', 'Dólar MEP', 'Dólar CCL', 'Dólar Cripto']; let i = index"
+      *ngFor="let item of data | filterVariables: ['Riesgo País',  'Dólar Oficial', 'Dólar Blue', 'Dólar MEP', 'Dólar CCL', 'Dólar Cripto', 'Inflación Mensual']; let i = index"
       (click)="guardarItem(item)"
     >
       <h3 style="color: white;">{{ item.nombreCorto }}</h3>

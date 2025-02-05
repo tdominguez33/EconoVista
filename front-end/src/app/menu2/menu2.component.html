@@ -11,7 +11,7 @@
     <a routerLink="/variableComponente" class="contenedor">
       <div
         class="variable-menu"
-        *ngFor="let item of data | filterVariables: ['Reservas', 'A3500', 'Tasa', 'Inflación Mensual', 'Inflación Esperada - REM', 'CER']; let i = index"
+        *ngFor="let item of data | filterVariables: ['Reservas', 'A3500', 'Tasa', 'Inflación Esperada - REM', 'CER']; let i = index"
         
         (click)="guardarItem(item)"
       >
