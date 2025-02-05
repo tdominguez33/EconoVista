@@ -117,6 +117,7 @@
 
 /*ajuste CER*/
 
+/*
 #ajuste-cer-btn.presionado {
     background-color: #008c68 !important;  
     color: #fff !important; 
@@ -148,17 +149,23 @@
     color: #00c896;
   }
   
-  #ajuste-cer-btn:active {
+  /*#ajuste-cer-btn:active {
     background-color: #008c68;
     color: #fff;
   }
   
   #ajuste-cer-btn:focus {
     outline: none;
-  }
+  }*/
   
 
-
+  button.ajuste-cer-btn {
+    cursor: pointer; /* Cursor normal cuando el botón está habilitado */
+  }
+  
+  button.ajuste-cer-btn[disabled] {
+    cursor: not-allowed; /* Cursor prohibido cuando está deshabilitado */
+  }
 
 canvas {
     margin-top: 30px; /* Separación adicional entre el botón y el gráfico */

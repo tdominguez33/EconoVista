@@ -1,5 +1,4 @@
 import os
-import subprocess
 from time import sleep
 import schedule
 from threading import Thread

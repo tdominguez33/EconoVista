@@ -17,14 +17,20 @@
       <h3 style="color: white;">{{ item.nombreCorto }}</h3>
 
       <!-- Canvas para el gráfico -->
-      <canvas
+      <!-- <canvas
         id="miniChart{{ i }}"
         width="100"
         height="50"
         class="prueba"
-      ></canvas>
+      ></canvas> -->
 
-      <p style="color:white;" class="prueba">{{item.unidad}}  {{ item.valor }}</p>
+      <canvas id="menuChart{{ i }}" width="100" height="50" class="prueba"></canvas>
+
+
+      <!-- <p style="color:white;" class="prueba">{{ item.valor }}  {{item.unidad}}</p> -->
+      <p style="color:white;" class="prueba">{{ formatValor(item) }}</p>
+
+
     </div>
   </a>
 </div>
