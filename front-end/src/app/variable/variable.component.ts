@@ -1,5 +1,5 @@
 import { getLocaleNumberSymbol } from '@angular/common';
-import { Component, ChangeDetectionStrategy, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ElementRef, inject, OnInit, ViewChild, ChangeDetectorRef  } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 import { ApiService } from '../service/api.service';
 import { MenuItem } from '../models/menuItem.model';
@@ -21,7 +21,7 @@ export class VariableComponent {
   itemActual: MenuItem | null = null;
   fechaActual: string = ""; //ultima fecha que toma el grafico
   IdActual: number = 0;
-  fechaInicial: string = "2023-08-05"; //fecha en la que inicia el grafico
+  fechaInicial: string = ""; //fecha en la que inicia el grafico
   url: string = "/datosvariable";
   url1: string = "/ajusteCER";
   public listaVariables: number[] = []
@@ -35,26 +35,46 @@ export class VariableComponent {
   botonActivo: string | null = null;
   unidad: string = ""
   botonDesactivado = false; // Nueva variable
+  cargaCompleta: boolean = false;
   
-  constructor(private apiService: ApiService) { }
+  
+  constructor(private apiService: ApiService, private cdr: ChangeDetectorRef) { }
 
-  ngOnInit(): void {
+  // ngOnInit(): void {
     
-    this.prueba();
+  //   this.prueba();
+  //   if (this.chart) {
+  //     this.chart.destroy();
+  //   }
+  //   this.prueba();
+  // }
+
+  // prueba(){
+  //   this.cargarVariablesSeleccionadas();
+  //   this.llenarData();
+  //   this.guardarItem();
+  //   this.cargarVariablesSoportadas();
+  //   this.visibilidadCER();
+  // }
+
+  // Con esto se arregla el problema de tener que usar la funcion prueba()
+  async ngOnInit(): Promise<void> {
+    await this.cargarVariablesSeleccionadas();
+    await this.llenarData();
+    await this.guardarItem(); // Asegúrate de que esto se ejecute correctamente
+    console.log('Item actual:', this.itemActual); // Verifica si itemActual tiene datos
+    await this.cargarVariablesSoportadas();
+    await this.visibilidadCER();
+  
     if (this.chart) {
       this.chart.destroy();
     }
-    this.prueba();
+  
+    // Forzar la detección de cambios
+    this.cdr.detectChanges();
   }
-
-  prueba(){
-    this.cargarVariablesSeleccionadas();
-    this.llenarData();
-    this.guardarItem();
-    this.cargarVariablesSoportadas();
-    this.visibilidadCER();
-  }
-
+  
+  
   cargarVariablesSeleccionadas(){
     const id = localStorage.getItem('idVariableSeleccionada');
     if (id) {
@@ -265,33 +285,41 @@ export class VariableComponent {
     } else {
       this.pasoDias = this.pasoDias; 
     }
-      this.apiService.getDataVariable(this.IdActual, this.url, this.fechaInicial, this.pasoDias).subscribe(data => {
-        this.data = data;
-        console.log("fechaInial en llenar data", this.fechaInicial);
 
-        // Vaciar los arrays para evitar duplicaciones si llamas varias veces a llenarData()
-        this.valor = [];
-        this.fecha = [];
+    const fechaActual = new Date(); // Obtiene la fecha actual
+    const fechaInicio = new Date(fechaActual);
+    fechaInicio.setFullYear(fechaInicio.getFullYear() - 2); // Resta 2 años
+  
+    // Convierte la fecha a formato YYYY-MM-DD
+    this.fechaInicial = fechaInicio.toISOString().split('T')[0];
 
-        for (const item of this.data) {
-          this.valor.push(item.valor);
-          this.fecha.push(item.fecha);
-        }
+    this.apiService.getDataVariable(this.IdActual, this.url, this.fechaInicial, this.pasoDias).subscribe(data => {
+      this.data = data;
+      console.log("fechaInial en llenar data", this.fechaInicial);
 
-        // Datos llenados
-        //console.log("valores", this.valor);
-        
-        //console.log("fecha", this.fecha);
-        const fechas = this.fecha;
-        const ultimaFecha = fechas[fechas.length - 1];
-        //console.log(ultimaFecha); // Salida: 5
-        localStorage.setItem('fechaAct', ultimaFecha);  // Guardar en localStorage
-        
+      // Vaciar los arrays para evitar duplicaciones si llamas varias veces a llenarData()
+      this.valor = [];
+      this.fecha = [];
 
-        //console.log('id Variable', this.IdActual)
+      for (const item of this.data) {
+        this.valor.push(item.valor);
+        this.fecha.push(item.fecha);
+      }
 
-        // Una vez que los datos se han llenado, se crea el gráfico
-        this.hacerGrafico();
+      // Datos llenados
+      //console.log("valores", this.valor);
+      
+      //console.log("fecha", this.fecha);
+      const fechas = this.fecha;
+      const ultimaFecha = fechas[fechas.length - 1];
+      //console.log(ultimaFecha); // Salida: 5
+      localStorage.setItem('fechaAct', ultimaFecha);  // Guardar en localStorage
+      
+
+      //console.log('id Variable', this.IdActual)
+
+      // Una vez que los datos se han llenado, se crea el gráfico
+      this.hacerGrafico();
     });
   }
 
