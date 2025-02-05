@@ -84,7 +84,18 @@
 
     <canvas id="chart">{{chart}}</canvas>
 
-    <h4  class="fecha-fuente">Fuente: {{itemActual?.fuente}}</h4>
+    <!-- <h4  class="fecha-fuente">Fuente: {{itemActual?.fuente}}</h4> -->
+    <!-- <h4 class="fecha-fuente">Fuente: {{ itemActual ? itemActual.fuente : 'Cargando...' }}</h4> -->
+    <h4 class="fecha-fuente">
+        Fuente: 
+        <ng-container *ngIf="itemActual?.fuente === 'BCRA'; else normalFuente">
+          <a href="https://www.bcra.gob.ar/BCRAyVos/catalogo-de-APIs-banco-central.asp" target="_blank">BCRA</a>
+        </ng-container>
+        <ng-template #normalFuente>{{ itemActual?.fuente || 'Cargando...' }}</ng-template>
+      </h4>
+      
+
+
 
     <section>
         <div class="example-button-row">

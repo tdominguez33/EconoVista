@@ -11,6 +11,7 @@ export class MenuComponent implements OnInit {
   data: any[] = []; // Almacena las variables obtenidas
   valor: any[][] = []; // Valores organizados por índice
   fecha: any[][] = []; // Fechas organizadas por índice
+  
 
   constructor(private apiService: ApiService) { }
 
@@ -47,8 +48,18 @@ export class MenuComponent implements OnInit {
     this.apiService.setItemSeleccionado(item);
   }
 
+
+  formatValor(item: any): string {
+    const unidadesAdelante = ['$', '€']; // Agrega más unidades si es necesario
+    return unidadesAdelante.includes(item.unidad) 
+      ? `${item.unidad} ${item.valor}`  // Espacio después de la unidad
+      : `${item.valor} ${item.unidad}`; // Espacio antes de la unidad
+  }
+  
+  
+
   crearMiniGrafico(index: number): void {
-    const canvasId = `miniChart${index}`; // ID único para cada gráfico
+    const canvasId = `menuChart${index}`; // ID único para cada gráfico
     const ctx = document.getElementById(canvasId) as HTMLCanvasElement;
 
     if (ctx) {

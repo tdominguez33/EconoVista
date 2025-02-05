@@ -12,6 +12,7 @@ export class Menu2Component {
   valor: any[][] = []; // Valores organizados por índice
   fecha: any[][] = []; // Fechas organizadas por índice
 
+
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
@@ -25,7 +26,7 @@ export class Menu2Component {
 
       // Para cada variable obtenida, hacer una solicitud adicional para sus detalles
       this.data.forEach((item: any, index: number) => {
-        this.apiService.getDataVariable(item.idVariable, '/datosvariable', '2023-08-05', '1').subscribe(variableData => {
+        this.apiService.getDataVariable(item.idVariable, '/datosvariable', '2024-08-05', '1').subscribe(variableData => {
           this.valor[index] = [];
           this.fecha[index] = [];
 
@@ -47,8 +48,16 @@ export class Menu2Component {
     this.apiService.setItemSeleccionado(item);
   }
 
+  
+  formatValor(item: any): string {
+    const unidadesAdelante = ['$', '€']; // Agrega más unidades si es necesario
+    return unidadesAdelante.includes(item.unidad) 
+      ? `${item.unidad} ${item.valor}`  // Espacio después de la unidad
+      : `${item.valor} ${item.unidad}`; // Espacio antes de la unidad
+  }
+
   crearMiniGrafico(index: number): void {
-    const canvasId = `miniChart${index}`; // ID único para cada gráfico
+    const canvasId = `menu2Chart${index}`; // ID único para cada gráfico
     const ctx = document.getElementById(canvasId) as HTMLCanvasElement;
 
     if (ctx) {
