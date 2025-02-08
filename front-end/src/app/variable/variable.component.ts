@@ -14,223 +14,200 @@ import { DialogoComponent } from '../dialogo/dialogo.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VariableComponent {
+
+  itemActual: MenuItem = {
+    idVariable: 0,
+    nombreCorto: "",
+    nombreLargo: "...",
+    descripcion: "",
+    unidad: "",
+    fuente: "",
+    fecha: "",
+    valor: 0
+  }
+
   public chart: Chart | undefined;
-  data: any = {};
-  // fecha: string[] = [];
-  // valor: number[] = [];
-  itemActual: MenuItem | null = null;
-  fechaActual: string = ""; //ultima fecha que toma el grafico
-  IdActual: number = 0;
   fechaInicial: string = ""; //fecha en la que inicia el grafico
-  url: string = "/datosvariable";
-  url1: string = "/ajusteCER";
-  public listaVariables: number[] = []
-  nombreLargo: string = ""
-  fechaHeader: string = ""
-  descripcion: string = ""
-  valorActual: string = ""
-  visibilidadBoton: boolean = true;
+  visibilidadBotonCER: boolean = true;
   pasoDias: string = "4"; //por defecto trae 60 datos en el año
   readonly dialog = inject(MatDialog);
   botonActivo: string | null = null;
-  unidad: string = ""
-  botonDesactivado = false; // Nueva variable
-  cargaCompleta: boolean = false;
+  botonCERDesactivado = false;
+  //cargaCompleta: boolean = false;
 
 
   constructor(private apiService: ApiService, private cdr: ChangeDetectorRef) { }
 
-  // Con esto se arregla el problema de tener que usar la funcion prueba()
   async ngOnInit(): Promise<void> {
     await this.cargarVariablesSeleccionadas();
-    await this.llenarData();
-    await this.guardarItem(); // Asegúrate de que esto se ejecute correctamente
-    console.log('Item actual:', this.itemActual); // Verifica si itemActual tiene datos
+    await this.guardarItem();
+    await this.llenarData(this.calcularFechas(0, 0, 1));
     await this.cargarVariablesSoportadas();
     await this.visibilidadCER();
+    this.cdr.detectChanges(); // forzar la deteccion de cambios
 
-    if (this.chart) {
-      this.chart.destroy();
-    }
-
-    // Forzar la detección de cambios
-    this.cdr.detectChanges();
   }
 
-
-  cargarVariablesSeleccionadas() {
+  async cargarVariablesSeleccionadas() {
     const id = localStorage.getItem('idVariableSeleccionada');
     if (id) {
-      this.IdActual = +id;  // Convertir a número
-      console.log('la variable seleccionada es ', this.IdActual)
+      this.itemActual.idVariable = Number(id);  // Convertir a número
     } else {
       console.log('No se encontró ninguna variable seleccionada.');
     }
 
     const nom = localStorage.getItem('nombreLargo');
-
     if (nom) {
-      this.nombreLargo = nom;
-      console.log('Prueba de nombre  ', nom)
+      this.itemActual.nombreLargo = nom;
+
     } else {
       console.log('No se pudo obtener el nombre');
     }
 
     const fechaAct = localStorage.getItem('fechaAct');
-
     if (fechaAct) {
-      this.fechaHeader = fechaAct;
-      console.log('Prueba de fecha actual', fechaAct)
+      this.itemActual.fecha = fechaAct;
     } else {
       console.log('No se pudo encontrar la fecha')
     }
 
     const desc = localStorage.getItem('descripcion');
-
     if (desc) {
-      this.descripcion = desc;
-      console.log('Prueba de fecha ', desc)
+      this.itemActual.descripcion = desc;
     } else {
       console.log('No se pudo encontrar la descripcion')
     }
 
     const valorAct = localStorage.getItem('valorAct');
     if (valorAct) {
-      this.valorActual = valorAct;
-      console.log('Prueba de valor actual ', valorAct)
+      this.itemActual.valor = Number(valorAct);
     } else {
       console.log('No se pudo encontrar el valor')
     }
 
     const uni = localStorage.getItem('unidad');
     if (uni) {
-      this.unidad = uni;
-      console.log('Prueba unidad, ', uni)
-    } else {
-      console.log('No se pudo encontrar la unidad')
+      this.itemActual.unidad = uni;
     }
+
+    const fechasGuardadas = localStorage.getItem('graficoFechas');
+    const valoresGuardados = localStorage.getItem('graficoValores');
+
+    if (fechasGuardadas && valoresGuardados) {
+      this.hacerGrafico(JSON.parse(valoresGuardados), JSON.parse(fechasGuardadas));
+    }
+    this.cdr.detectChanges();
   }
 
   guardarItem() {
     this.itemActual = this.apiService.itemSeleccionado;
-    console.log("item actual", this.itemActual)
 
-    this.IdActual = this.apiService.itemSeleccionado.idVariable;
-    localStorage.setItem('idVariableSeleccionada', this.IdActual.toString());  // Guardar en localStorage
+    if (this.itemActual) {
+      localStorage.setItem('idVariableSeleccionada', this.itemActual.idVariable.toString());
+      localStorage.setItem('nombreLargo', this.itemActual.nombreLargo);
+      localStorage.setItem('descripcion', this.itemActual.descripcion);
+      localStorage.setItem('valorAct', this.itemActual.valor.toString());
+      localStorage.setItem('unidad', this.itemActual.unidad);
+    }
 
-    this.nombreLargo = this.apiService.itemSeleccionado.nombreLargo;
-    localStorage.setItem('nombreLargo', this.nombreLargo);  // Guardar en localStorage
+  }
 
-    this.descripcion = this.apiService.itemSeleccionado.descripcion;
-    localStorage.setItem('descripcion', this.descripcion);  // Guardar en localStorage
-
-    this.fechaActual = this.apiService.itemSeleccionado.fecha;
-    console.log("fecha actual = ", this.fechaActual);
-
-    this.valorActual = this.apiService.itemSeleccionado.valor;
-    localStorage.setItem('valorAct', this.valorActual);
-    console.log("valor actual = ", this.valorActual);
-
-    this.unidad = this.apiService.itemSeleccionado.unidad;
-    localStorage.setItem('unidad', this.unidad);
-    console.log("valor unidad = ", this.unidad);
+  esIdMensual(): boolean { //Si es una variable ajustable por cer
+    const mensuales = [27, 29, 104]
+    console.log(mensuales.includes(this.itemActual.idVariable));
+    return mensuales.includes(this.itemActual.idVariable);
   }
 
   fechaSeleccionada(event: Event) {
-    // Asegúrate de obtener siempre el botón, incluso si se hace clic en un elemento hijo
     const button = (event.currentTarget as HTMLElement).closest('button');
-    const mensuales = [27, 29, 104]
 
     if (!button) {
       console.error('No se encontró el botón');
       return;
     }
 
-    let buttonText = button.innerText.trim(); // Asegúrate de eliminar espacios en blanco
-    let aux = "";
+    let buttonText = button.innerText.trim(); //texto de los botones
+
+    const fechaActual = new Date()
+    fechaActual.setFullYear(fechaActual.getFullYear());
+    let fecha = fechaActual.toISOString().split('T')[0];
+
+    let fechaInicio = ""
 
     switch (buttonText) {
       case "1S":
-        aux = this.restarDiasHabiles(this.fechaActual, 7);
-        this.fechaInicial = aux;
+
+        fechaInicio = this.calcularFechas(7, 0, 0);
         this.pasoDias = "1"; // trae todos los datos de una semana
-        console.log("fechaInicial", this.fechaInicial);
-        console.log("Seleciono 1S");
+        console.log("Seleciono 1S", fechaInicio);
+        this.esIdMensual();
+        console.log(this.esIdMensual());
         break;
 
       case "1M":
-        aux = this.restarDiasHabiles(this.fechaActual, 30);
-        this.fechaInicial = aux;
+        fechaInicio = this.calcularFechas(0, 1, 0);
         this.pasoDias = "1"; // trae todos los datos de un mes
-        console.log("fechaInicial", this.fechaInicial);
         console.log("Seleciono 1M");
         break;
 
       case "3M":
-        aux = this.restarDiasHabiles(this.fechaActual, 90);
-        this.fechaInicial = aux;
+        fechaInicio = this.calcularFechas(0, 3, 0);
         this.pasoDias = "1";
-        console.log("fechaInicial", this.fechaInicial);
-        console.log("Seleciono 3M");
+        console.log("Seleciono 3M", fechaInicio);
         break;
 
       case "6M":
-        aux = this.restarDiasHabiles(this.fechaActual, 180);
-        this.fechaInicial = aux;
-        if (mensuales.includes(this.IdActual)) {
+        fechaInicio = this.calcularFechas(0, 6, 0);
+        if (this.esIdMensual()) {
           this.pasoDias = "1"
         } else {
           this.pasoDias = "2";
         }
-        console.log("fechaInicial", this.fechaInicial);
+
         console.log("Seleciono 6M");
         break;
 
       case "1A":
-        aux = this.restarDiasHabiles(this.fechaActual, 365);
-        this.fechaInicial = aux;
-        if (mensuales.includes(this.IdActual)) {
+        fechaInicio = this.calcularFechas(0, 0, 1);
+        if (this.esIdMensual()) {
           this.pasoDias = "1"
         } else {
           this.pasoDias = "4";
         }
-        console.log("fechaInicial", this.fechaInicial);
+
         console.log("Seleciono 1A");
         break;
 
       case "2A":
-        aux = this.restarDiasHabiles(this.fechaActual, 730);
-        this.fechaInicial = aux;
-        if (mensuales.includes(this.IdActual)) {
+        fechaInicio = this.calcularFechas(0, 0, 2);
+        if (this.esIdMensual()) {
           this.pasoDias = "2"
         } else {
           this.pasoDias = "8";
         }
-        console.log("fechaInicial", this.fechaInicial);
+
         console.log("Seleciono 2A");
         break;
 
       case "5A":
-        aux = this.restarDiasHabiles(this.fechaActual, 1825);
-        this.fechaInicial = aux;
-        if (mensuales.includes(this.IdActual)) {
+        fechaInicio = this.calcularFechas(0, 0, 5);
+        if (this.esIdMensual()) {
           this.pasoDias = "2"
         } else {
           this.pasoDias = "20";
         }
-        console.log("fechaInicial", this.fechaInicial);
+
         console.log("Seleciono 5A");
         break;
 
       case "10A":
-        aux = this.restarDiasHabiles(this.fechaActual, 3650);
-        this.fechaInicial = aux;
-        if (mensuales.includes(this.IdActual)) {
+        fechaInicio = this.calcularFechas(0, 0, 10);
+        if (this.esIdMensual()) {
           this.pasoDias = "5"
         } else {
           this.pasoDias = "40";
         }
-        console.log("fechaInicial", this.fechaInicial);
+
         console.log("Seleciono 10A");
         break;
 
@@ -238,93 +215,79 @@ export class VariableComponent {
         console.warn('Botón no reconocido:', buttonText);
         break;
     }
-
-    this.llenarData();
+    this.fechaInicial = fechaInicio;
+    this.llenarData(fechaInicio);
   }
 
 
-  setFechaSeleccionada(periodo: string, event: Event): void {
+  setFechaSeleccionada(periodo: string, event: Event): void //se usa desde el html
+  {
     this.botonActivo = periodo;
-    this.fechaSeleccionada(event); // Llamamos a la función existente
+    this.fechaSeleccionada(event);
   }
 
-  limpiarSeleccion(): void {
-
-    this.botonDesactivado = false; // Vuelve a habilitar el botón
-    console.log("Selección limpiada");
+  limpiarSeleccion(): void //se usa desde el html
+  {
+    this.botonCERDesactivado = false; // Vuelve a habilitar el botón
     this.botonActivo = null;
-    console.log("Selección limpiada");
-    this.IdActual = this.apiService.itemSeleccionado.idVariable;
-    this.fechaInicial = "2024-02-05";
+    this.itemActual.idVariable = this.apiService.itemSeleccionado.idVariable;
     this.pasoDias = "4";
-    this.llenarData();
+    this.llenarData(this.calcularFechas(0, 0, 1));
+    console.log("Selección limpiada");
   }
 
+  calcularFechas(dia: number, mes: number, anio: number) {
+    //si se quiere obtener la fecha actual, los tres parametros van en cero. Sino, se restan los dias/mes/año que queiran
+    const fecha = new Date();
+    fecha.setDate(fecha.getDate() - dia);
+    fecha.setMonth(fecha.getMonth() - mes);
+    fecha.setFullYear(fecha.getFullYear() - anio);
 
-  llenarData() {
-    const mensuales = [27, 29, 104]
-    if (mensuales.includes(this.IdActual)) {
-      this.pasoDias = "1"
-    } else {
-      this.pasoDias = this.pasoDias;
-    }
+    return fecha.toISOString().split('T')[0];
+  }
 
-    // Vaciar los arrays para evitar duplicaciones si llamas varias veces a llenarData()
-    // this.valor = [];
-    // this.fecha = [];
+  llenarData(fechaInicio: string) {
 
-    const fechaActual = new Date(); // Obtiene la fecha actual
-    const fechaInicio = new Date(fechaActual);
-    fechaInicio.setFullYear(fechaInicio.getFullYear() - 1); // Resta 2 años
+    var dataGrafico: any = {};
+    this.apiService.getDataVariable(this.itemActual.idVariable, "/datosvariable", fechaInicio, this.pasoDias).subscribe(data => {
+      dataGrafico = data;
 
-    // Convierte la fecha a formato YYYY-MM-DD
-    this.fechaInicial = fechaInicio.toISOString().split('T')[0];
+      var valores = [];
+      var fechas = [];
 
-    this.apiService.getDataVariable(this.IdActual, this.url, this.fechaInicial, this.pasoDias).subscribe(data => {
-      this.data = data;
-      console.log("fechaInial en llenar data", this.fechaInicial);
-
-      // Vaciar los arrays para evitar duplicaciones si llamas varias veces a llenarData()
-      var valor = [];
-      var fecha = [];
-
-      for (const item of this.data) {
-        valor.push(item.valor);
-        fecha.push(item.fecha);
+      for (const item of dataGrafico) {
+        valores.push(item.valor);
+        fechas.push(item.fecha);
       }
 
-      const fechas = fecha;
       const ultimaFecha = fechas[fechas.length - 1];
-      //console.log(ultimaFecha); // Salida: 5
-      localStorage.setItem('fechaAct', ultimaFecha);  // Guardar en localStorage
-
-      // Una vez que los datos se han llenado, se crea el gráfico
-      this.hacerGrafico(valor, fecha);
+      localStorage.setItem('fechaAct', ultimaFecha);
+      this.hacerGrafico(valores, fechas);
     });
   }
 
 
-  llenarDataCER() {
-    this.apiService.getDataVariableCER(this.IdActual, this.url1, this.fechaInicial, this.pasoDias).subscribe(data => {
-      this.data = data;
-      console.log("fechaInial en llenar data", this.fechaInicial);
+  llenarDataCER(fechaInicial: string) {
+    var dataGrafico: any = {};
+    this.apiService.getDataVariableCER(this.itemActual.idVariable, "/ajusteCER", fechaInicial, this.pasoDias).subscribe(data => {
+      dataGrafico = data;
+      var valores = [];
+      var fechas = [];
 
-      // Vaciar los arrays para evitar duplicaciones si llamas varias veces a llenarData()
-      var valor = [];
-      var fecha = [];
-
-      for (const item of this.data) {
-        valor.push(item.valor);
-        fecha.push(item.fecha);
+      for (const item of dataGrafico) {
+        valores.push(item.valor);
+        fechas.push(item.fecha);
       }
 
-      // Una vez que los datos se han llenado, se crea el gráfico
-      this.hacerGrafico(valor, fecha);
+      this.hacerGrafico(valores, fechas);
     });
   }
 
-  hacerGrafico(valor:number[], fecha:string[]) {
+  hacerGrafico(valores: number[], fecha: string[]) {
     // Destruye el gráfico anterior si ya existe
+    localStorage.setItem('graficoFechas', JSON.stringify(fecha));
+    localStorage.setItem('graficoValores', JSON.stringify(valores));
+
     if (this.chart) {
       this.chart.destroy();
     }
@@ -333,7 +296,7 @@ export class VariableComponent {
       labels: fecha,
       datasets: [{
         label: '',
-        data: valor,
+        data: valores,
         fill: false,
         borderColor: 'red',
         tension: 0.1
@@ -375,7 +338,7 @@ export class VariableComponent {
             },
             title: {
               display: true,
-              text: this.unidad
+              text: this.itemActual.unidad
             }
           }
         },
@@ -392,60 +355,38 @@ export class VariableComponent {
   }
 
 
-  restarDiasHabiles(fechaStr: string, diasHabiles: number): string {
-    // Convertir la cadena a objeto Date
-    let fecha = new Date(fechaStr);
-    let diasRestantes = diasHabiles;
+  public async cargarVariablesSoportadas(): Promise<number[]> {
+    let listaVariables: number[] = [];
 
-    while (diasRestantes > 0) {
-      // Restar un día a la fecha
-      fecha.setDate(fecha.getDate() - 1);
-
-      // Comprobar si el día resultante no es sábado (6) ni domingo (0)
-      const diaSemana = fecha.getDay();
-
-      if (diaSemana !== 0 && diaSemana !== 6) {
-        diasRestantes--;
-      }
-    }
-
-    // Convertir la fecha de nuevo a string en formato YYYY-MM-DD
-    const anio = fecha.getFullYear();
-    const mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Los meses son 0-indexados
-    const dia = String(fecha.getDate()).padStart(2, '0');
-    return `${anio}-${mes}-${dia}`;
+    await new Promise<void>((resolve) => {
+      this.apiService.getVarSoportadas().subscribe(
+        (data: string[]) => {
+          listaVariables = data.map(item => Number(item));
+          resolve();
+        }
+      );
+    });
+    return listaVariables;
   }
 
 
-  public cargarVariablesSoportadas(): void {
-    this.apiService.getVarSoportadas().subscribe(
-      (data: string[]) => {
-        // Convertir las cadenas a números
-        this.listaVariables = data.map(item => Number(item));
-
-        console.log('Lista de variables convertida a números:', this.listaVariables);
-      }
-    );
-  }
-
-
-  ajusteCER() {
+  async ajusteCER() {
     const btn = document.getElementById("ajuste-cer-btn"); // Referencia al botón
-    this.botonDesactivado = true; // Deshabilita el botón
+    this.botonCERDesactivado = true; // Deshabilita el botón
     console.log("Ajuste CER ejecutado");
 
-    if (this.listaVariables.includes(this.IdActual)) {
-      this.url1 = "/ajusteCER";
-      this.llenarDataCER();
-      // this.hacerGrafico();
+    let variablesSoportadas: number[]
+    variablesSoportadas = await this.cargarVariablesSoportadas();
+    let id = this.itemActual.idVariable;
+
+    if (variablesSoportadas.includes(id)) {
+      this.llenarDataCER(this.fechaInicial);
 
       // Cambiar el estado visual del botón a presionado
       if (btn) {
-        // Si el botón no tiene la clase 'presionado', la agregamos
         btn.classList.add("presionado");
       }
     } else {
-      // Mostrar la alerta personalizada si no se ajusta por CER
       this.showAlert('La variable no se ajusta por CER');
     }
   }
@@ -494,20 +435,17 @@ export class VariableComponent {
     document.body.appendChild(alertContainer);
   }
 
-
   openDialog() {
     this.dialog.open(DialogoComponent);
   }
 
-  visibilidadCER() {
+  async visibilidadCER() {
+    let variablesSoportadas = await this.cargarVariablesSoportadas();
     const varCER: number[] = [4, 5, 102, 103, 104, 105]
-
-    if (this.listaVariables.includes(this.IdActual)) {
-      console.log(this.listaVariables)
-      console.log("listaVariables")
-      this.visibilidadBoton = true;
+    let id = this.itemActual.idVariable;
+    if (variablesSoportadas.includes(id)) {
+      this.visibilidadBotonCER = true;
     }
-    console.log("VISIBILIDAD BOTON", this.visibilidadBoton);
   }
 
 }

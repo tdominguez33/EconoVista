@@ -9,16 +9,10 @@ import { MenuItem } from '../models/menuItem.model';
 
 export class ApiService {
 
-
   private urlApiMenu = 'http://localhost:8010/proxy'
   //el proxy usa el puerto 8010, la api esta en el puerto 5000
   itemSeleccionado: any;
-
   constructor(private http: HttpClient) { }
-
-  // public getDataVariable(): Observable<any> {
-  //   return this.http.get<any>(this.urlApiVar)
-  // }
 
   public getAllVariables(): Observable<any> {
     return this.http.get<any>(this.urlApiMenu + '/principalesvariables')

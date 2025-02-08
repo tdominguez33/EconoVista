@@ -1,42 +1,43 @@
 /*DESCRIPCIÓN*/
 .contenedorPrincipal {
-    margin-top: 30px; 
+    margin-top: 30px;
 }
 
 /* Encabezado con nombre y valor */
 .header-contenedor {
     display: flex;
-    justify-content: space-between; 
-    align-items: center; 
-    margin-bottom: 10px; 
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
 /* Estilo para el nombre de la variable */
 .variable-nombre {
-    font-size: 1.3rem; 
-    font-weight: bold; 
-    color: #f39c12; 
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #f39c12;
     text-transform: uppercase;
 }
 
 /* Estilo para el valor */
 .valor-variable {
-    font-size: 1.3rem; 
-    font-weight: bold; 
-    color: #f39c12; 
-    text-align: left; 
-    margin-right: 50px; /*agrega espacio desde el borde izquierdo */
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #f39c12;
+    text-align: left;
+    margin-right: 50px;
+    /*agrega espacio desde el borde izquierdo */
 }
 
 
 /* Fecha de actualización */
 .fecha-actualizacion {
-    font-family: 'Roboto', sans-serif; 
-    color: #b0b0b0; 
-    font-size: 1.2rem; 
-    font-weight: 400; 
-    margin-top: -10px; 
-    margin-bottom: 12px; 
+    font-family: 'Roboto', sans-serif;
+    color: #b0b0b0;
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-top: -10px;
+    margin-bottom: 12px;
     text-align: center;
     font-weight: bold;
 }
@@ -46,39 +47,40 @@
     font-size: 1rem;
     font-weight: normal;
     color: #fff;
-    
+
 }
 
 /*FILTRO*/
 .contenedorFiltro {
-    background-color: #1a1a1a; 
-    border-radius: 25px; 
-    width: max-content; 
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); 
+    background-color: #1a1a1a;
+    border-radius: 25px;
+    width: max-content;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
     display: flex;
-    justify-content: center; 
-    margin: 5px 0; 
+    justify-content: center;
+    margin: 5px 0;
     padding: 5px;
     position: relative;
-    justify-content: flex-start; 
+    justify-content: flex-start;
     align-items: center;
-    width: fit-content; 
-    margin: 0 auto; 
-    gap: 10px; 
-    margin-top: 30px; /* Separación*/
+    width: fit-content;
+    margin: 0 auto;
+    gap: 10px;
+    margin-top: 30px;
+    /* Separación*/
 }
 
 
 .selectorFecha {
     background-color: transparent;
-    color: #bbb; 
-    border: none; 
-    border-radius: 20px; 
+    color: #bbb;
+    border: none;
+    border-radius: 20px;
     padding: 8px 15px;
-    font-size: 0.9rem; 
-    font-weight: bold; 
-    cursor: pointer; 
-    transition: all 0.3s ease; 
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
     text-align: center;
 }
 
@@ -90,43 +92,38 @@
 }
 
 .selectorFecha.active {
-    background-color:#008c68; 
+    background-color: #008c68;
     color: #fff;
 }
 
 .selectorFecha:focus {
-    outline: none; 
+    outline: none;
 }
 
 .limpiar-seleccion {
-    background-color: transparent; 
-    color: #bbb; 
-    border: none; 
-    border-radius: 20px; 
-    padding: 8px 15px; 
-    font-size: 0.9rem; 
+    background-color: transparent;
+    color: #bbb;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-size: 0.9rem;
     font-weight: bold;
-    cursor: pointer; 
-    transition: all 0.3s ease; 
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .limpiar-seleccion:hover {
-    color: #fff; 
+    color: #fff;
     background-color: rgba(255, 255, 255, 0.1);
 }
 
 /*ajuste CER*/
 
-/*
-#ajuste-cer-btn.presionado {
-    background-color: #008c68 !important;  
-    color: #fff !important; 
-    border-color: #008c68 !important;  
-    cursor: not-allowed;  
-  }
-  
-  /* Estilo para el botón Ajuste CER cuando está en estado normal */
-  #ajuste-cer-btn {
+
+
+
+/* Estilo para el botón Ajuste CER cuando está en estado normal */
+#ajuste-cer-btn {
     background-color: #00c896;
     color: #ffffff;
     border: 2px solid #00c896;
@@ -142,61 +139,71 @@
     transition: background-color 0.3s ease, color 0.3s ease;
     display: inline-block;
     height: 40px;
-  }
-  
-  #ajuste-cer-btn:hover {
+}
+
+#ajuste-cer-btn:hover {
     background-color: transparent;
     color: #00c896;
-  }
-  
-  /*#ajuste-cer-btn:active {
+}
+
+#ajuste-cer-btn.presionado {
+    background-color: #01694f69 !important;
+    color: #ffffff67 !important;
+    border-color: #01694f69 !important;
+    cursor: not-allowed;
+}
+
+#ajuste-cer-btn:active {
     background-color: #008c68;
     color: #fff;
-  }
-  
-  #ajuste-cer-btn:focus {
-    outline: none;
-  }*/
-  
+}
 
-  button.ajuste-cer-btn {
-    cursor: pointer; /* Cursor normal cuando el botón está habilitado */
-  }
-  
-  button.ajuste-cer-btn[disabled] {
-    cursor: not-allowed; /* Cursor prohibido cuando está deshabilitado */
-  }
+#ajuste-cer-btn:focus {
+    outline: none;
+}
+
+
+button.ajuste-cer-btn {
+    cursor: pointer;
+    /* Cursor normal cuando el botón está habilitado */
+}
+
+button.ajuste-cer-btn[disabled] {
+    cursor: not-allowed;
+    /* Cursor prohibido cuando está deshabilitado */
+}
 
 canvas {
-    margin-top: 30px; /* Separación adicional entre el botón y el gráfico */
+    margin-top: 30px;
+    /* Separación adicional entre el botón y el gráfico */
 }
 
 .contenedor p {
-    text-align: center; 
+    text-align: center;
     color: #fff;
 }
 
 canvas {
     max-height: 60vh;
     max-width: 95vw;
-  }
+}
 
 
 /*botón VOLVER */
 .example-button-row {
     display: flex;
-    justify-content: center; 
-    align-items: center; 
-    margin-top: 20px; 
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
 }
 
 .volver-btn {
     display: flex;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
     background-color: #00c896;
     color: #000;
-    padding: 10px 40px; 
+    padding: 10px 40px;
     text-transform: uppercase;
     font-weight: bold;
     text-align: center;
@@ -204,7 +211,7 @@ canvas {
     text-decoration: none;
     transition: background-color 0.3s ease, color 0.3s ease;
     border: 2px solid #00c896;
-    height: 50px; 
+    height: 50px;
 }
 
 .volver-btn:hover {
@@ -221,62 +228,67 @@ canvas {
     outline: none;
 }
 
-.cont{
+.cont {
     padding: 0.5%;
     display: flex;
     justify-content: space-between;
-    
+
 }
 
-.cont1{
+.cont1 {
     padding: 1%;
 }
 
-h1, h4 {
-    color:#fff;
+h1,
+h4 {
+    color: #fff;
 }
 
 /* Botón ? */
 
 .info-button-container {
-    display: inline-block; 
-    margin-left: 10px; 
-  }
-  
-  .info-icon {
-    background-color: transparent; 
-    border: none; 
-    border-radius: 50%; 
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.info-icon {
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
     width: 42px;
-    height: 42px; 
+    height: 42px;
     display: flex;
     justify-content: center;
-    align-items: center; 
-    color: #fff; 
-    font-size: 1.2rem; 
-    cursor: pointer; 
-    transition: background-color 0.3s ease; 
-  }
-  
-  .info-icon:hover {
-    background-color: rgba(128, 128, 128, 0.7); 
-  }
-  
-  .fecha-fuente {
-    text-align: right;  
-    font-size: 1rem;  
-    color: #fff;   
+    align-items: center;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.info-icon:hover {
+    background-color: rgba(128, 128, 128, 0.7);
+}
+
+.fecha-fuente {
+    text-align: right;
+    font-size: 1rem;
+    color: #fff;
     margin-right: 30px;
     margin-left: 30px;
- 
+
     a {
-        color: #00c896; /* Color enlace*/
-        text-decoration: none; /* Elimina el subrayado del enlace */
+        color: #00c896;
+        /* Color enlace*/
+        text-decoration: none;
+        /* Elimina el subrayado del enlace */
     }
-    
+
     a:hover {
-        color: #007a60; /* Color más oscuro para el hover */
-        text-decoration: underline; /* Agrega subrayado al pasar el cursor */
+        color: #007a60;
+        /* Color más oscuro para el hover */
+        text-decoration: underline;
+        /* Agrega subrayado al pasar el cursor */
     }
-    
+
 }

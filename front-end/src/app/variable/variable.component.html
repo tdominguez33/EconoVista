@@ -2,49 +2,41 @@
 
 <div class="contenedorPrincipal" class="cont1">
     <div class="header-contenedor">
-        <div *ngIf="nombreLargo">
-            <h1 class="variable-nombre">{{nombreLargo | uppercase}}</h1>
+        <div *ngIf="itemActual.nombreLargo">
+            <h1 class="variable-nombre">{{itemActual.nombreLargo | uppercase}}</h1>
         </div>
-        <div *ngIf="valorActual">
-            <h1 class="valor-variable">Valor: {{unidad}}  {{valorActual}}</h1>
+        <div *ngIf="itemActual.valor">
+            <h1 class="valor-variable">Valor: {{itemActual.unidad}}  {{itemActual.valor}}</h1>
         </div>
     </div>
-    <div *ngIf="fechaHeader" class="cont">
-        <h4 class="fecha-actualizacion">Última actualización: {{fechaHeader}}</h4>
+    <div *ngIf="itemActual.fecha" class="cont">
+        <h4 class="fecha-actualizacion">Última actualización: {{itemActual.fecha}}</h4>
     </div>
-    <div *ngIf="descripcion" class="cont">
-        <h4 class="descripcion-variable">{{descripcion}}</h4>
+    <div *ngIf="itemActual.descripcion" class="cont">
+        <h4 class="descripcion-variable">{{itemActual.descripcion}}</h4>
         
     </div>
 
-
-    <!--<div class="contenedorFiltro">
-        <button mat-button class="selectorFecha" (click)="fechaSeleccionada($event)">1S</button>
-        <button mat-button class="selectorFecha" (click)="fechaSeleccionada($event)">1M</button>
-        <button mat-button class="selectorFecha" (click)="fechaSeleccionada($event)">3M</button>
-        <button mat-button class="selectorFecha" (click)="fechaSeleccionada($event)">6M</button>
-        <button mat-button class="selectorFecha" (click)="fechaSeleccionada($event)">1A</button>
-        <button mat-button class="selectorFecha" (click)="fechaSeleccionada($event)">2A</button>
-        <button mat-button class="selectorFecha" (click)="fechaSeleccionada($event)">5A</button>
-        <button mat-button class="selectorFecha" (click)="fechaSeleccionada($event)">10A</button>
-        
-    </div>-->
     <div class="contenedorFiltro">
-        <button mat-button class="selectorFecha" 
+        <button mat-button class="selectorFecha"         
+                [disabled]="esIdMensual()"
                 [class.active]="botonActivo === '1S'" 
                 (click)="setFechaSeleccionada('1S', $event)">1S</button>
       
         <button mat-button class="selectorFecha" 
                 [class.active]="botonActivo === '1M'" 
-                (click)="setFechaSeleccionada('1M', $event)">1M</button>
+                (click)="setFechaSeleccionada('1M', $event)"
+                [disabled]="esIdMensual()">1M</button>
       
         <button mat-button class="selectorFecha" 
                 [class.active]="botonActivo === '3M'" 
-                (click)="setFechaSeleccionada('3M', $event)">3M</button>
+                (click)="setFechaSeleccionada('3M', $event)"
+                [disabled]="esIdMensual()">3M</button>
       
         <button mat-button class="selectorFecha" 
                 [class.active]="botonActivo === '6M'" 
-                (click)="setFechaSeleccionada('6M', $event)">6M</button>
+                (click)="setFechaSeleccionada('6M', $event)"
+                [disabled]="esIdMensual()">6M</button>
       
         <button mat-button class="selectorFecha" 
                 [class.active]="botonActivo === '1A'" 
@@ -72,20 +64,15 @@
 
       </div>
 
-      <!--<button *ngIf="visibilidadBoton" id="ajuste-cer-btn" mat-button class="ajuste-cer-btn" (click)="ajusteCER()">Ajuste CER</button>-->
-      <button *ngIf="visibilidadBoton" id="ajuste-cer-btn" 
+      
+      <button *ngIf="visibilidadBotonCER" id="ajuste-cer-btn" 
         mat-button 
         class="ajuste-cer-btn" 
-        [disabled]="botonDesactivado" 
+        [disabled]="botonCERDesactivado" 
         (click)="ajusteCER()">Ajuste CER</button>
 
 
-
-
     <canvas id="chart">{{chart}}</canvas>
-
-    <!-- <h4  class="fecha-fuente">Fuente: {{itemActual?.fuente}}</h4> -->
-    <!-- <h4 class="fecha-fuente">Fuente: {{ itemActual ? itemActual.fuente : 'Cargando...' }}</h4> -->
     <h4 class="fecha-fuente">
         Fuente: 
         <ng-container *ngIf="itemActual?.fuente === 'BCRA'; else normalFuente">
@@ -94,9 +81,6 @@
         <ng-template #normalFuente>{{ itemActual?.fuente || 'Cargando...' }}</ng-template>
       </h4>
       
-
-
-
     <section>
         <div class="example-button-row">
             <a mat-button routerLink="/" class="volver-btn"> Volver </a>
