@@ -26,7 +26,8 @@ export class MenuComponent implements OnInit {
 
       // Para cada variable obtenida, hacer una solicitud adicional para sus detalles
       this.data.forEach((item: any, index: number) => {
-        this.apiService.getDataVariable(item.idVariable, '/datosvariable', '2023-08-05', '1').subscribe(variableData => {
+        //por defecto, se traen los datos del ultimo año de cada variable
+        this.apiService.getDataVariable(item.idVariable, '/datosvariable', '2024-02-05', '1').subscribe(variableData => {
           this.valor[index] = [];
           this.fecha[index] = [];
 
