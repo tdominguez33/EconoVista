@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>span_Limpiar_Att</name>
+   <tag></tag>
+   <elementGuidId>fefea95d-d310-434d-a795-14bd60ace4c9</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>(.//*[normalize-space(text()) and normalize-space(.)='Tipo de cambio mayorista según la comunicación A3500 del BCRA.'])[1]/following::span[34]</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>button.selectorFecha.limpiar-seleccion.mdc-button.mat-mdc-button.mat-unthemed.mat-mdc-button-base.cdk-focused.cdk-mouse-focused > span.mdc-button__label</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>BASIC</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:role=button[name=&quot;Limpiar&quot;i]</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>span</value>
+      <webElementGuid>4823b4c8-ac78-4662-8c68-7aa73766abc8</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>mdc-button__label</value>
+      <webElementGuid>d1eef931-96e7-4def-85f7-eb6de815d81b</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Limpiar</value>
+      <webElementGuid>c84e5104-cfa6-4074-b48f-fb5ef0b88a0c</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>/html[1]/body[@class=&quot;mat-typography&quot;]/app-root[1]/div[@class=&quot;contenedor&quot;]/app-variable[1]/div[@class=&quot;cont1&quot;]/div[@class=&quot;contenedorFiltro&quot;]/button[@class=&quot;selectorFecha limpiar-seleccion mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base cdk-focused cdk-mouse-focused&quot;]/span[@class=&quot;mdc-button__label&quot;]</value>
+      <webElementGuid>58df9d9d-22f5-457f-b9e7-9591c2ab7232</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Tipo de cambio mayorista según la comunicación A3500 del BCRA.'])[1]/following::span[34]</value>
+      <webElementGuid>aa6d0cd2-820e-4b43-9e67-d11b5fec10c6</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Valor: $ 1002.75'])[1]/following::span[34]</value>
+      <webElementGuid>3bb3a38d-a84b-4136-b767-2eab9a580d8e</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='?'])[1]/preceding::span[5]</value>
+      <webElementGuid>2bde5cb6-247c-4305-80ad-b8e0796dedf0</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Ajuste CER'])[1]/preceding::span[9]</value>
+      <webElementGuid>3401e468-b12c-4a68-aa56-6bd8dc869bcb</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='Limpiar']/parent::*</value>
+      <webElementGuid>3f6a06aa-7d75-48d9-a7e4-d5405bb408b9</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//button[9]/span[2]</value>
+      <webElementGuid>d1300406-980d-4a78-b4ff-3c7aeb3d59d4</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//span[(text() = 'Limpiar' or . = 'Limpiar')]</value>
+      <webElementGuid>09dd3216-c856-45c1-8fec-ef1d4b7dd6bc</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

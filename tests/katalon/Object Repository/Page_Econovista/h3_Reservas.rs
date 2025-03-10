@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>h3_Reservas</name>
+   <tag></tag>
+   <elementGuidId>5922e89d-92ca-40ee-93cf-88004d98bafb</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value>h3</value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>(.//*[normalize-space(text()) and normalize-space(.)='Principales Variables BCRA'])[1]/following::h3[1]</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:role=link[name=&quot;Reservas M USD 30023 A3500 $ 1002.75 Tasa % 35 Inflación Mensual % 2.7 Inflación Esperada - REM % 35 CER $ 497.6207&quot;i]</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>h3</value>
+      <webElementGuid>d407c308-e19a-4ac8-a813-5fba39b0a4e9</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Reservas</value>
+      <webElementGuid>f1f2fd29-9898-4e97-b288-5740b541006e</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>/html[1]/body[@class=&quot;mat-typography&quot;]/app-root[1]/div[@class=&quot;contenedor&quot;]/app-menu[1]/div[2]/a[@class=&quot;contenedor&quot;]/div[@class=&quot;variable-menu&quot;]/h3[1]</value>
+      <webElementGuid>bac5b0d2-082c-4d00-850f-c21098698cbe</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Principales Variables BCRA'])[1]/following::h3[1]</value>
+      <webElementGuid>2e38691f-dc1b-438a-a203-16531ce5bd0f</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Otras Variables'])[1]/following::h3[1]</value>
+      <webElementGuid>c57219a3-f06f-449b-950a-d651293c50ba</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='A3500'])[1]/preceding::h3[1]</value>
+      <webElementGuid>423a2d43-0a1b-4fee-9190-a93a99e5c7b3</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Tasa'])[1]/preceding::h3[2]</value>
+      <webElementGuid>1ac125ef-30f1-44de-84b0-398f9b0a83c5</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='Reservas']/parent::*</value>
+      <webElementGuid>0bf35a49-5fcc-41ab-a3c1-ab084113c234</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//h3</value>
+      <webElementGuid>f70a18b4-20e6-4dd6-b6f1-68eb9fa72e9f</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//h3[(text() = 'Reservas' or . = 'Reservas')]</value>
+      <webElementGuid>4b0fab3a-e948-4d92-914c-233cb5c3d7ef</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

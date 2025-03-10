@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>div_Inflacin Esperada - REM20.8</name>
+   <tag></tag>
+   <elementGuidId>6cb4051a-d004-42ba-89ea-8291102d4197</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>(.//*[normalize-space(text()) and normalize-space(.)='Principales Variables BCRA'])[1]/following::div[2]</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>div.variable-menu</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>dad4cf7b-9d05-4eb1-bfde-5564075eef43</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>variable-menu</value>
+      <webElementGuid>afeda04e-8918-489c-a048-09b10c70075b</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Inflación Esperada - REM20.8 %</value>
+      <webElementGuid>b4da01d3-3f60-4b91-ae9d-27cd1161731f</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>/html[1]/body[@class=&quot;mat-typography&quot;]/app-root[1]/div[@class=&quot;contenedor&quot;]/app-menu[1]/div[2]/a[@class=&quot;contenedor&quot;]/div[@class=&quot;variable-menu&quot;]</value>
+      <webElementGuid>d38f33b2-768b-46e4-acf2-86ab452a4447</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Principales Variables BCRA'])[1]/following::div[2]</value>
+      <webElementGuid>430278dd-b107-4209-b34c-fff8506dca96</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Otras Variables'])[1]/following::div[2]</value>
+      <webElementGuid>b3680e3f-f22b-4051-b357-8030553ed89d</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Reservas'])[1]/preceding::div[1]</value>
+      <webElementGuid>8c5074c6-c390-4e46-bb5f-4cf5decd60fc</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//a/div</value>
+      <webElementGuid>8025fcdb-e9e1-4ee8-a9b7-ad90cc3855ad</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'Inflación Esperada - REM20.8 %' or . = 'Inflación Esperada - REM20.8 %')]</value>
+      <webElementGuid>bc9008d9-1ecb-41b7-8d17-d2621fe1b56d</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

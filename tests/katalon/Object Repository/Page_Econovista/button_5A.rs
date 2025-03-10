@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>button_5A</name>
+   <tag></tag>
+   <elementGuidId>3b4d251d-d143-4692-912b-a044e2ded539</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>(.//*[normalize-space(text()) and normalize-space(.)='Última actualización: 2025-03-06'])[1]/following::button[7]</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>button.selectorFecha.mdc-button.mat-mdc-button.mat-unthemed.mat-mdc-button-base.cdk-focused.cdk-keyboard-focused</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>button</value>
+      <webElementGuid>bdda5628-7e81-452d-8345-ed2c6e337c46</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>selectorFecha mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base cdk-focused cdk-keyboard-focused</value>
+      <webElementGuid>49e4c884-8887-4ad0-a191-c1b5a82b0f85</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>mat-ripple-loader-class-name</name>
+      <type>Main</type>
+      <value>mat-mdc-button-ripple</value>
+      <webElementGuid>1e62e89f-bfd8-43cf-ad9e-3feb883d2ca4</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>5A</value>
+      <webElementGuid>1d949846-bdac-4bc8-b889-1c89fd42daa4</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>/html[1]/body[@class=&quot;mat-typography&quot;]/app-root[1]/div[@class=&quot;contenedor&quot;]/app-variable[1]/div[@class=&quot;cont1&quot;]/div[@class=&quot;contenedorFiltro&quot;]/button[@class=&quot;selectorFecha mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base cdk-focused cdk-keyboard-focused&quot;]</value>
+      <webElementGuid>0da15c37-ec23-4917-9cb7-3bc9fffc50b5</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Última actualización: 2025-03-06'])[1]/following::button[7]</value>
+      <webElementGuid>a6d51fed-83b6-485b-bee2-6670f3b6fba0</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Valor: $ 1064.63'])[1]/following::button[7]</value>
+      <webElementGuid>da9cce72-83a1-4caa-915b-82e503e54aa9</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Limpiar'])[1]/preceding::button[2]</value>
+      <webElementGuid>ad219f97-d27d-46f2-aeed-e467d3168bfe</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='?'])[1]/preceding::button[3]</value>
+      <webElementGuid>47ecb62d-f12c-4266-8e69-832a5e66e9cf</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//button[7]</value>
+      <webElementGuid>050e8283-2ebd-4626-8f7b-1356eab6ab2e</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//button[(text() = '5A' or . = '5A')]</value>
+      <webElementGuid>bb328dbd-11d0-4d7b-8259-b934738d56b0</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

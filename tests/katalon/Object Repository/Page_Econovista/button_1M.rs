@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>button_1M</name>
+   <tag></tag>
+   <elementGuidId>6c9d0771-4589-4b3e-89bf-637b1f0bdd83</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>(.//*[normalize-space(text()) and normalize-space(.)='Depósitos de moneda extranjera en control del BCRA.'])[1]/following::button[2]</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>button.selectorFecha.mdc-button.mat-mdc-button.mat-unthemed.mat-mdc-button-base.cdk-focused.cdk-keyboard-focused</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>button</value>
+      <webElementGuid>ef4ee8d1-2440-4a2e-aed2-49412318f0ec</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>selectorFecha mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base cdk-focused cdk-keyboard-focused</value>
+      <webElementGuid>923a6829-59f6-4df5-8a6c-b4b29be46123</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>mat-ripple-loader-class-name</name>
+      <type>Main</type>
+      <value>mat-mdc-button-ripple</value>
+      <webElementGuid>a9dea7f8-15d7-44dc-97d9-8b49efb83daf</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>ng-reflect-disabled</name>
+      <type>Main</type>
+      <value>false</value>
+      <webElementGuid>0a767ee8-f986-47c6-a675-98c8ca72b587</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>1M</value>
+      <webElementGuid>842c1ed1-2831-4c32-8c02-c317201b997a</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>/html[1]/body[@class=&quot;mat-typography&quot;]/app-root[1]/div[@class=&quot;contenedor&quot;]/app-variable[1]/div[@class=&quot;cont1&quot;]/div[@class=&quot;contenedorFiltro&quot;]/button[@class=&quot;selectorFecha mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base cdk-focused cdk-keyboard-focused&quot;]</value>
+      <webElementGuid>76302518-59ff-45c7-afab-904a8ad62ed3</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Depósitos de moneda extranjera en control del BCRA.'])[1]/following::button[2]</value>
+      <webElementGuid>b8c8504f-1521-490e-9092-9133c3c8e337</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Última actualización: 2025-02-28'])[1]/following::button[2]</value>
+      <webElementGuid>6e39f3a9-473b-4708-90e2-c7d7aabf8ae9</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Limpiar'])[1]/preceding::button[7]</value>
+      <webElementGuid>06a019bb-2b0f-40b2-825f-613655575fca</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='?'])[1]/preceding::button[8]</value>
+      <webElementGuid>108cb4cc-501d-4dec-acbb-b63a4d049d96</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//button[2]</value>
+      <webElementGuid>d0b5dec5-3c67-451c-8e4a-1af6c963cdb6</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//button[(text() = '1M' or . = '1M')]</value>
+      <webElementGuid>47ec7af8-3a48-4238-ba05-0592e17baa96</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

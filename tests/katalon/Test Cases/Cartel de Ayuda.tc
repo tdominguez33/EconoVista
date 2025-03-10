@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>Se prueba que el boton de ayuda funcione y que la informacion se visualice correctamente</description>
+   <name>Cartel de Ayuda</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>8e4102c6-7ba9-4915-8050-1b5d17d533b6</testCaseGuid>
+</TestCaseEntity>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>Se prueba que el boton de Ajuste CER funcione y se muestre el grafico</description>
+   <name>Ajuste CER (Variable Válida)</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>8f20574a-a097-4858-9a41-185b59e788d3</testCaseGuid>
+</TestCaseEntity>

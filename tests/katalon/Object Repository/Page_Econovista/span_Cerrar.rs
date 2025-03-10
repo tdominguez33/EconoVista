@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>span_Cerrar</name>
+   <tag></tag>
+   <elementGuidId>8466887f-488c-49cb-91e0-cd4c8d0aa531</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>//mat-dialog-container[@id='mat-mdc-dialog-0']/div/div/app-dialogo/mat-dialog-actions/button/span[2]</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>button.mdc-button.mat-mdc-button.mat-unthemed.mat-mdc-button-base.cdk-focused.cdk-program-focused > span.mdc-button__label</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:role=button[name=&quot;Cerrar&quot;i]</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>span</value>
+      <webElementGuid>9342899c-d020-4d63-987d-64b39d9ff599</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>mdc-button__label</value>
+      <webElementGuid>dc77d391-80ae-4284-810c-e809d29cc175</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value> Cerrar </value>
+      <webElementGuid>4a7b34bb-6dad-4e58-a683-5d8674b4cf26</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;mat-mdc-dialog-0&quot;)/div[@class=&quot;mdc-dialog__container&quot;]/div[@class=&quot;mat-mdc-dialog-surface mdc-dialog__surface&quot;]/app-dialogo[1]/mat-dialog-actions[@class=&quot;mat-mdc-dialog-actions mdc-dialog__actions&quot;]/button[@class=&quot;mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base cdk-focused cdk-program-focused&quot;]/span[@class=&quot;mdc-button__label&quot;]</value>
+      <webElementGuid>f61db0e4-f6d0-4c41-bfe3-8604f0e4baa0</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//mat-dialog-container[@id='mat-mdc-dialog-0']/div/div/app-dialogo/mat-dialog-actions/button/span[2]</value>
+      <webElementGuid>c9938dd6-c65d-467e-bc4a-11a9399ac370</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='DATOS DE UTILIDAD'])[1]/following::span[2]</value>
+      <webElementGuid>f7c0068b-70a0-4744-ae7a-cc26137def06</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='`'])[1]/following::span[2]</value>
+      <webElementGuid>f5d73744-d6a1-41dd-82a7-de9d29392307</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='Cerrar']/parent::*</value>
+      <webElementGuid>9c29fc15-f6a2-44d6-9476-e3e445bf4d4b</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//mat-dialog-actions/button/span[2]</value>
+      <webElementGuid>cbc159a7-fb0d-4ed8-80e4-83423e8b8958</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//span[(text() = ' Cerrar ' or . = ' Cerrar ')]</value>
+      <webElementGuid>7daeeb57-5b29-41d5-a55c-c5783cd74d82</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

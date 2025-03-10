@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>Se muestra una variable que no acepta &quot;Ajuste Por CER&quot;</description>
+   <name>Ajuste CER (Variable Inválida)</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>ecea19f2-1aaf-4824-97d3-4129a33c2cc7</testCaseGuid>
+</TestCaseEntity>

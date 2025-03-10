@@ -10,7 +10,7 @@
 	"1": {
 		"id": "30",
 		"nombreCorto": "CER",
-		"nombreLargo": "Coeficiente de estabilización de referencia",
+		"nombreLargo": "Coeficiente de estabilización de referencia (CER)",
 		"descripcion": "Índice de ajuste diario del BCRA, refleja la evolución de la inflación en base al cálculo de la variación registrada en el IPC del INDEC.",
 		"unidad": "$",
 		"fechaInicio": "2002-03-04"
@@ -58,7 +58,7 @@
 	"7": {
 		"id": "15",
 		"nombreCorto": "Base Monetaria",
-		"nombreLargo": "Placeholder",
+		"nombreLargo": "Base Monetaria",
 		"descripcion": "Placeholder",
 		"unidad": "MM",
 		"fechaInicio": "1996-01-02"
@@ -66,7 +66,7 @@
 	"8": {
 		"id": "31",
 		"nombreCorto": "UVA",
-		"nombreLargo": "Placeholder",
+		"nombreLargo": "Unidad de valor adquisitivo (UVA)",
 		"descripcion": "Placeholder",
 		"unidad": "$",
 		"fechaInicio": "2016-03-31"

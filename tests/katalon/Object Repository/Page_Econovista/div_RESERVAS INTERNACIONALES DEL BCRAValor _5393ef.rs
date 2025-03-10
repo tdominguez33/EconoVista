@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>div_RESERVAS INTERNACIONALES DEL BCRAValor _5393ef</name>
+   <tag></tag>
+   <elementGuidId>7da05f42-0318-4af3-8e0c-6c15e6e37bc8</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value>div.cont1</value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//app-variable/div</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:text=&quot;RESERVAS INTERNACIONALES DEL BCRAValor: M USD 30023Depósitos de moneda extranjer&quot;i</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>94093f11-8ff5-4aa7-9177-c5ca25046cfa</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>cont1</value>
+      <webElementGuid>355585f5-9ee9-4bbb-a6f8-218427307ac2</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>RESERVAS INTERNACIONALES DEL BCRAValor: M USD 30023Depósitos de moneda extranjera en control del BCRA, expresado en millones de dólares.1S1M3M6M1A2A5A10ALimpiar?Ajuste CER[object Object]Fuente: BCRA Volver </value>
+      <webElementGuid>777a7305-1c69-49b3-94fe-9a87131971d7</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>/html[1]/body[@class=&quot;mat-typography&quot;]/app-root[1]/div[@class=&quot;contenedor&quot;]/app-variable[1]/div[@class=&quot;cont1&quot;]</value>
+      <webElementGuid>2824d404-cf91-4ecd-bb4b-fe72319f08d8</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//app-variable/div</value>
+      <webElementGuid>5ea2fb30-e3be-4e5a-bd3e-4adbb32ed7a0</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'RESERVAS INTERNACIONALES DEL BCRAValor: M USD 30023Depósitos de moneda extranjera en control del BCRA, expresado en millones de dólares.1S1M3M6M1A2A5A10ALimpiar?Ajuste CER[object Object]Fuente: BCRA Volver ' or . = 'RESERVAS INTERNACIONALES DEL BCRAValor: M USD 30023Depósitos de moneda extranjera en control del BCRA, expresado en millones de dólares.1S1M3M6M1A2A5A10ALimpiar?Ajuste CER[object Object]Fuente: BCRA Volver ')]</value>
+      <webElementGuid>b8c6bed8-59af-464e-bafc-36e1be29f3a6</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

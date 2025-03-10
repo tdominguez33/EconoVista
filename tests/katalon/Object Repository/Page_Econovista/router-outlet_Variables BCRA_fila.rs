@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>router-outlet_Variables BCRA_fila</name>
+   <tag></tag>
+   <elementGuidId>f7af7c0c-ea0b-4163-a78d-80500cfaca62</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>//router-outlet</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>router-outlet.fila</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>router-outlet</value>
+      <webElementGuid>512ea204-8d43-4644-a12a-ba9ac72d8b61</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>fila</value>
+      <webElementGuid>5e965077-57a6-4dee-8a8b-e5f0d5e5b722</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>/html[1]/body[@class=&quot;mat-typography&quot;]/app-root[1]/div[@class=&quot;contenedor&quot;]/router-outlet[@class=&quot;fila&quot;]</value>
+      <webElementGuid>a3208922-f5ca-4747-a9bb-3f843f937b3f</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//router-outlet</value>
+      <webElementGuid>c840b1d2-52aa-47c1-acb4-0b2bcf868381</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

@@ -1,3 +1,7 @@
+# Instrucciones:
+# 1) Pararse en la carpeta que tiene este archivo
+# 2) Ejecutar el comando "locust" en la terminal
+
 # Condiciones de Prueba:
 #   Max usuarios = 10.000
 #   Incremento = 10/segundo

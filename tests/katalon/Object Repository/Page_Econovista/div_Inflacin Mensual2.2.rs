@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>div_Inflacin Mensual2.2</name>
+   <tag></tag>
+   <elementGuidId>c9cf2114-e6ae-4a72-bbac-36a508befad3</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>(.//*[normalize-space(text()) and normalize-space(.)='Base Monetaria'])[1]/following::div[1]</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>873094d6-e7d5-4b52-af13-f708d1b8c39f</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>variable-menu</value>
+      <webElementGuid>e685d898-c51c-48eb-bbac-33ee50483d64</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Inflación Mensual2.2 %</value>
+      <webElementGuid>6b212422-d88c-4490-9cc0-f0601409d811</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>/html[1]/body[@class=&quot;mat-typography&quot;]/app-root[1]/div[@class=&quot;contenedor&quot;]/app-menu2[1]/div[2]/a[@class=&quot;contenedor&quot;]/div[@class=&quot;variable-menu&quot;]</value>
+      <webElementGuid>5e961fc7-d1f9-4b12-8e5f-fba629dfe803</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Base Monetaria'])[1]/following::div[1]</value>
+      <webElementGuid>4c96c49b-7646-4698-b19a-6c3cfa487b14</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Dolar Oficial Mayorista'])[1]/following::div[2]</value>
+      <webElementGuid>5602f5cd-a4be-49ac-9782-2bf7e466745f</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='UVA'])[1]/preceding::div[1]</value>
+      <webElementGuid>552a90a5-90ae-4ee7-bc6f-cfc8fbf524fa</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div[4]</value>
+      <webElementGuid>20dd67ae-3de9-4497-afe5-28a02d748dc4</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'Inflación Mensual2.2 %' or . = 'Inflación Mensual2.2 %')]</value>
+      <webElementGuid>829a6aa5-7730-4a42-a032-cb3f5ebd4fc6</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>
