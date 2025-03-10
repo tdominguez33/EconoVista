@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>span_Limpiar</name>
+   <name>span_Limpiar_1</name>
    <tag></tag>
-   <elementGuidId>c3878cb9-cd41-4732-83cf-2dcbee7000a0</elementGuidId>
+   <elementGuidId>9f13dfb3-0ebf-4991-967e-82e182ae06a4</elementGuidId>
    <selectorCollection>
       <entry>
          <key>CSS</key>
@@ -11,7 +11,7 @@
       </entry>
       <entry>
          <key>XPATH</key>
-         <value>(.//*[normalize-space(text()) and normalize-space(.)='Última actualización: 2025-03-07'])[1]/following::span[42]</value>
+         <value>(.//*[normalize-space(text()) and normalize-space(.)='Última actualización: 2025-03-07'])[1]/following::span[36]</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
@@ -29,7 +29,7 @@
       <name>tag</name>
       <type>Main</type>
       <value>span</value>
-      <webElementGuid>975551af-9219-48f6-93e4-2b6134b0dbbf</webElementGuid>
+      <webElementGuid>c07b616a-0d7e-4d67-abeb-c78ae84a3a0b</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -37,7 +37,7 @@
       <name>class</name>
       <type>Main</type>
       <value>mdc-button__label</value>
-      <webElementGuid>a2a9d8a5-86be-44f7-8748-ac8bd39c541c</webElementGuid>
+      <webElementGuid>2b0f1a55-4dd4-450f-88d7-8ca55a22ff1d</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
@@ -45,7 +45,7 @@
       <name>text</name>
       <type>Main</type>
       <value>Limpiar</value>
-      <webElementGuid>2424b7e2-6bad-49f8-a46f-9e86878b508c</webElementGuid>
+      <webElementGuid>b26cb405-58f2-4d8a-9d64-67d60146197d</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -53,23 +53,23 @@
       <name>xpath</name>
       <type>Main</type>
       <value>/html[1]/body[@class=&quot;mat-typography&quot;]/app-root[1]/div[@class=&quot;contenedor&quot;]/app-variable[1]/div[@class=&quot;cont1&quot;]/div[@class=&quot;contenedorFiltro&quot;]/button[@class=&quot;selectorFecha limpiar-seleccion mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base cdk-focused cdk-mouse-focused&quot;]/span[@class=&quot;mdc-button__label&quot;]</value>
-      <webElementGuid>83d93ad5-450d-4715-b3e5-04bc755b6c0d</webElementGuid>
+      <webElementGuid>7ccc3f96-c81b-464f-87fd-04e2f8aba365</webElementGuid>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='Última actualización: 2025-03-07'])[1]/following::span[42]</value>
-      <webElementGuid>599632fa-5a13-491c-9fa8-11abd159b1f1</webElementGuid>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Última actualización: 2025-03-07'])[1]/following::span[36]</value>
+      <webElementGuid>a351c62c-b53c-4813-90fc-91d85667cc61</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='Valor: $ 1095.52'])[1]/following::span[42]</value>
-      <webElementGuid>70af4f1a-8a22-4e7e-bf6d-a11afb358cf7</webElementGuid>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Valor: $ 1066.04'])[1]/following::span[36]</value>
+      <webElementGuid>db7b8540-c8d2-4259-89a5-5dea0afeb6f7</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -77,7 +77,7 @@
       <name>xpath:neighbor</name>
       <type>Main</type>
       <value>(.//*[normalize-space(text()) and normalize-space(.)='?'])[1]/preceding::span[5]</value>
-      <webElementGuid>84f9ab7e-f93a-4f8a-9ac2-0079b5bcc820</webElementGuid>
+      <webElementGuid>97989a1f-effe-406b-b999-d09519849986</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -85,7 +85,7 @@
       <name>xpath:neighbor</name>
       <type>Main</type>
       <value>(.//*[normalize-space(text()) and normalize-space(.)='Ajuste CER'])[1]/preceding::span[9]</value>
-      <webElementGuid>2fcb369e-d345-4d09-bf70-c8040943dc8c</webElementGuid>
+      <webElementGuid>831194ec-4017-4caa-aa63-f933947943a9</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -93,7 +93,7 @@
       <name>xpath:neighbor</name>
       <type>Main</type>
       <value>//*/text()[normalize-space(.)='Limpiar']/parent::*</value>
-      <webElementGuid>6c127530-1207-4c9a-b647-bc479f3bb640</webElementGuid>
+      <webElementGuid>ff7474d6-3b7d-4934-a973-38765fb9ad60</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -101,7 +101,7 @@
       <name>xpath:position</name>
       <type>Main</type>
       <value>//button[9]/span[2]</value>
-      <webElementGuid>b87a0e47-b053-4c0c-9f16-683a3205a48c</webElementGuid>
+      <webElementGuid>9e684af9-6bc0-4d4b-9046-a4353ee700c3</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -109,38 +109,6 @@
       <name>xpath:customAttributes</name>
       <type>Main</type>
       <value>//span[(text() = 'Limpiar' or . = 'Limpiar')]</value>
-      <webElementGuid>38d39da1-2823-4890-8e30-09963609e8cb</webElementGuid>
-   </webElementXpaths>
-   <webElementXpaths>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>xpath:neighbor</name>
-      <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='Depósitos de moneda extranjera en control del BCRA.'])[1]/following::span[42]</value>
-      <webElementGuid>2ba9c288-3cd6-49cd-9bd4-33b5facb5a03</webElementGuid>
-   </webElementXpaths>
-   <webElementXpaths>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>xpath:neighbor</name>
-      <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='Última actualización: 2025-03-05'])[1]/following::span[42]</value>
-      <webElementGuid>82c2492e-22c2-4bc2-b452-00e21dd8b57a</webElementGuid>
-   </webElementXpaths>
-   <webElementXpaths>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>xpath:neighbor</name>
-      <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='Depósitos de moneda extranjera en control del BCRA, expresado en millones de dólares.'])[1]/following::span[35]</value>
-      <webElementGuid>c10e5261-d7bd-47fc-90ee-2c082a80ba33</webElementGuid>
-   </webElementXpaths>
-   <webElementXpaths>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>xpath:neighbor</name>
-      <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='Valor: M USD 30023'])[1]/following::span[35]</value>
-      <webElementGuid>062e00da-61b7-4b5f-b1e6-5bdd9b8c9d90</webElementGuid>
+      <webElementGuid>ca5f1fdc-2469-467b-a37c-167dde77314f</webElementGuid>
    </webElementXpaths>
 </WebElementEntity>

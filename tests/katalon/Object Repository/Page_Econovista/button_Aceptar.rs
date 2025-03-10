@@ -4,22 +4,20 @@
    <name>button_Aceptar</name>
    <tag></tag>
    <elementGuidId>509509ad-0a75-4951-83fb-6b08b35bb013</elementGuidId>
-   <imagePath></imagePath>
    <selectorCollection>
-      <entry>
-         <key>IMAGE</key>
-         <value></value>
-      </entry>
-      <entry>
-         <key>XPATH</key>
-         <value>(.//*[normalize-space(text()) and normalize-space(.)='`'])[1]/following::button[1]</value>
-      </entry>
       <entry>
          <key>CSS</key>
          <value>body.mat-typography > div > button</value>
       </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>(.//*[normalize-space(text()) and normalize-space(.)='© Copyright 2024 - Todos los derechos reservados - EconoVista'])[1]/following::button[1]</value>
+      </entry>
+      <entry>
+         <key>IMAGE</key>
+      </entry>
    </selectorCollection>
-   <selectorMethod>BASIC</selectorMethod>
+   <selectorMethod>XPATH</selectorMethod>
    <smartLocatorCollection>
       <entry>
          <key>SMART_LOCATOR</key>
@@ -34,7 +32,7 @@
       <name>tag</name>
       <type>Main</type>
       <value>button</value>
-      <webElementGuid>2d903142-767c-47b3-8eff-781f009cd86d</webElementGuid>
+      <webElementGuid>a9fad9c9-73c7-4874-8fdd-86c8bb20e1ad</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
@@ -42,7 +40,7 @@
       <name>text</name>
       <type>Main</type>
       <value>Aceptar</value>
-      <webElementGuid>0100e1d9-ab56-4fc7-b147-cf2ca3f15eed</webElementGuid>
+      <webElementGuid>33e9fa94-1bf0-4a4f-8566-810bee3940e2</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -50,15 +48,15 @@
       <name>xpath</name>
       <type>Main</type>
       <value>/html[1]/body[@class=&quot;mat-typography&quot;]/div[1]/button[1]</value>
-      <webElementGuid>42b7df23-80b9-4301-b38a-1cb49ebecd95</webElementGuid>
+      <webElementGuid>42117497-27ba-44fb-90c8-683dda6215c6</webElementGuid>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='`'])[1]/following::button[1]</value>
-      <webElementGuid>35ea061f-aa48-410c-9bfc-daa6751b23b2</webElementGuid>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='© Copyright 2024 - Todos los derechos reservados - EconoVista'])[1]/following::button[1]</value>
+      <webElementGuid>71682de5-25ae-40d0-b79c-6c2c20680595</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -66,7 +64,7 @@
       <name>xpath:neighbor</name>
       <type>Main</type>
       <value>//*/text()[normalize-space(.)='Aceptar']/parent::*</value>
-      <webElementGuid>43e08b30-a571-458e-9201-a0120c5def39</webElementGuid>
+      <webElementGuid>b828be56-ee6a-421f-b3f9-cfd3f420692a</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -74,7 +72,7 @@
       <name>xpath:position</name>
       <type>Main</type>
       <value>//body/div/button</value>
-      <webElementGuid>343c6ee4-6920-41de-ae92-82321fe5e15f</webElementGuid>
+      <webElementGuid>1797f017-88ce-4b66-8dd1-5a9861256552</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -82,6 +80,14 @@
       <name>xpath:customAttributes</name>
       <type>Main</type>
       <value>//button[(text() = 'Aceptar' or . = 'Aceptar')]</value>
-      <webElementGuid>22342fb6-e688-4f42-a9f8-3c40382eb8a7</webElementGuid>
+      <webElementGuid>18b3ec4e-deea-4349-a62d-450e261a5a90</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='`'])[1]/following::button[1]</value>
+      <webElementGuid>35ea061f-aa48-410c-9bfc-daa6751b23b2</webElementGuid>
    </webElementXpaths>
 </WebElementEntity>

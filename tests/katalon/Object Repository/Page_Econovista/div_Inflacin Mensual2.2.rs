@@ -6,15 +6,21 @@
    <elementGuidId>c9cf2114-e6ae-4a72-bbac-36a508befad3</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>XPATH</key>
-         <value>(.//*[normalize-space(text()) and normalize-space(.)='Base Monetaria'])[1]/following::div[1]</value>
+         <key>CSS</key>
+         <value>div.variable-menu</value>
       </entry>
       <entry>
-         <key>CSS</key>
-         <value></value>
+         <key>XPATH</key>
+         <value>(.//*[normalize-space(text()) and normalize-space(.)='Otras Variables'])[2]/following::div[2]</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:role=link[name=&quot;Inflación Mensual 2.2 % Dólar Oficial Minorista $ 1095.52 Dolar Oficial Mayorista $ 1066.04 Base Monetaria 30759385 MM UVA $ 1373.61 Riesgo País 635 bps Dólar Blue $ 1215 Dólar MEP $ 1220.9 Dólar CCL $ 1219.8 Dólar Cripto $ 1238&quot;i]</value>
+      </entry>
+   </smartLocatorCollection>
    <smartLocatorEnabled>false</smartLocatorEnabled>
    <useRalativeImagePath>true</useRalativeImagePath>
    <webElementProperties>
@@ -23,7 +29,7 @@
       <name>tag</name>
       <type>Main</type>
       <value>div</value>
-      <webElementGuid>873094d6-e7d5-4b52-af13-f708d1b8c39f</webElementGuid>
+      <webElementGuid>9c30fd91-7050-4349-ad7a-c05b7ad756b8</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -31,7 +37,7 @@
       <name>class</name>
       <type>Main</type>
       <value>variable-menu</value>
-      <webElementGuid>e685d898-c51c-48eb-bbac-33ee50483d64</webElementGuid>
+      <webElementGuid>59ed4b7d-202a-4919-a286-6cc9ffec85e2</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
@@ -39,7 +45,7 @@
       <name>text</name>
       <type>Main</type>
       <value>Inflación Mensual2.2 %</value>
-      <webElementGuid>6b212422-d88c-4490-9cc0-f0601409d811</webElementGuid>
+      <webElementGuid>c0f8a34a-cb75-4467-88eb-d9765ebdc37b</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -47,10 +53,50 @@
       <name>xpath</name>
       <type>Main</type>
       <value>/html[1]/body[@class=&quot;mat-typography&quot;]/app-root[1]/div[@class=&quot;contenedor&quot;]/app-menu2[1]/div[2]/a[@class=&quot;contenedor&quot;]/div[@class=&quot;variable-menu&quot;]</value>
-      <webElementGuid>5e961fc7-d1f9-4b12-8e5f-fba629dfe803</webElementGuid>
+      <webElementGuid>7a9f5a7e-d7a1-454e-9de7-811f8fb89ff1</webElementGuid>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Otras Variables'])[2]/following::div[2]</value>
+      <webElementGuid>b700eefd-b4a9-445d-be92-0d9b6cd616c9</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Otras Variables'])[1]/following::div[2]</value>
+      <webElementGuid>8d28b499-4ccd-4223-85f2-672d919ae043</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Dólar Oficial Minorista'])[1]/preceding::div[1]</value>
+      <webElementGuid>e81c17cb-52d5-4f31-b97c-56e4af60f80d</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//a/div</value>
+      <webElementGuid>ca5b67a4-7eb5-46fc-9616-7bbe527de10b</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'Inflación Mensual2.2 %' or . = 'Inflación Mensual2.2 %')]</value>
+      <webElementGuid>3c151fe4-f292-4c19-850b-23a50129a251</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
@@ -80,13 +126,5 @@
       <type>Main</type>
       <value>//div[4]</value>
       <webElementGuid>20dd67ae-3de9-4497-afe5-28a02d748dc4</webElementGuid>
-   </webElementXpaths>
-   <webElementXpaths>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>xpath:customAttributes</name>
-      <type>Main</type>
-      <value>//div[(text() = 'Inflación Mensual2.2 %' or . = 'Inflación Mensual2.2 %')]</value>
-      <webElementGuid>829a6aa5-7730-4a42-a032-cb3f5ebd4fc6</webElementGuid>
    </webElementXpaths>
 </WebElementEntity>

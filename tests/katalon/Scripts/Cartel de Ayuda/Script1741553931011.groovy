@@ -27,11 +27,11 @@ WebUI.delay(1)
 
 WebUI.click(findTestObject('Page_Econovista/button_'), FailureHandling.STOP_ON_FAILURE)
 
-WebUI.delay(3)
+WebUI.delay(1)
 
 WebUI.click(findTestObject('Page_Econovista/span_Cerrar'))
 
-WebUI.delay(2)
+WebUI.delay(1)
 
 WebUI.click(findTestObject('Page_Econovista/span_Volver'))
 

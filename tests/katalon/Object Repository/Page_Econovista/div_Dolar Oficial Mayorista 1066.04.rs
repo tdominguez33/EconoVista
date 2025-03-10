@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>div_Tasa29</name>
+   <name>div_Dolar Oficial Mayorista 1066.04</name>
    <tag></tag>
-   <elementGuidId>c8bb9683-49cc-433b-8d12-f31d8c88b6ec</elementGuidId>
+   <elementGuidId>177092c1-9685-4380-839b-100b8c3784b6</elementGuidId>
    <selectorCollection>
       <entry>
          <key>CSS</key>
@@ -11,7 +11,7 @@
       </entry>
       <entry>
          <key>XPATH</key>
-         <value>(.//*[normalize-space(text()) and normalize-space(.)='Dolar Oficial Mayorista'])[1]/following::div[1]</value>
+         <value>(.//*[normalize-space(text()) and normalize-space(.)='Dólar Oficial Minorista'])[1]/following::div[1]</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
@@ -29,7 +29,7 @@
       <name>tag</name>
       <type>Main</type>
       <value>div</value>
-      <webElementGuid>bd46a097-6053-433a-b584-95af817975af</webElementGuid>
+      <webElementGuid>cb185ee4-72d2-4cdc-aa71-7305d5783eff</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -37,15 +37,15 @@
       <name>class</name>
       <type>Main</type>
       <value>variable-menu</value>
-      <webElementGuid>25b98067-c6eb-42a5-8756-10b4298d1e78</webElementGuid>
+      <webElementGuid>ceb06f2c-69d4-4d1b-908b-29c76cbad797</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>text</name>
       <type>Main</type>
-      <value>Tasa29 %</value>
-      <webElementGuid>1f49f90f-0d8b-417d-9470-9717385e76b4</webElementGuid>
+      <value>Dolar Oficial Mayorista$ 1066.04</value>
+      <webElementGuid>a5400032-80f2-4cd2-b76e-e7020cad0baf</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -53,46 +53,46 @@
       <name>xpath</name>
       <type>Main</type>
       <value>/html[1]/body[@class=&quot;mat-typography&quot;]/app-root[1]/div[@class=&quot;contenedor&quot;]/app-menu[1]/div[2]/a[@class=&quot;contenedor&quot;]/div[@class=&quot;variable-menu&quot;]</value>
-      <webElementGuid>1c65b275-2c75-4860-b553-fe26369ac05f</webElementGuid>
+      <webElementGuid>b8ddd495-5631-42c5-8952-bd35750e4f63</webElementGuid>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='Dolar Oficial Mayorista'])[1]/following::div[1]</value>
-      <webElementGuid>6ee0907a-563d-43c7-9b54-b6a207dba2c2</webElementGuid>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Dólar Oficial Minorista'])[1]/following::div[1]</value>
+      <webElementGuid>9035fc35-21eb-43d4-acb9-33bfbc5d8e0e</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='Dólar Oficial Minorista'])[1]/following::div[2]</value>
-      <webElementGuid>7b2723a9-5631-4f58-82ea-591b37b62dc6</webElementGuid>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Reservas'])[1]/following::div[2]</value>
+      <webElementGuid>8630d8cb-ba48-4fda-8bec-0bd7f3a95065</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='Base Monetaria'])[1]/preceding::div[1]</value>
-      <webElementGuid>aeab0278-2bdf-4636-8ccd-69232bd80a4b</webElementGuid>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Tasa'])[1]/preceding::div[1]</value>
+      <webElementGuid>fab14290-8889-4866-8f1a-e965073f761a</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:position</name>
       <type>Main</type>
-      <value>//div[5]</value>
-      <webElementGuid>fb675553-8565-43a9-9a6a-b17c1502c45d</webElementGuid>
+      <value>//div[4]</value>
+      <webElementGuid>cabfe00e-aaca-4452-871b-9767fb35cfb7</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:customAttributes</name>
       <type>Main</type>
-      <value>//div[(text() = 'Tasa29 %' or . = 'Tasa29 %')]</value>
-      <webElementGuid>da967476-ad08-4167-ac1d-19ce9947040e</webElementGuid>
+      <value>//div[(text() = 'Dolar Oficial Mayorista$ 1066.04' or . = 'Dolar Oficial Mayorista$ 1066.04')]</value>
+      <webElementGuid>1f98c854-150f-468d-b9f7-473ebad0e243</webElementGuid>
    </webElementXpaths>
 </WebElementEntity>

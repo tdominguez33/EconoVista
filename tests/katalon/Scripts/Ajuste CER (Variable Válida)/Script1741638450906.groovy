@@ -17,33 +17,28 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
+import com.kms.katalon.core.webui.driver.DriverFactory
+import org.openqa.selenium.By
+import org.openqa.selenium.WebDriver
+
 WebUI.openBrowser('http://localhost:4200/')
+WebDriver driver = DriverFactory.getWebDriver()
 
-WebUI.delay(2)
+WebUI.click(findTestObject('Object Repository/Page_Econovista/div_Dlar Oficial Minorista 1095.52'))
 
-WebUI.click(findTestObject('Page_Econovista/div_Inflacin Esperada - REM20.8'))
+WebUI.click(findTestObject('Object Repository/Page_Econovista/span_Ajuste CER'))
 
-WebUI.delay(2)
+driver.findElement(By.xpath("//span[contains(text(), 'Limpiar')]")).click()
 
-WebUI.click(findTestObject('Page_Econovista/span_Volver'))
+WebUI.click(findTestObject('Object Repository/Page_Econovista/img_TIPO DE CAMBIO DE REFERENCIA MINORISTA_icon'))
 
-WebUI.delay(2)
+WebUI.click(findTestObject('Object Repository/Page_Econovista/div_Dolar Oficial Mayorista 1066.04'))
 
-WebUI.click(findTestObject('Page_Econovista/div_Inflacin Esperada - REM20.8'))
+WebUI.click(findTestObject('Object Repository/Page_Econovista/span_Ajuste CER'))
 
-WebUI.delay(2)
+driver.findElement(By.xpath("//span[contains(text(), 'Limpiar')]")).click()
 
-WebUI.click(findTestObject('Page_Econovista/span_Volver'))
-
-WebUI.delay(2)
-
-WebUI.click(findTestObject('Page_Econovista/div_Inflacin Mensual2.2'))
-
-WebUI.delay(2)
-
-WebUI.click(findTestObject('Page_Econovista/span_Volver'))
-
-WebUI.delay(2)
+WebUI.click(findTestObject('Object Repository/Page_Econovista/img_TIPO DE CAMBIO DE REFERENCIA MINORISTA_icon'))
 
 WebUI.closeBrowser()
 

@@ -6,15 +6,21 @@
    <elementGuidId>02ad403c-1ad2-4d00-8fd8-8d5f67672c3b</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>XPATH</key>
-         <value>//a[contains(text(),'Otras Variables')]</value>
+         <key>CSS</key>
+         <value></value>
       </entry>
       <entry>
-         <key>CSS</key>
+         <key>XPATH</key>
          <value></value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:role=link[name=&quot;Otras Variables&quot;i]</value>
+      </entry>
+   </smartLocatorCollection>
    <smartLocatorEnabled>false</smartLocatorEnabled>
    <useRalativeImagePath>true</useRalativeImagePath>
    <webElementProperties>
@@ -23,7 +29,7 @@
       <name>tag</name>
       <type>Main</type>
       <value>a</value>
-      <webElementGuid>61eae104-a49f-4a48-a49c-6850ed0e48ea</webElementGuid>
+      <webElementGuid>6f003164-56ce-41a4-a7ec-1a2005cb082b</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -31,7 +37,7 @@
       <name>routerlink</name>
       <type>Main</type>
       <value>otrasVariables</value>
-      <webElementGuid>962ca673-cc42-4fcd-819f-32017e951a35</webElementGuid>
+      <webElementGuid>7c4e7ff2-ce9c-4573-aa48-aa9887291f18</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -39,7 +45,7 @@
       <name>class</name>
       <type>Main</type>
       <value>nav-link</value>
-      <webElementGuid>3599ef37-983c-4adc-be89-9a89b3d02d00</webElementGuid>
+      <webElementGuid>acd7f555-af66-449c-b17c-1f2c6acbb61d</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -47,7 +53,7 @@
       <name>ng-reflect-router-link</name>
       <type>Main</type>
       <value>otrasVariables</value>
-      <webElementGuid>a2d8cdde-49fb-4e4e-8e59-72b7d6950ac7</webElementGuid>
+      <webElementGuid>0deec431-f378-4c0e-956a-1bb8e440ae61</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
@@ -55,7 +61,7 @@
       <name>href</name>
       <type>Main</type>
       <value>/otrasVariables</value>
-      <webElementGuid>b01b09d4-ab08-4486-bea0-3a7aa5006c8a</webElementGuid>
+      <webElementGuid>7a2f67de-9676-440c-bef2-1f4a62ddcff3</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
@@ -63,7 +69,7 @@
       <name>text</name>
       <type>Main</type>
       <value>Otras Variables</value>
-      <webElementGuid>078581c7-f090-4ca5-98e5-a4c5d29aa8f4</webElementGuid>
+      <webElementGuid>ca826732-01a2-4fbb-b5f2-27c2866c64c4</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -71,7 +77,7 @@
       <name>xpath</name>
       <type>Main</type>
       <value>/html[1]/body[@class=&quot;mat-typography&quot;]/app-root[1]/div[@class=&quot;contenedor&quot;]/app-menu[1]/div[@class=&quot;nav-bar&quot;]/a[@class=&quot;nav-link&quot;]</value>
-      <webElementGuid>a50138a3-b3d6-44f7-949a-50effbc91f0a</webElementGuid>
+      <webElementGuid>c8f34dd7-d9e5-4b74-a6e8-815e7d161be4</webElementGuid>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
@@ -79,7 +85,7 @@
       <name>xpath:link</name>
       <type>Main</type>
       <value>//a[contains(text(),'Otras Variables')]</value>
-      <webElementGuid>b954fbbd-67ca-496d-8e30-232f6e7a19fe</webElementGuid>
+      <webElementGuid>35bcf9a6-0365-4cd3-8e08-8fcb377b5262</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -87,7 +93,7 @@
       <name>xpath:neighbor</name>
       <type>Main</type>
       <value>(.//*[normalize-space(text()) and normalize-space(.)='Variables BCRA'])[1]/following::a[1]</value>
-      <webElementGuid>e318f6c3-da37-4452-b11d-94c45e4752ad</webElementGuid>
+      <webElementGuid>93979c5e-d8ae-4e0f-8237-06c2bb953f11</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -95,7 +101,7 @@
       <name>xpath:neighbor</name>
       <type>Main</type>
       <value>(.//*[normalize-space(text()) and normalize-space(.)='Principales Variables BCRA'])[1]/preceding::a[1]</value>
-      <webElementGuid>3789b498-af26-462d-b29a-c037e2bb57fc</webElementGuid>
+      <webElementGuid>ab6037b5-21ba-4e5b-a421-6d1efaa7135b</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -103,7 +109,7 @@
       <name>xpath:neighbor</name>
       <type>Main</type>
       <value>(.//*[normalize-space(text()) and normalize-space(.)='Inflación Esperada - REM'])[1]/preceding::a[1]</value>
-      <webElementGuid>be31c3d7-8adb-4766-8e83-8f8931ef9815</webElementGuid>
+      <webElementGuid>968af706-f7fd-4d2c-bca5-a44394894a22</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -111,7 +117,7 @@
       <name>xpath:neighbor</name>
       <type>Main</type>
       <value>//*/text()[normalize-space(.)='Otras Variables']/parent::*</value>
-      <webElementGuid>6268b686-665c-43a0-b05b-0676188bb8b1</webElementGuid>
+      <webElementGuid>6fea9343-5ab5-4b97-bdbd-602b9eaefdad</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -119,7 +125,7 @@
       <name>xpath:href</name>
       <type>Main</type>
       <value>//a[contains(@href, '/otrasVariables')]</value>
-      <webElementGuid>dda3eaad-821a-4e34-abf9-9eb7076623c1</webElementGuid>
+      <webElementGuid>95aa2edc-54f4-41b8-8776-aa601fb301cd</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -127,7 +133,7 @@
       <name>xpath:position</name>
       <type>Main</type>
       <value>//a[2]</value>
-      <webElementGuid>fa3ff6dc-b0a4-4dcb-9570-cd5e3096ad77</webElementGuid>
+      <webElementGuid>f26f32f6-48d9-4120-83a3-acef6d95487a</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -135,6 +141,6 @@
       <name>xpath:customAttributes</name>
       <type>Main</type>
       <value>//a[@href = '/otrasVariables' and (text() = 'Otras Variables' or . = 'Otras Variables')]</value>
-      <webElementGuid>780c8e64-a9da-48ab-882e-d2e9ef417e66</webElementGuid>
+      <webElementGuid>48f5f8e7-d1fd-484f-8f30-9360b8f7df70</webElementGuid>
    </webElementXpaths>
 </WebElementEntity>

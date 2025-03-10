@@ -6,15 +6,21 @@
    <elementGuidId>da6ec914-843b-4491-80da-6596db73e90d</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>XPATH</key>
-         <value>//button[@id='ajuste-cer-btn']/span[4]</value>
-      </entry>
-      <entry>
          <key>CSS</key>
          <value>#ajuste-cer-btn > span.mat-mdc-button-touch-target</value>
       </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//button[@id='ajuste-cer-btn']/span[4]</value>
+      </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:role=button[name=&quot;Ajuste CER&quot;i]</value>
+      </entry>
+   </smartLocatorCollection>
    <smartLocatorEnabled>false</smartLocatorEnabled>
    <useRalativeImagePath>true</useRalativeImagePath>
    <webElementProperties>
@@ -23,7 +29,7 @@
       <name>tag</name>
       <type>Main</type>
       <value>span</value>
-      <webElementGuid>c8ffc3fa-fd88-4f8a-998d-7f7a17c14c3b</webElementGuid>
+      <webElementGuid>95814abf-ecb8-4f12-96a0-505d9e3f52d4</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -31,7 +37,7 @@
       <name>class</name>
       <type>Main</type>
       <value>mat-mdc-button-touch-target</value>
-      <webElementGuid>e9161100-0592-44a5-b749-db6c9d097437</webElementGuid>
+      <webElementGuid>f9962fb2-da23-4789-9e37-4f1afd0d0bcb</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
@@ -39,7 +45,7 @@
       <name>xpath</name>
       <type>Main</type>
       <value>id(&quot;ajuste-cer-btn&quot;)/span[@class=&quot;mat-mdc-button-touch-target&quot;]</value>
-      <webElementGuid>8f9a659f-b7fb-4b29-b592-80bbb056b4ac</webElementGuid>
+      <webElementGuid>75e5c6e5-8fb1-4f96-ac92-a2451ef336d7</webElementGuid>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
@@ -47,7 +53,7 @@
       <name>xpath:idRelative</name>
       <type>Main</type>
       <value>//button[@id='ajuste-cer-btn']/span[4]</value>
-      <webElementGuid>bebd40ea-a566-4218-8940-7cfbb0cdb213</webElementGuid>
+      <webElementGuid>66365c86-af99-4348-9ad3-9b7c2b673717</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -55,6 +61,6 @@
       <name>xpath:position</name>
       <type>Main</type>
       <value>//div/button/span[4]</value>
-      <webElementGuid>45b765e1-6d6e-405d-800a-a38695634a90</webElementGuid>
+      <webElementGuid>3b15a6b9-13c1-4daa-9eb1-c6069a607e2c</webElementGuid>
    </webElementXpaths>
 </WebElementEntity>

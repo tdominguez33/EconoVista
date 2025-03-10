@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>img_INFLACIN ESPERADA PARA LOS PRXIMOS 12 M_9e45e9</name>
+   <name>img_TIPO DE CAMBIO DE REFERENCIA MINORISTA_icon</name>
    <tag></tag>
-   <elementGuidId>7eeaae50-7e05-4543-869a-bfe4783f3b49</elementGuidId>
+   <elementGuidId>d9cd31b2-7142-4125-8f28-b7df395b7d25</elementGuidId>
    <selectorCollection>
       <entry>
          <key>CSS</key>
@@ -29,7 +29,7 @@
       <name>tag</name>
       <type>Main</type>
       <value>img</value>
-      <webElementGuid>a58ad10c-b5f1-4ef0-9ce8-af24658b3e0a</webElementGuid>
+      <webElementGuid>e0bd0a5e-4f19-4e4d-96b3-a1fe42caae80</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
@@ -37,7 +37,7 @@
       <name>src</name>
       <type>Main</type>
       <value>assets/Logo.png</value>
-      <webElementGuid>992912e8-2778-4719-b453-984fe7495bbe</webElementGuid>
+      <webElementGuid>592ae94d-05e6-46c7-9759-d6c76f7c453d</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
@@ -45,7 +45,7 @@
       <name>alt</name>
       <type>Main</type>
       <value>EconoVista</value>
-      <webElementGuid>f6fa2006-1645-47c3-b511-18fed01c203a</webElementGuid>
+      <webElementGuid>ac250e86-e8a8-4e7a-a8f9-e9d192305d3c</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -53,7 +53,7 @@
       <name>routerlink</name>
       <type>Main</type>
       <value>/</value>
-      <webElementGuid>d5a15a1d-48ca-4aca-8a70-c4e425040d66</webElementGuid>
+      <webElementGuid>c302ce22-8754-4d0c-af82-a34b98b5e9b4</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -61,7 +61,7 @@
       <name>class</name>
       <type>Main</type>
       <value>icon</value>
-      <webElementGuid>db5b10dd-ae94-4b19-9a83-f69cd941a0cb</webElementGuid>
+      <webElementGuid>34bb2cc8-38be-4224-be23-47bd12543f2e</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -69,7 +69,7 @@
       <name>tabindex</name>
       <type>Main</type>
       <value>0</value>
-      <webElementGuid>7f9d1208-2ffe-4804-8012-1a7b6a9eb2d5</webElementGuid>
+      <webElementGuid>37e65e37-31dc-4854-bc78-d97b11b3398f</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -77,7 +77,7 @@
       <name>ng-reflect-router-link</name>
       <type>Main</type>
       <value>/</value>
-      <webElementGuid>49f856f0-a71d-4a31-8ce2-914efd88b551</webElementGuid>
+      <webElementGuid>315ffdd0-e5bf-44ef-9a3a-33247e006c82</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -85,7 +85,7 @@
       <name>xpath</name>
       <type>Main</type>
       <value>/html[1]/body[@class=&quot;mat-typography&quot;]/app-root[1]/div[@class=&quot;contenedor&quot;]/app-header[@class=&quot;fila&quot;]/header[@class=&quot;contenedor-logo&quot;]/img[@class=&quot;icon&quot;]</value>
-      <webElementGuid>907d4263-aba6-41af-8274-793ba97d2484</webElementGuid>
+      <webElementGuid>a3af42ae-55ad-4664-8e2b-9e63c93fc557</webElementGuid>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
@@ -93,7 +93,7 @@
       <name>xpath:img</name>
       <type>Main</type>
       <value>//img[@alt='EconoVista']</value>
-      <webElementGuid>187cc82a-e6ed-45de-968b-44b50d0be271</webElementGuid>
+      <webElementGuid>d8d69852-ab65-4dc2-a20e-e83fa434e9ea</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -101,7 +101,7 @@
       <name>xpath:position</name>
       <type>Main</type>
       <value>//img</value>
-      <webElementGuid>584cd789-276a-4efa-89ad-f26b2e4c8c11</webElementGuid>
+      <webElementGuid>6910c1bb-4bee-4437-b33b-7724379c80e9</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -109,6 +109,6 @@
       <name>xpath:customAttributes</name>
       <type>Main</type>
       <value>//img[@src = 'assets/Logo.png' and @alt = 'EconoVista']</value>
-      <webElementGuid>4dabf709-2c5d-428a-8c72-d49201dfe932</webElementGuid>
+      <webElementGuid>64c90752-fc7c-41e0-a2a6-eb3242cf3413</webElementGuid>
    </webElementXpaths>
 </WebElementEntity>

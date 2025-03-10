@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>div_Tasa29</name>
+   <name>div_UVA 1373.61</name>
    <tag></tag>
-   <elementGuidId>c8bb9683-49cc-433b-8d12-f31d8c88b6ec</elementGuidId>
+   <elementGuidId>86685ad4-8c94-40f7-97f0-5e4c818d9178</elementGuidId>
    <selectorCollection>
       <entry>
          <key>CSS</key>
@@ -11,7 +11,7 @@
       </entry>
       <entry>
          <key>XPATH</key>
-         <value>(.//*[normalize-space(text()) and normalize-space(.)='Dolar Oficial Mayorista'])[1]/following::div[1]</value>
+         <value>(.//*[normalize-space(text()) and normalize-space(.)='CER'])[1]/following::div[1]</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
@@ -29,7 +29,7 @@
       <name>tag</name>
       <type>Main</type>
       <value>div</value>
-      <webElementGuid>bd46a097-6053-433a-b584-95af817975af</webElementGuid>
+      <webElementGuid>4ffd1cad-0ae4-4dab-8cb4-ee91fe163724</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -37,15 +37,15 @@
       <name>class</name>
       <type>Main</type>
       <value>variable-menu</value>
-      <webElementGuid>25b98067-c6eb-42a5-8756-10b4298d1e78</webElementGuid>
+      <webElementGuid>ed902abd-78a4-421f-895e-aa2c9a032199</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>text</name>
       <type>Main</type>
-      <value>Tasa29 %</value>
-      <webElementGuid>1f49f90f-0d8b-417d-9470-9717385e76b4</webElementGuid>
+      <value>UVA$ 1373.61</value>
+      <webElementGuid>6c49934f-bcbf-471c-bed9-453ff99a8a32</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -53,46 +53,46 @@
       <name>xpath</name>
       <type>Main</type>
       <value>/html[1]/body[@class=&quot;mat-typography&quot;]/app-root[1]/div[@class=&quot;contenedor&quot;]/app-menu[1]/div[2]/a[@class=&quot;contenedor&quot;]/div[@class=&quot;variable-menu&quot;]</value>
-      <webElementGuid>1c65b275-2c75-4860-b553-fe26369ac05f</webElementGuid>
+      <webElementGuid>2dfe953b-af94-4b26-8386-96781f455589</webElementGuid>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='Dolar Oficial Mayorista'])[1]/following::div[1]</value>
-      <webElementGuid>6ee0907a-563d-43c7-9b54-b6a207dba2c2</webElementGuid>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='CER'])[1]/following::div[1]</value>
+      <webElementGuid>75907a03-f047-44f9-b562-adb75df00f15</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='Dólar Oficial Minorista'])[1]/following::div[2]</value>
-      <webElementGuid>7b2723a9-5631-4f58-82ea-591b37b62dc6</webElementGuid>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Base Monetaria'])[1]/following::div[2]</value>
+      <webElementGuid>8f8af823-d594-4d3b-92b9-4ef3ce3e9e16</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='Base Monetaria'])[1]/preceding::div[1]</value>
-      <webElementGuid>aeab0278-2bdf-4636-8ccd-69232bd80a4b</webElementGuid>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='© Copyright 2024 - Todos los derechos reservados - EconoVista'])[1]/preceding::div[1]</value>
+      <webElementGuid>1058fac9-1d5b-42d7-a176-6e91da93c279</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:position</name>
       <type>Main</type>
-      <value>//div[5]</value>
-      <webElementGuid>fb675553-8565-43a9-9a6a-b17c1502c45d</webElementGuid>
+      <value>//div[8]</value>
+      <webElementGuid>f8f5f373-5de2-4dd3-a30c-19f357f93590</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:customAttributes</name>
       <type>Main</type>
-      <value>//div[(text() = 'Tasa29 %' or . = 'Tasa29 %')]</value>
-      <webElementGuid>da967476-ad08-4167-ac1d-19ce9947040e</webElementGuid>
+      <value>//div[(text() = 'UVA$ 1373.61' or . = 'UVA$ 1373.61')]</value>
+      <webElementGuid>a3eabc7d-8129-4bf1-a2a9-8f209e2eb452</webElementGuid>
    </webElementXpaths>
 </WebElementEntity>
