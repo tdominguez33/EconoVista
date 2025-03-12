@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestCaseEntity>
-   <description></description>
+   <description>Se prueban los botones para ajustar los períodos de tiempo y el boton de 'Limpiar' para volver al período de tiempo inicial</description>
    <name>Ajuste de Tiempos</name>
    <tag></tag>
    <comment></comment>

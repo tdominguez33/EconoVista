@@ -6,12 +6,12 @@
    <UUID>5869b3c3-e441-4a93-8a7e-3ffe4d70c37e</UUID>
    <createdEdition>FREE</createdEdition>
    <createdVersion>10.1.0</createdVersion>
-   <freeLicense>false</freeLicense>
+   <freeLicense>true</freeLicense>
    <migratedVersion>5.9.0</migratedVersion>
    <modifiedEdition>FREE</modifiedEdition>
    <modifiedVersion>10.1.0</modifiedVersion>
    <pageLoadTimeout>0</pageLoadTimeout>
-   <projectFileLocation>C:\Users\tdomi\Desktop\EconoVista\EconoVista.prj</projectFileLocation>
+   <projectFileLocation>C:\Users\tdomi\code\EconoVista\tests\katalon\EconoVista.prj</projectFileLocation>
    <sourceContent>
       <sourceFolderList>
          <sourceFolderConfiguration>

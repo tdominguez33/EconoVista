@@ -16,58 +16,59 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
-
-import com.kms.katalon.core.webui.driver.DriverFactory
-import org.openqa.selenium.By
-import org.openqa.selenium.WebDriver
+import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
+import org.openqa.selenium.By as By
+import org.openqa.selenium.WebDriver as WebDriver
 
 WebUI.openBrowser('http://localhost:4200/')
+
 WebDriver driver = DriverFactory.getWebDriver()
 
-WebUI.delay(2)
+WebUI.delay(1)
 
 WebUI.click(findTestObject('Object Repository/Page_Econovista/div_Reservas27991 M USD'))
-WebUI.delay(2)
 
-driver.findElement(By.xpath("//span[contains(text(), '10A')]")).click()
+WebUI.delay(1)
 
-WebUI.delay(2)
+driver.findElement(By.xpath('//span[contains(text(), \'10A\')]')).click()
 
-driver.findElement(By.xpath("//span[contains(text(), '5A')]")).click()
+WebUI.delay(1)
 
-WebUI.delay(2)
+driver.findElement(By.xpath('//span[contains(text(), \'5A\')]')).click()
 
-driver.findElement(By.xpath("//span[contains(text(), '2A')]")).click()
+WebUI.delay(1)
 
-WebUI.delay(2)
+driver.findElement(By.xpath('//span[contains(text(), \'2A\')]')).click()
 
-driver.findElement(By.xpath("//span[contains(text(), '1A')]")).click()
+WebUI.delay(1)
 
-WebUI.delay(2)
+driver.findElement(By.xpath('//span[contains(text(), \'1A\')]')).click()
 
-driver.findElement(By.xpath("//span[contains(text(), '6M')]")).click()
+WebUI.delay(1)
 
-WebUI.delay(2)
+driver.findElement(By.xpath('//span[contains(text(), \'6M\')]')).click()
 
-driver.findElement(By.xpath("//span[contains(text(), '3M')]")).click()
+WebUI.delay(1)
 
-WebUI.delay(2)
+driver.findElement(By.xpath('//span[contains(text(), \'3M\')]')).click()
 
-driver.findElement(By.xpath("//span[contains(text(), '1M')]")).click()
+WebUI.delay(1)
 
-WebUI.delay(2)
+driver.findElement(By.xpath('//span[contains(text(), \'1M\')]')).click()
 
-driver.findElement(By.xpath("//span[contains(text(), '1S')]")).click()
+WebUI.delay(1)
 
-WebUI.delay(2)
+driver.findElement(By.xpath('//span[contains(text(), \'1S\')]')).click()
 
-WebUI.click(findTestObject('Object Repository/Page_Econovista/span_Limpiar'))
+WebUI.delay(1)
 
-WebUI.delay(2)
+driver.findElement(By.xpath('//span[contains(text(), \'Limpiar\')]')).click()
+
+WebUI.delay(1)
 
 WebUI.click(findTestObject('Object Repository/Page_Econovista/img_RESERVAS INTERNACIONALES DEL BCRA_icon'))
 
-WebUI.delay(2)
+WebUI.delay(1)
 
 WebUI.closeBrowser()
 
