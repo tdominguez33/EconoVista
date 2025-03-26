@@ -1,8 +1,8 @@
 import sqlite3
-from flask import *
-from waitress import serve
 import datetime
 import re
+from flask import Flask, jsonify
+from waitress import serve
 
 idsPermitidosAjusteCER = ["4", "5", "102", "103", "104", "105"]
 
@@ -30,17 +30,17 @@ def datosVariable(idVariable, desde, hasta, pasoDias):
             tabla = "VARIABLES_BCRA"
         else:
             tabla = "VARIABLES_EXTERNAS"
-        
+
         # Obtenemos las filas que tienen el id ingresado y están entre las fechas ingresadas
         c.execute(f"WITH datos AS (SELECT *, ROW_NUMBER() OVER (ORDER BY fecha) AS row_num FROM {tabla} WHERE id = {idVariable} AND fecha BETWEEN '{desde}' AND '{hasta}' ) SELECT * FROM datos WHERE (row_num - 1) % {pasoDias} = 0;")
         rows = c.fetchall()
         for row in rows:
             datos.append({"fecha": row[1], "valor": row[2]})
-        
+
         conn.close()
         return datos
-    else:
-        return jsonify(status = 400, error = "Formato de fechas incorrecto")
+    
+    return jsonify(status = 400, error = "Formato de fechas incorrecto")
 
 # Ajusta una variable por CER (Ajuste por Inflación)
 def ajusteCER(idVariable, desde, hasta, pasoDias):
@@ -68,10 +68,10 @@ def ajusteCER(idVariable, desde, hasta, pasoDias):
         # Como puede no haber la misma cantidad de datos de ambas variables hay que desacoplar la busqueda
         indiceBusqueda = 0
 
-        for i in range (0, len(valoresID)):
+        for i in range(0, len(valoresID)):
 
             # Buscamos que las fechas coincidan
-            while(valoresID[i][1] != valoresCER[indiceBusqueda][1]):
+            while valoresID[i][1] != valoresCER[indiceBusqueda][1]:
                 indiceBusqueda += 1
 
             cerCorriente = valoresCER[indiceBusqueda][2]        # CER a valores corrientes
@@ -85,8 +85,8 @@ def ajusteCER(idVariable, desde, hasta, pasoDias):
             indiceBusqueda += 1
          
         return datos
-    else:
-        return jsonify(status = 400, error="Variable no soportada para ajuste CER")
+
+    return jsonify(status = 400, error="Variable no soportada para ajuste CER")
 
 # Obtener el último valor disponible de todas las variables de la base de datos
 @api.route('/principalesvariables', methods=['GET'])
@@ -97,7 +97,9 @@ def principalesVariables():
 
     # Obtenemos la fila con la última fecha para cada id
     # Buscamos tanto en la tabla de VARIABLES_BCRA como en la de VARIABLES_EXTERNAS
-    c.execute("WITH MaxFechasEconomicas AS (SELECT id, MAX(fecha) AS max_fecha FROM VARIABLES_BCRA GROUP BY id), MaxFechasExternas AS (SELECT id, MAX(fecha) AS max_fecha FROM VARIABLES_EXTERNAS GROUP BY id) SELECT ve.id, ve.fecha, ve.valor FROM VARIABLES_BCRA ve JOIN MaxFechasEconomicas mfe ON ve.id = mfe.id AND ve.fecha = mfe.max_fecha UNION ALL SELECT vex.id, vex.fecha, vex.valor FROM VARIABLES_EXTERNAS vex JOIN MaxFechasExternas mfx ON vex.id = mfx.id AND vex.fecha = mfx.max_fecha;")
+    c.execute("WITH MaxFechasEconomicas AS (SELECT id, MAX(fecha) AS max_fecha FROM VARIABLES_BCRA GROUP BY id), MaxFechasExternas AS (SELECT id, MAX(fecha) AS " 
+              + "max_fecha FROM VARIABLES_EXTERNAS GROUP BY id) SELECT ve.id, ve.fecha, ve.valor FROM VARIABLES_BCRA ve JOIN MaxFechasEconomicas mfe ON ve.id = mfe.id AND ve.fecha = mfe.max_fecha " 
+              + "UNION ALL SELECT vex.id, vex.fecha, vex.valor FROM VARIABLES_EXTERNAS vex JOIN MaxFechasExternas mfx ON vex.id = mfx.id AND vex.fecha = mfx.max_fecha;")
 
     row = c.fetchall()
 
@@ -135,7 +137,7 @@ def datosVariableDesdeHasta(idVariable, desde, hasta):
 
 # Obtener los valores de un determinado ID cada cierta cantidad de dias
 @api.route('/datosvariable/muestra/<idVariable>/<pasoDias>', methods=['GET'])
-def datosVariableTodo_Muestra(idVariable, pasoDias):
+def datosVariableTodoMuestra(idVariable, pasoDias):
     conn = sqlite3.connect('variables.db')
     c = conn.cursor()
 
@@ -146,23 +148,21 @@ def datosVariableTodo_Muestra(idVariable, pasoDias):
     return datos
 
 @api.route('/datosvariable/muestra/<idVariable>/<desde>/<pasoDias>', methods=['GET'])
-def datosVariableDesde_Muestra(idVariable, desde, pasoDias):
+def datosVariableDesdeMuestra(idVariable, desde, pasoDias):
     conn = sqlite3.connect('variables.db')
     c = conn.cursor()
 
     c.execute(f"SELECT fechaInicio FROM 'DATA' WHERE id = {idVariable}")
-    fechaInicio = c.fetchone()[0]
 
     datos = datosVariable(idVariable, desde, str(datetime.date.today()), pasoDias)
     return datos
 
 @api.route('/datosvariable/muestra/<idVariable>/<desde>/<hasta>/<pasoDias>', methods=['GET'])
-def datosVariableDesdeHasta_Muestra(idVariable, desde, hasta, pasoDias):
+def datosVariableDesdeHastaMuestra(idVariable, desde, hasta, pasoDias):
     conn = sqlite3.connect('variables.db')
     c = conn.cursor()
 
     c.execute(f"SELECT fechaInicio FROM 'DATA' WHERE id = {idVariable}")
-    fechaInicio = c.fetchone()[0]
 
     datos = datosVariable(idVariable, desde, hasta, pasoDias)
     return datos
@@ -197,7 +197,7 @@ def ajusteCERDesdeHasta(idVariable, desde, hasta):
     return datos
 
 @api.route('/ajusteCER/muestra/<idVariable>/<pasoDias>', methods=['GET'])
-def ajusteCERTodo_Muestra(idVariable, pasoDias):
+def ajusteCERTodoMuestra(idVariable, pasoDias):
     conn = sqlite3.connect('variables.db')
     c = conn.cursor()
 
@@ -208,12 +208,12 @@ def ajusteCERTodo_Muestra(idVariable, pasoDias):
     return datos
 
 @api.route('/ajusteCER/muestra/<idVariable>/<desde>/<pasoDias>', methods=['GET'])
-def ajusteCERDesde_Muestra(idVariable, desde, pasoDias):
+def ajusteCERDesdeMuestra(idVariable, desde, pasoDias):
     datos = ajusteCER(idVariable, desde, str(datetime.date.today()), pasoDias)
     return datos
 
 @api.route('/ajusteCER/muestra/<idVariable>/<desde>/<hasta>/<pasoDias>', methods=['GET'])
-def ajusteCERDesdeHasta_Muestra(idVariable, desde, hasta, pasoDias):
+def ajusteCERDesdeHastaMuestra(idVariable, desde, hasta, pasoDias):
     datos = ajusteCER(idVariable, desde, hasta, pasoDias)
     return datos
 
@@ -221,4 +221,3 @@ def ajusteCERDesdeHasta_Muestra(idVariable, desde, hasta, pasoDias):
 if __name__ == '__main__':
     print("Iniciando API...")
     serve(api, host="0.0.0.0", port=5000)
-

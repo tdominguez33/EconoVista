@@ -16,7 +16,7 @@ def riesgoPais(respuesta, id, fechaInicio, fechaFinalizacion, cursor, conn):
         fechaDatetime = datetime.date(int(fecha[:4]), int(fecha[5:7]), int(fecha[8:10]))
 
         # Si la fecha obtenida está en el rango deseado la agregamos a la DB
-        if(fechaInicioDatetime < fechaDatetime < fechaFinalizacionDatetime):
+        if fechaInicioDatetime < fechaDatetime < fechaFinalizacionDatetime:
             # Insertar en la base de datos
             cursor.execute("INSERT INTO VARIABLES_EXTERNAS (id, fecha, valor) VALUES (?, ?, ?)", (id, fecha, valor))
                 
@@ -35,7 +35,7 @@ def dolares(respuesta, id, fechaInicio, fechaFinalizacion, cursor, conn):
         fechaDatetime = datetime.date(int(fecha[:4]), int(fecha[5:7]), int(fecha[8:10]))
 
         # Si la fecha obtenida está en el rango deseado la agregamos a la DB
-        if(fechaInicioDatetime < fechaDatetime < fechaFinalizacionDatetime):
+        if fechaInicioDatetime < fechaDatetime < fechaFinalizacionDatetime:
             # Insertar en la base de datos
             cursor.execute("INSERT INTO VARIABLES_EXTERNAS (id, fecha, valor) VALUES (?, ?, ?)", (id, fecha, valor))
                 

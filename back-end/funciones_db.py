@@ -1,10 +1,10 @@
 # Archivo que contiene todas las funciones relacionadas con el manejo de la base de datos
 
 import json
-import requests
 import datetime
+import requests
 from dateutil.relativedelta import relativedelta
-from funcionesRespuestasAPI import *
+from funciones_respuestas_api import *
 
 # Eliminamos los warnings de conexión insegura en los request
 import urllib3
@@ -106,7 +106,7 @@ def solicitarGuardar(id, fechaInicio, fechaFinalizacion, cursor, conn):
             print(f'Solicitando datos para ID {id} desde {fechaInicio} hasta {fechaFinalizacion}', end = '\r')
             
             # Hacemos la solicitud con la verificación SSL deshabilitada
-            respuesta = requests.get(f'https://api.bcra.gob.ar/estadisticas/v2.0/datosvariable/{id}/{fechaInicio}/{fechaFinalizacion}', verify = False)
+            respuesta = requests.get(f'https://api.bcra.gob.ar/estadisticas/v2.0/datosvariable/{id}/{fechaInicio}/{fechaFinalizacion}', verify = False, timeout=10)
 
             if respuesta.status_code == 200:
                 jsonData = json.loads(respuesta.text)
@@ -120,10 +120,10 @@ def solicitarGuardar(id, fechaInicio, fechaFinalizacion, cursor, conn):
                 conn.commit()
             else:
                 print(f'Error en la solicitud para ID {id} desde {fechaInicio} hasta {fechaFinalizacion}, error: {respuesta.text}')
-            return 0
+
         except Exception as e:
             print(f"Error al solicitar datos: {e}")
-            return 1
+
     
     # Variables que usan otra API
     else:
@@ -134,20 +134,20 @@ def solicitarGuardar(id, fechaInicio, fechaFinalizacion, cursor, conn):
         print(f'Solicitando datos para ID {id} desde {fechaInicio} hasta {fechaFinalizacion}', end = '\r')
 
         try:
-            respuesta = requests.get(url, verify = False)
+            respuesta = requests.get(url, verify = False, timeout = 10)
 
             if respuesta.status_code == 200:
                 dataJSON = json.loads(respuesta.text)
 
                 # Tratamiento para cada una de las variables con respuestas diferentes
-                if(id == "101"):
+                if id == "101":
                     riesgoPais(dataJSON, id, fechaInicio, fechaFinalizacion, cursor, conn)
                 else:
                     dolares(dataJSON, id, fechaInicio, fechaFinalizacion, cursor, conn)
             
             else:
                 print(f'Error en la solicitud para ID {id} desde {fechaInicio} hasta {fechaFinalizacion}, error: {respuesta.text}')
-            return 0
+
                 
         except Exception as e:
             print(f"\nError al solicitar datos: {e}")
@@ -165,7 +165,7 @@ def actualizarVariables(listaVariables, cursor, conn):
         fila = cursor.fetchone()
 
         # Hay alguna entrada en la db para esta variable
-        if fila != None:
+        if fila is not None:
             ultimaFecha = fila[2]
             # Convertir la última fecha a un objeto datetime
             ultimaFecha = datetime.datetime.strptime(ultimaFecha, '%Y-%m-%d').date()
@@ -188,7 +188,7 @@ def obtenerVariables(listaVariables, cursor, conn):
         id = str(id)
         
         # Si la variable se obtiene de la API del BCRA Hacemos una solicitud por año
-        if (int(id) < 100):
+        if int(id) < 100:
 
             # Convertimos el string de la fecha en un datetime
             fechaInicio = datetime.date(int(fecha[:4]), int(fecha[5:7]), int(fecha[8:10]))
@@ -209,4 +209,3 @@ def obtenerVariables(listaVariables, cursor, conn):
         # Caso contrario con una sola solicitud es suficiente
         else:
             solicitarGuardar(id, fecha, fechaHoy.strftime('%Y-%m-%d'), cursor, conn)
-

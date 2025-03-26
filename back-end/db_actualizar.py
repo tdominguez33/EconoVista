@@ -1,9 +1,7 @@
-# Archivo utilizado para crear desde cero la base de datos
-# CUIDADO: ESTO BORRA TODOS LOS DATOS ANTERIORES, es recomendable siempre usar DB_actualizar borrando el archivo a mano
-
+# Archivo utilizado para crear de cero / actualizar los datos de la base de datos
 import sqlite3
 import json
-from funcionesDB import guardarVariables, crearListaVariables, obtenerVariables
+from funciones_db import crearListaVariables, guardarVariables, actualizarVariables
 
 # Conexión a la base de datos
 conn = sqlite3.connect('variables.db')
@@ -41,11 +39,6 @@ cursor.execute('''
     )
 ''')
 
-# Limpiar datos existentes de las tablas para evitar duplicados
-cursor.execute('DELETE FROM DATA')
-cursor.execute('DELETE FROM VARIABLES_BCRA')
-cursor.execute('DELETE FROM VARIABLES_EXTERNAS')
-
 # Guardamos los cambios en la base de datos
 conn.commit()
 
@@ -61,13 +54,12 @@ archivos = [archivoBCRA, archivoExternas]
 # Insertar datos en la tabla DATA
 guardarVariables(archivos, cursor, conn)
 
+# Busca en la DB los ID's de las variables que tenemos
 listaVariables = crearListaVariables(cursor)
 
-# Insertamos datos en la tabla VARIABLES_BCRA
-obtenerVariables(listaVariables, cursor, conn)
+actualizarVariables(listaVariables, cursor, conn)
 
-print("\nBase de Datos Creada!")
-
+print("\nBase de Datos Actualizada!")
 
 # Cierra la conexión a la base de datos
 conn.close()
