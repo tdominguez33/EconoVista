@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../service/api.service';
 import { Chart } from 'chart.js';
+import { MenuItem } from '../models/menuItem.model';
 
 @Component({
   selector: 'app-menu2',
@@ -21,8 +22,8 @@ export class Menu2Component {
 
   llenarData(): void {
     // Obtener todas las variables
-    this.apiService.getAllVariables().subscribe(data => {
-      this.data = data;
+    this.apiService.getAllVariables().subscribe((data: MenuItem[]) => {
+      this.data = data.filter(variable => variable.idVariable > 100);
 
       // Para cada variable obtenida, hacer una solicitud adicional para sus detalles
       this.data.forEach((item: any, index: number) => {
