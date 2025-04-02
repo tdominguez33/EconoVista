@@ -128,3 +128,10 @@ a:visited, a:focus, a:hover, a:active {
 .nav-link:visited, .nav-link:link {
     color: #fff;  
 }
+
+
+/*Estilo para los mini graficos*/
+.minigrafico {
+    position: relative;
+    top: -12px; /* Mueve el gráfico hacia arriba */
+}

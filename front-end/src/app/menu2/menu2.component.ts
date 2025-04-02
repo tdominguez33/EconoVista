@@ -25,9 +25,9 @@ export class Menu2Component {
     this.apiService.getAllVariables().subscribe((data: MenuItem[]) => {
       this.data = data.filter(variable => variable.idVariable > 100);
 
-      // Para cada variable obtenida, hacer una solicitud adicional para sus detalles
+      // Para cada variable obtenida, hacer una solicitud adicional para sus detalles2024-08-05
       this.data.forEach((item: any, index: number) => {
-        this.apiService.getDataVariable(item.idVariable, '/datosvariable', '2024-08-05', '1').subscribe(variableData => {
+        this.apiService.getDataVariable(item.idVariable, '/datosvariable', '2024-02-05', '1').subscribe(variableData => {
           this.valor[index] = [];
           this.fecha[index] = [];
 
