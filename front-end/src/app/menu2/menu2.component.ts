@@ -22,7 +22,7 @@ export class Menu2Component {
 
   llenarData(): void {
     this.apiService.getAllVariables().subscribe((data: MenuItem[]) => {
-      this.data = data.filter(variable => variable.idVariable > 100);
+      this.data = data.filter(variable => variable.idVariable > 100 || variable.idVariable === 27);
 
       this.data.forEach((item: any, index: number) => {
         this.apiService.getDataVariable(item.idVariable, '/datosvariable', '2024-02-05', '1').subscribe(variableData => {
