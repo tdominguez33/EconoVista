@@ -9,7 +9,7 @@ import { MenuItem } from '../models/menuItem.model';
   styleUrls: ['./menu2.component.css']
 })
 export class Menu2Component {
-  data: any[] = []; // Almacena las variables obtenidas
+  data: any[] = [];  
   valor: any[][] = []; // Valores organizados por índice
   fecha: any[][] = []; // Fechas organizadas por índice
 
@@ -21,23 +21,19 @@ export class Menu2Component {
   }
 
   llenarData(): void {
-    // Obtener todas las variables
     this.apiService.getAllVariables().subscribe((data: MenuItem[]) => {
       this.data = data.filter(variable => variable.idVariable > 100);
 
-      // Para cada variable obtenida, hacer una solicitud adicional para sus detalles2024-08-05
       this.data.forEach((item: any, index: number) => {
         this.apiService.getDataVariable(item.idVariable, '/datosvariable', '2024-02-05', '1').subscribe(variableData => {
           this.valor[index] = [];
           this.fecha[index] = [];
 
-          // Guardar los valores y fechas en arrays separados
           for (const variable of variableData) {
             this.valor[index].push(variable.valor);
             this.fecha[index].push(variable.fecha);
           }
 
-          // Crear el gráfico para esta variable una vez que los datos estén disponibles
           this.crearMiniGrafico(index);
         });
       });
@@ -45,51 +41,49 @@ export class Menu2Component {
   }
 
   guardarItem(item: any): void {
-    // Guardar la variable seleccionada a través del servicio
     this.apiService.setItemSeleccionado(item);
   }
 
   
   formatValor(item: any): string {
-    const unidadesAdelante = ['$', '€']; // Agrega más unidades si es necesario
+    const unidadesAdelante = ['$', '€'];
     return unidadesAdelante.includes(item.unidad) 
-      ? `${item.unidad} ${item.valor}`  // Espacio después de la unidad
-      : `${item.valor} ${item.unidad}`; // Espacio antes de la unidad
+      ? `${item.unidad} ${item.valor}`  
+      : `${item.valor} ${item.unidad}`; 
   }
 
   crearMiniGrafico(index: number): void {
-    const canvasId = `menu2Chart${index}`; // ID único para cada gráfico
+    const canvasId = `menu2Chart${index}`; 
     const ctx = document.getElementById(canvasId) as HTMLCanvasElement;
 
     if (ctx) {
-      // Datos y configuración del gráfico
+      
       const chartData = {
-        labels: this.fecha[index], // Fechas como etiquetas del eje X
+        labels: this.fecha[index],
         datasets: [{
-          data: this.valor[index], // Valores en el eje Y
-          borderColor: 'teal', // Color de la línea
+          data: this.valor[index], 
+          borderColor: 'teal', 
           borderWidth: 1,
-          fill: false, // No llenar debajo de la línea
-          tension: 0.1, // Suavizado de la curva
-          pointRadius: 0 // No mostrar puntos
+          fill: false, 
+          tension: 0.1,
+          pointRadius: 0 
         }]
       };
 
       const options = {
         responsive: true,
         plugins: {
-          legend: { display: false }, // Ocultar la leyenda
-          tooltip: { enabled: false } // Deshabilitar los tooltips
+          legend: { display: false }, 
+          tooltip: { enabled: false } 
         },
         scales: {
-          x: { display: false }, // Ocultar el eje X
-          y: { display: false } // Ocultar el eje Y
+          x: { display: false },
+          y: { display: false } 
         }
       };
 
-      // Crear el gráfico con Chart.js
       new Chart(ctx, {
-        type: 'line', // Tipo de gráfico
+        type: 'line', 
         data: chartData,
         options: options
       });

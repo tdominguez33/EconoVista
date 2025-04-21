@@ -139,9 +139,7 @@ export class VariableComponent {
 
         fechaInicio = this.calcularFechas(7, 0, 0);
         this.pasoDias = "1"; // trae todos los datos de una semana
-        console.log("Seleciono 1S", fechaInicio);
-        this.esIdMensual();
-        console.log(this.esIdMensual());
+        console.log("Seleciono 1S", fechaInicio);       
         break;
 
       case "1M":
@@ -287,7 +285,7 @@ export class VariableComponent {
     // Destruye el gráfico anterior si ya existe
     localStorage.setItem('graficoFechas', JSON.stringify(fecha));
     localStorage.setItem('graficoValores', JSON.stringify(valores));
-
+    
     if (this.chart) {
       this.chart.destroy();
     }
@@ -326,7 +324,6 @@ export class VariableComponent {
             }
           },
           y: {
-            beginAtZero: true, // Asegúrate de que el eje Y comienza en cero
             grid: {
               display: true, // Habilita las cuadrículas en el eje Y
               color: 'rgba(130, 105, 117, 0.18)', // Color de las cuadrículas
