@@ -1,0 +1,23 @@
+.alert-container {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 300px;
+  }
+  
+  .alert-message {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .btn-alert {
+    padding: 10px 20px;
+    background-color: #00c896;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  

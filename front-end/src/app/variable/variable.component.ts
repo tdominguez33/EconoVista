@@ -6,6 +6,7 @@ import { MenuItem } from '../models/menuItem.model';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent } from '@angular/material/dialog';
 import { DialogoComponent } from '../dialogo/dialogo.component';
+import { AlertaComponent } from '../alerta/alerta.component';
 
 @Component({
   selector: 'app-variable',
@@ -33,7 +34,6 @@ export class VariableComponent {
   readonly dialog = inject(MatDialog);
   botonActivo: string | null = null;
   botonCERDesactivado = false;
-  //cargaCompleta: boolean = false;
 
 
   constructor(private apiService: ApiService, private cdr: ChangeDetectorRef) { }
@@ -59,7 +59,6 @@ export class VariableComponent {
     const nom = localStorage.getItem('nombreLargo');
     if (nom) {
       this.itemActual.nombreLargo = nom;
-
     } else {
       console.log('No se pudo obtener el nombre');
     }
@@ -112,9 +111,8 @@ export class VariableComponent {
 
   }
 
-  esIdMensual(): boolean { //Si es una variable ajustable por cer
-    const mensuales = [27, 29, 104]
-    console.log(mensuales.includes(this.itemActual.idVariable));
+  esIdMensual(): boolean { 
+    const mensuales = [27, 29, 104]    
     return mensuales.includes(this.itemActual.idVariable);
   }
 
@@ -309,14 +307,14 @@ export class VariableComponent {
         responsive: true,
         scales: {
           x: {
-            grid: {
-              display: true, // Habilita las cuadrículas en el eje X
-              color: 'rgba(130, 105, 117, 0.18)', // Color de las cuadrículas
-              lineWidth: 1 // Grosor de las líneas de las cuadrículas
+            grid: { //Cuadricula
+              display: true, 
+              color: 'rgba(130, 105, 117, 0.18)', 
+              lineWidth: 1 
             },
             border: {
-              color: 'gray', // Color de la línea del eje X
-              width: 1.5 // Grosor de la línea del eje X
+              color: 'gray', 
+              width: 1.5 
             },
             title: {
               display: true,
@@ -324,14 +322,14 @@ export class VariableComponent {
             }
           },
           y: {
-            grid: {
-              display: true, // Habilita las cuadrículas en el eje Y
-              color: 'rgba(130, 105, 117, 0.18)', // Color de las cuadrículas
-              lineWidth: 1 // Grosor de las líneas de las cuadrículas
+            grid: { // Cuadricula
+              display: true, 
+              color: 'rgba(130, 105, 117, 0.18)', 
+              lineWidth: 1 
             },
             border: {
-              color: 'gray', // Color de la línea del eje X
-              width: 1.5 // Grosor de la línea del eje X
+              color: 'gray',
+              width: 1.5 
             },
             title: {
               display: true,
@@ -344,7 +342,7 @@ export class VariableComponent {
         },
         plugins: {
           legend: {
-            display: false // Desactiva la leyenda
+            display: false 
           }
         }
       }
@@ -384,52 +382,15 @@ export class VariableComponent {
         btn.classList.add("presionado");
       }
     } else {
-      this.showAlert('La variable no se ajusta por CER');
+      this.mostrarAlertaPersonalizada('La variable no se ajusta por CER');
     }
+    
   }
-
-  // Función para mostrar la alerta
-  showAlert(message: string) {
-    // Crea el contenedor del alert
-    const alertContainer = document.createElement('div');
-    alertContainer.style.position = 'fixed';
-    alertContainer.style.top = '50%';
-    alertContainer.style.left = '50%';
-    alertContainer.style.transform = 'translate(-50%, -50%)';
-    alertContainer.style.backgroundColor = '#333';
-    alertContainer.style.color = 'white';
-    alertContainer.style.padding = '20px';
-    alertContainer.style.borderRadius = '8px';
-    alertContainer.style.textAlign = 'center';
-    alertContainer.style.zIndex = '9999';  // Para asegurarse que esté por encima de todo
-
-    // Crea el mensaje
-    const alertMessage = document.createElement('p');
-    alertMessage.textContent = message;
-    alertMessage.style.fontSize = '1.2rem';
-    alertMessage.style.marginBottom = '20px';
-
-    // Crea el botón de cerrar
-    const closeButton = document.createElement('button');
-    closeButton.textContent = 'Aceptar';
-    closeButton.style.padding = '10px 20px';
-    closeButton.style.backgroundColor = '#00c896';
-    closeButton.style.color = 'white';
-    closeButton.style.border = 'none';
-    closeButton.style.borderRadius = '5px';
-    closeButton.style.cursor = 'pointer';
-
-    // Añadir función para cerrar la alerta
-    closeButton.onclick = () => {
-      document.body.removeChild(alertContainer);
-    };
-
-    // Añadir los elementos al contenedor
-    alertContainer.appendChild(alertMessage);
-    alertContainer.appendChild(closeButton);
-
-    // Añadir el contenedor al body de la página
-    document.body.appendChild(alertContainer);
+  
+  mostrarAlertaPersonalizada(mensaje: string) {
+    this.dialog.open(AlertaComponent, {
+      data: { message: mensaje }
+    });
   }
 
   openDialog() {

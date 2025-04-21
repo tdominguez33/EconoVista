@@ -18,6 +18,7 @@ import { DialogoComponent } from './dialogo/dialogo.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FilterVariablesPipe } from './filter-variables.pipe';
 import { Menu2Component } from './menu2/menu2.component';
+import { AlertaComponent } from './alerta/alerta.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { Menu2Component } from './menu2/menu2.component';
     DialogoComponent,
     FilterVariablesPipe,
     Menu2Component,
+    AlertaComponent,
   ],
   imports: [
     BrowserModule,
