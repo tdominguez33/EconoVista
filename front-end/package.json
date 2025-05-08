@@ -31,7 +31,7 @@
     "@angular/cli": "^16.2.8",
     "@angular/compiler-cli": "^16.2.0",
     "@types/jasmine": "~4.3.0",
-    "angular-eslint": "19.3.0",
+    "angular-eslint": "^19.3.0",
     "eslint": "^9.23.0",
     "eslint-formatter-html": "^2.7.3",
     "jasmine-core": "~4.6.0",

@@ -12,4 +12,4 @@ from locust import HttpUser, task
 class Usuario(HttpUser):
     @task
     def test(self):
-        self.client.get("/ajusteCER/4/2015-01-01/2023-01-01")
+        self.client.get("/principalesvariables")
