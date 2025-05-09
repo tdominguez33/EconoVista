@@ -1,6 +1,34 @@
 import sqlite3
 from pathlib import Path
 import re
+import sys
+from datetime import datetime
+
+# Generar nombre del archivo de log con formato "aaaa.mm.dd-hora.minuto"
+timestamp = datetime.now().strftime("%Y.%m.%d-%H.%M")
+
+# Crear la carpeta 'logs' en la misma ubicación del script actual
+script_dir = Path(__file__).parent
+log_dir = script_dir / "logs"
+log_dir.mkdir(exist_ok=True)
+
+log_file = log_dir / f"{timestamp}.txt"
+
+# Redireccionar stdout a consola y archivo a la vez
+class Tee:
+    def __init__(self, *outputs):
+        self.outputs = outputs
+
+    def write(self, message):
+        for output in self.outputs:
+            output.write(message)
+            output.flush()
+
+    def flush(self):
+        for output in self.outputs:
+            output.flush()
+
+sys.stdout = Tee(sys.stdout, open(log_file, "w", encoding="utf-8"))
 
 # Ruta al archivo SQLite
 ruta_db = Path(__file__).resolve().parents[2] / "back-end" / "variables.db"
