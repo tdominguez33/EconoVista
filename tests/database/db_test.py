@@ -39,7 +39,7 @@ cursor = conn.cursor()
 
 print("\n--- Verificación de base de datos SQLite ---\n")
 
-# 1. Verificar existencia de tablas
+# 1. Verificar existencia de tablas y que no estén vacías
 tablas_requeridas = {"DATA", "VARIABLES_BCRA", "VARIABLES_EXTERNAS"}
 cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
 tablas_encontradas = {fila[0] for fila in cursor.fetchall()}
@@ -53,6 +53,19 @@ if faltantes:
     print(f"\nFaltan las siguientes tablas requeridas: {faltantes}")
 else:
     print("\nTodas las tablas requeridas están presentes.")
+
+    # Verificar que no estén vacías
+    print("\nVerificando que las tablas requeridas no estén vacías:")
+    for tabla in tablas_requeridas:
+        try:
+            cursor.execute(f"SELECT COUNT(*) FROM {tabla};")
+            count = cursor.fetchone()[0]
+            if count > 0:
+                print(f" - La tabla '{tabla}' contiene {count} registros.")
+            else:
+                print(f" - La tabla '{tabla}' está vacía.")
+        except Exception as e:
+            print(f" - Error al contar registros en '{tabla}': {e}")
 
 # 2. Verificar unicidad en varias columnas de la tabla 'DATA'
 columnas_a_verificar = ["id", "nombreCorto", "nombreLargo", "descripcion"]
