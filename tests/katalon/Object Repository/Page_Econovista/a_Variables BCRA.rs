@@ -6,12 +6,12 @@
    <elementGuidId>73bc05f1-4d5f-4d3e-927e-96c0567b6e62</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>XPATH</key>
-         <value>//a[contains(text(),'Variables BCRA')]</value>
-      </entry>
-      <entry>
          <key>CSS</key>
          <value>a.nav-link</value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//a[contains(text(),'Variables BCRA')]</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
@@ -23,7 +23,7 @@
       <name>tag</name>
       <type>Main</type>
       <value>a</value>
-      <webElementGuid>f5f86558-1a47-47d5-8efe-056e7338e79c</webElementGuid>
+      <webElementGuid>f356cf3f-b04e-45fd-87bd-844bd0f0bcde</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
@@ -31,7 +31,7 @@
       <name>href</name>
       <type>Main</type>
       <value>http://localhost:4200/</value>
-      <webElementGuid>6a070022-0d30-4c0e-a1a3-aecda2d2faa2</webElementGuid>
+      <webElementGuid>d7c6f232-aa02-4ec6-85a0-5033e083ada6</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -39,7 +39,7 @@
       <name>class</name>
       <type>Main</type>
       <value>nav-link</value>
-      <webElementGuid>9d7f8be9-65b9-4b3a-ac7e-370aa9592f18</webElementGuid>
+      <webElementGuid>19246b2d-eaf8-4a16-8c7c-cc5975092825</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
@@ -47,7 +47,7 @@
       <name>text</name>
       <type>Main</type>
       <value>Variables BCRA</value>
-      <webElementGuid>0a9903aa-caa2-4c65-853a-630dc9e3ad93</webElementGuid>
+      <webElementGuid>c212c978-5f86-4804-a6f3-01e199bbe12d</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -55,7 +55,7 @@
       <name>xpath</name>
       <type>Main</type>
       <value>/html[1]/body[@class=&quot;mat-typography&quot;]/app-root[1]/div[@class=&quot;contenedor&quot;]/app-menu2[1]/div[@class=&quot;nav-bar&quot;]/a[@class=&quot;nav-link&quot;]</value>
-      <webElementGuid>615655ef-072b-492b-b733-e386bc563342</webElementGuid>
+      <webElementGuid>97d5eb20-b83f-4715-ab24-9944382f4404</webElementGuid>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
@@ -63,7 +63,7 @@
       <name>xpath:link</name>
       <type>Main</type>
       <value>//a[contains(text(),'Variables BCRA')]</value>
-      <webElementGuid>690d9cdc-654a-449f-8a4d-d7c59babe406</webElementGuid>
+      <webElementGuid>41332a71-9b92-41b1-9be4-1d86c9f87a23</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -71,7 +71,7 @@
       <name>xpath:neighbor</name>
       <type>Main</type>
       <value>(.//*[normalize-space(text()) and normalize-space(.)='Otras Variables'])[1]/preceding::a[1]</value>
-      <webElementGuid>773ae1a5-3858-472a-b0cd-8682416dd285</webElementGuid>
+      <webElementGuid>2bc91637-0246-44fd-bb00-6b504426a3f2</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -79,7 +79,7 @@
       <name>xpath:neighbor</name>
       <type>Main</type>
       <value>(.//*[normalize-space(text()) and normalize-space(.)='Otras Variables'])[2]/preceding::a[2]</value>
-      <webElementGuid>31bb4475-8beb-491b-aea3-06d94ece1599</webElementGuid>
+      <webElementGuid>b5102495-3125-42d0-aba0-d963b88897b3</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -87,7 +87,7 @@
       <name>xpath:neighbor</name>
       <type>Main</type>
       <value>//*/text()[normalize-space(.)='Variables BCRA']/parent::*</value>
-      <webElementGuid>28c01f4c-503a-491e-b054-19e0cbc7afcd</webElementGuid>
+      <webElementGuid>c9983f7c-b45f-455f-8f8e-85204380aeea</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -95,7 +95,7 @@
       <name>xpath:href</name>
       <type>Main</type>
       <value>//a[@href='http://localhost:4200/']</value>
-      <webElementGuid>15abe777-0bf9-4318-8fc3-29029c626490</webElementGuid>
+      <webElementGuid>e6624576-6f7c-4965-950f-50c3e7ad63c1</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -103,7 +103,7 @@
       <name>xpath:position</name>
       <type>Main</type>
       <value>//a</value>
-      <webElementGuid>2038ea72-e209-434e-a7e4-f4f4e536462b</webElementGuid>
+      <webElementGuid>3dafa008-5721-4ed6-957d-423840f9941e</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -111,6 +111,6 @@
       <name>xpath:customAttributes</name>
       <type>Main</type>
       <value>//a[@href = 'http://localhost:4200/' and (text() = 'Variables BCRA' or . = 'Variables BCRA')]</value>
-      <webElementGuid>f68e986b-fce3-4157-9246-68ab0cd3e831</webElementGuid>
+      <webElementGuid>1dbbe8a9-9e41-4c14-a0cf-9094592f005f</webElementGuid>
    </webElementXpaths>
 </WebElementEntity>
