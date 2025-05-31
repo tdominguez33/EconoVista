@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent } from '@angular/material/dialog';
 import { DialogoComponent } from '../dialogo/dialogo.component';
 import { AlertaComponent } from '../alerta/alerta.component';
+import { medirRendimiento } from 'src/app/rendimiento.helper';
 
 @Component({
   selector: 'app-variable',
@@ -45,7 +46,7 @@ export class VariableComponent {
     await this.cargarVariablesSoportadas();
     await this.visibilidadCER();
     this.cdr.detectChanges(); // forzar la deteccion de cambios
-
+    medirRendimiento('http://localhost:4200/', 5);
   }
 
   async cargarVariablesSeleccionadas() {

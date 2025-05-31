@@ -35,4 +35,8 @@ export class ApiService {
   public getVarSoportadas(): Observable<string[]>{
     return this.http.get<string[]>(this.urlApiMenu + '/ajusteCER/variablessoportadas')
   }
+
+  public getCpuUsage(): Observable<any> {
+    return this.http.get<any>(this.urlApiMenu + '/cpu-usage');
+  }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../service/api.service';
 import { Chart } from 'chart.js';
 import { MenuItem } from '../models/menuItem.model';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-menu',
@@ -12,12 +13,21 @@ export class MenuComponent implements OnInit {
   data: any[] = [];
   valor: any[][] = []; // Valores organizados por índice
   fecha: any[][] = []; // Fechas organizadas por índice
+  private usageSamples: number[] = [];
+  private startTime: number = performance.now();
 
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.llenarData();
+    this.getCpuUsage();
+  }
+
+  private getCpuUsage(): void {
+  this.apiService.getCpuUsage().subscribe(response => {
+    console.log(`Promedio de uso de CPU: ${response.cpu_usage_avg.toFixed(2)}%`);
+  });
   }
 
   llenarData(): void {

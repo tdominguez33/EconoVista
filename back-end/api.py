@@ -3,6 +3,9 @@ import datetime
 import re
 from flask import Flask, jsonify
 from waitress import serve
+#Metricas de Eficiencia
+import psutil
+import time
 
 idsPermitidosAjusteCER = ["4", "5", "102", "103", "104", "105"]
 
@@ -217,6 +220,16 @@ def ajusteCERDesdeHastaMuestra(idVariable, desde, hasta, pasoDias):
     datos = ajusteCER(idVariable, desde, hasta, pasoDias)
     return datos
 
+@api.route('/cpu-usage', methods=['GET'])
+def get_cpu_usage():
+    usage_samples = []
+    start_time = time.time()
+
+    while time.time() - start_time < 15:  # Medir por 15 segundos
+        usage_samples.append(psutil.cpu_percent(interval=1))
+
+    avg_usage = sum(usage_samples) / len(usage_samples)
+    return jsonify({"cpu_usage_avg": avg_usage})
 
 if __name__ == '__main__':
     print("Iniciando API...")
